@@ -3,279 +3,440 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<title>Il tuo Garmin</title>
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
+<title>My Fitness Tracker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='13' fill='%23141416'/%3E%3Ccircle cx='24' cy='24' r='17' fill='none' stroke='%23c8f53b' stroke-width='4' stroke-linecap='round' stroke-dasharray='90 107' transform='rotate(-90 24 24)'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%23ff4f8b' stroke-width='4' stroke-linecap='round' stroke-dasharray='50 70' transform='rotate(-90 24 24)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f2f2f7; --surface:#ffffff; --surface-2:#f2f2f7;
-  --label:#1c1c1e; --label-2:#55555a; --separator:#d8d8de;
-  --accent:#0060df; --accent-soft:#e3eeff;
-  --good:#1a7f37; --warn:#9a5b00; --bad:#c4251c;
-  --good-soft:#e1f4e6; --warn-soft:#fdf0d5; --bad-soft:#fde4e2;
-  --bar:#0060df; --bar-2:#5e5ce6; --grid:#e5e5ea;
-  --z-low:#f3cf86; --z-ok:#86d39f; --z-high:#f2a49c;
-  --s-deep:#3634a3; --s-core:#007aff; --s-rem:#32ade6; --s-awake:#ff9f0a;
-  --radius:20px; --gap:16px;
-  --spring:cubic-bezier(.2,.9,.25,1);
+  --bg:#000; --surface:#141416; --surface-2:#1d1d20; --surface-3:#2c2c30;
+  --label:#f5f5f7; --label-2:#a1a1a8; --sep:#2a2a2e; --grid:#232327;
+  --lime:#c8f53b; --pink:#ff4f8b; --cyan:#3fe0f0; --violet:#a98bff; --amber:#ffb547;
+  --good:#4cd371; --warn:#ffb340; --bad:#ff7a70;
+  --good-soft:#12301b; --warn-soft:#3a2a08; --bad-soft:#3d1512;
+  --z-low:#6b5216; --z-ok:#2f7a46; --z-high:#8a3a33;
+  --h0:#1f1f23; --h1:#3c4a16; --h2:#67851f; --h3:#98c42c; --h4:#c8f53b;
+  --s-deep:#7d7aff; --s-core:#0a84ff; --s-rem:#64d2ff; --s-awake:#ff9f0a;
+  --display:"Inter Tight",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --radius:24px; --gap:16px;
 }
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#000000; --surface:#1c1c1e; --surface-2:#2c2c2e;
-    --label:#f2f2f7; --label-2:#aeaeb4; --separator:#3a3a3e;
-    --accent:#4da3ff; --accent-soft:#12263f;
-    --good:#4cd371; --warn:#ffb340; --bad:#ff7a70;
-    --good-soft:#12301b; --warn-soft:#3a2a08; --bad-soft:#3d1512;
-    --bar:#4da3ff; --bar-2:#9a98ff; --grid:#2f2f33;
-    --z-low:#8a6a24; --z-ok:#2f8a50; --z-high:#9a453c;
-    --s-deep:#7d7aff; --s-core:#0a84ff; --s-rem:#64d2ff; --s-awake:#ff9f0a;
-  }
-}
-@media (prefers-contrast: more){
-  :root{ --label-2:#3a3a3e; --separator:#8e8e93; }
-  @media (prefers-color-scheme: dark){ :root{ --label-2:#d1d1d6; } }
-}
+@media (prefers-contrast: more){ :root{ --label-2:#c7c7cc; --sep:#48484a; --grid:#3a3a3e } }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0; background:var(--bg); color:var(--label);
-  font-family:-apple-system,BlinkMacSystemFont,system-ui,"Inter","Segoe UI",Roboto,sans-serif;
-  font-optical-sizing:auto;
-  font-size:1.0625rem; line-height:1.4; font-variant-numeric:tabular-nums;
-  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-}
-.wrap{max-width:1200px; margin:0 auto; padding:24px 20px 40px}
-header{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:8px 24px; padding:16px 4px 20px}
-h1{font-size:2.125rem; line-height:1.12; font-weight:700; margin:0; letter-spacing:-0.022em}
-.sub{color:var(--label-2); font-size:.9375rem; margin:6px 0 0; line-height:1.35}
-.upd{color:var(--label-2); font-size:.8125rem; text-align:right; line-height:1.4}
-.upd b{color:var(--label); font-weight:600}
-.notice{
-  display:flex; gap:12px; align-items:flex-start; background:var(--warn-soft); color:var(--label);
-  border-radius:16px; padding:14px 16px; margin-bottom:var(--gap); font-size:.9375rem; line-height:1.4;
-}
-.notice .ic{flex:none; width:24px; height:24px; border-radius:50%; background:var(--warn); color:var(--surface);
-  font-weight:700; display:grid; place-items:center; font-size:.875rem}
-.notice strong{font-weight:600}
-.card{background:var(--surface); border-radius:var(--radius); padding:20px 22px; min-width:0}
-.card h2{font-size:1.25rem; line-height:1.2; margin:0 0 4px; font-weight:600; letter-spacing:-0.01em}
-.card .lead{color:var(--label-2); font-size:.9375rem; line-height:1.4; margin:0 0 14px}
-.eyebrow{font-size:.8125rem; line-height:1.35; color:var(--label-2); font-weight:500}
-.grid{display:grid; gap:var(--gap); margin-bottom:var(--gap)}
-.kpis{grid-template-columns:repeat(4,1fr)}
-.kpi{padding:18px 20px}
-.kpi .val{font-size:2.125rem; font-weight:700; line-height:1.1; margin:6px 0 10px; letter-spacing:-0.022em}
-.kpi .val small{font-size:1rem; font-weight:500; color:var(--label-2); margin-left:3px; letter-spacing:0}
-.chip{display:inline-flex; align-items:center; gap:4px; font-size:.8125rem; font-weight:600; padding:3px 9px; border-radius:999px; background:var(--surface-2); color:var(--label-2)}
-.chip .ar{font-size:.625rem}
-.kpi .prev{display:block; color:var(--label-2); font-size:.8125rem; margin-top:8px}
-.two{grid-template-columns:5fr 7fr} .two-b{grid-template-columns:7fr 5fr}
+html{-webkit-text-size-adjust:100%; scroll-padding-top:120px; background:var(--bg)}
+body{margin:0; background:var(--bg); color:var(--label);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",Roboto,sans-serif;
+  font-size:1rem; line-height:1.45; font-variant-numeric:tabular-nums; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px; margin:0 auto; padding-left:max(20px, env(safe-area-inset-left)); padding-right:max(20px, env(safe-area-inset-right))}
+h1,h2,h3{font-family:var(--display); margin:0}
+button,select,input{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--lime); outline-offset:2px; border-radius:8px}
+
+/* Header: materiale traslucido, il contenuto scorre sotto */
+.top{position:sticky; top:0; z-index:20; padding-top:env(safe-area-inset-top);
+  background:rgba(0,0,0,.72); -webkit-backdrop-filter:blur(20px) saturate(180%); backdrop-filter:blur(20px) saturate(180%)}
+.top::after{content:""; position:absolute; left:0; right:0; bottom:-16px; height:16px; pointer-events:none;
+  background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,0)); opacity:0; transition:opacity .2s ease}
+.top.scrolled::after{opacity:1}
+.topbar{display:flex; align-items:center; gap:12px 28px; padding-top:12px; padding-bottom:12px; flex-wrap:wrap}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; margin-right:auto}
+.brand svg{flex:none}
+.brand b{display:block; font-family:var(--display); font-weight:800; font-size:1.375rem; line-height:1.05; letter-spacing:-0.03em}
+.brand small{display:block; font-size:.75rem; color:var(--label-2); margin-top:2px}
+.nav{display:flex; gap:2px; background:var(--surface); border-radius:999px; padding:4px; overflow-x:auto; scrollbar-width:none; max-width:100%}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none; text-decoration:none; color:var(--label); font-size:.875rem; font-weight:500; padding:8px 15px; border-radius:999px;
+  transition:background-color .2s ease, color .2s ease, transform .1s ease-out; -webkit-tap-highlight-color:transparent}
+.nav a:active{transform:scale(.96)}
+.nav a[aria-current="true"]{background:var(--label); color:#000; font-weight:600}
+
+main{padding-top:20px; padding-bottom:48px; display:flex; flex-direction:column; gap:var(--gap)}
+section[id]{scroll-margin-top:120px}
+.card{background:var(--surface); border-radius:var(--radius); padding:24px 26px; min-width:0}
+.card h2{font-weight:700; font-size:1.375rem; letter-spacing:-0.02em; line-height:1.2}
+.lead{color:var(--label-2); font-size:.875rem; margin:4px 0 16px}
+.eyebrow{font-size:.8125rem; color:var(--label-2); line-height:1.4}
+.head{display:flex; justify-content:space-between; align-items:flex-start; gap:10px 16px; flex-wrap:wrap}
+.cols{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:var(--gap)}
+.c7{grid-column:span 7} .c5{grid-column:span 5} .c12{grid-column:span 12}
+.sec-title{font-family:var(--display); font-weight:700; font-size:1.75rem; letter-spacing:-0.03em; margin:18px 4px 0}
+
+/* Controlli */
+.seg{position:relative; display:inline-flex; background:var(--surface); border-radius:12px; padding:3px; max-width:100%}
+.seg.small{background:var(--surface-2); border-radius:10px}
+.seg .thumb{position:absolute; top:3px; left:0; height:calc(100% - 6px); border-radius:9px; background:var(--surface-3); will-change:transform}
+.seg.small .thumb{border-radius:8px}
+.seg button{position:relative; border:0; background:transparent; padding:9px 16px; border-radius:9px; font-size:.875rem; font-weight:500;
+  cursor:pointer; min-height:38px; -webkit-tap-highlight-color:transparent; transition:transform .1s ease-out, opacity .1s ease-out; white-space:nowrap}
+.seg.small button{padding:6px 12px; font-size:.8125rem; min-height:32px}
+.seg button:active{transform:scale(.95); opacity:.7}
+.seg button[aria-pressed="true"]{font-weight:600}
+.periodbar{display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px}
+.periodbar .opts{display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; font-size:.875rem; color:var(--label-2)}
+.field{display:inline-flex; align-items:center; gap:8px}
+.field[hidden]{display:none}
+select,input[type="date"]{background:var(--surface); border:1px solid var(--surface-3); border-radius:999px; padding:8px 14px; font-size:.875rem;
+  color:var(--label); min-height:38px; color-scheme:dark}
+select{appearance:none; -webkit-appearance:none; padding-right:34px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23a1a1a8' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5 6 7.5 9 4.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 12px center}
+.chips{display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; padding:2px; margin:-2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none; border:1px solid var(--surface-3); background:transparent; padding:7px 14px; border-radius:999px; font-size:.8125rem; cursor:pointer;
+  min-height:34px; -webkit-tap-highlight-color:transparent; transition:background-color .15s ease, color .15s ease, transform .1s ease-out}
+.chip:active{transform:scale(.95)}
+.chip[aria-pressed="true"]{background:var(--lime); border-color:var(--lime); color:#000; font-weight:600}
+
+/* Hero */
+.hero{padding:30px 32px 32px}
+.hero h1{font-weight:700; font-size:2.25rem; line-height:1.08; letter-spacing:-0.035em}
+.hero .when{color:var(--label-2); font-size:.875rem; margin:8px 0 26px}
+.metrics{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px}
+.metric{display:grid; grid-template-columns:auto 1fr; gap:4px 14px; align-items:center}
+.metric .ring{grid-row:span 3; width:64px; height:64px}
+.metric .ring text{font-family:var(--display); font-weight:700; font-size:13px; fill:var(--label)}
+.metric .nm{font-size:.8125rem; font-weight:600}
+.metric .v{font-family:var(--display); font-weight:700; font-size:2.75rem; line-height:1; letter-spacing:-0.04em; white-space:nowrap}
+.metric .v small{font-size:1.0625rem; font-weight:600; color:var(--label-2); letter-spacing:0; margin:0 3px}
+.metric .cmp{font-size:.8125rem; color:var(--label-2)}
+.noring .metric{grid-template-columns:1fr}
+.noring .metric .ring{display:none}
+
+/* Heatmap */
+.hm-tools{display:flex; flex-direction:column; gap:12px; margin-bottom:16px}
+.hm-wrap{position:relative}
+.hm-scroll{overflow-x:auto; scrollbar-width:thin; padding-bottom:4px}
+.hm-block{display:flex; gap:6px; margin-bottom:14px}
+.hm-block:last-child{margin-bottom:0}
+.hm-days{display:grid; grid-template-rows:16px repeat(7,var(--c)); row-gap:3px; font-size:10px; color:var(--label-2); flex:none; width:24px}
+.hm-days span{line-height:var(--c)}
+.hm-main{display:flex; flex-direction:column; gap:3px}
+.hm-months{display:grid; grid-auto-columns:var(--c); grid-auto-flow:column; column-gap:3px; height:16px; font-size:10px; color:var(--label-2); white-space:nowrap}
+.hm-grid{display:grid; grid-auto-flow:column; grid-template-rows:repeat(7,var(--c)); grid-auto-columns:var(--c); gap:3px}
+.hm-grid i{display:block; border-radius:3px; background:var(--h0)}
+.hm-grid i.l1{background:var(--h1)} .hm-grid i.l2{background:var(--h2)} .hm-grid i.l3{background:var(--h3)} .hm-grid i.l4{background:var(--h4)}
+.hm-grid i.x{background:transparent}
+.hm-grid i.on{outline:2px solid var(--label); outline-offset:1px}
+.hm-year{font-size:.8125rem; color:var(--label-2); margin:0 0 6px 30px}
+.hm-year b{color:var(--label); font-family:var(--display); font-size:1rem}
+.hm-foot{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-top:12px; font-size:.75rem; color:var(--label-2)}
+.hm-legend{display:inline-flex; align-items:center; gap:4px}
+.hm-legend i{width:11px; height:11px; border-radius:3px; display:inline-block}
+.tip{position:absolute; top:0; left:0; z-index:5; pointer-events:none; background:var(--surface-3); color:var(--label); border-radius:12px;
+  padding:8px 12px; font-size:.8125rem; line-height:1.35; box-shadow:0 8px 24px rgba(0,0,0,.5); opacity:0; transition:opacity .12s ease; white-space:nowrap}
+.tip.on{opacity:1}
+.tip b{display:block; font-weight:600}
+.tip span{color:var(--label-2); display:block}
+
+/* Grafici */
+svg{display:block; overflow:visible}
+svg text{font-family:inherit; fill:var(--label-2); font-size:11px}
+.chart{position:relative; width:100%; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none}
+.chart svg{width:100%; touch-action:pan-y; cursor:crosshair}
+.chart svg:focus{outline:none}
+.chart svg:focus-visible{outline:3px solid var(--lime); outline-offset:4px; border-radius:6px}
+.readout{position:absolute; top:0; left:0; pointer-events:none; white-space:nowrap; background:var(--surface-3); color:var(--label);
+  border-radius:10px; padding:5px 10px; font-size:.8125rem; line-height:1.3; box-shadow:0 6px 20px rgba(0,0,0,.45); opacity:0; transition:opacity .12s ease}
+.readout.on{opacity:1}
+.readout b{font-weight:600; font-size:.9375rem}
+.readout span{color:var(--label-2); display:block}
+.bar{transition:opacity .15s ease}
+.scrubbing .bar{opacity:.3}
+.scrubbing .bar.on{opacity:1}
+.scrubbing .best{opacity:0}
+.mark{opacity:0; transition:opacity .12s ease}
+.scrubbing .mark{opacity:1}
+
+/* Peso */
+.wt-top{display:flex; align-items:center; gap:18px; margin-bottom:12px}
+.wt-top svg{flex:none}
+.wt-v{font-family:var(--display); font-weight:700; font-size:3rem; line-height:1; letter-spacing:-0.04em}
+.wt-v small{font-size:1.125rem; font-weight:600; color:var(--label-2); letter-spacing:0}
+.wt-t{font-size:.875rem; color:var(--label-2); margin-top:4px}
+.wt-t b{color:var(--amber); font-weight:600}
+.wt-trend{font-size:.8125rem; color:var(--label-2); margin:0 0 14px}
+
+/* Carico */
+.load-grid{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:24px 40px; align-items:end}
 .load-main{display:flex; align-items:center; gap:14px; margin-bottom:6px; flex-wrap:wrap}
-.ratio{font-size:3rem; font-weight:700; line-height:1; letter-spacing:-0.03em}
-.light{display:inline-flex; align-items:center; gap:8px; padding:6px 12px 6px 10px; border-radius:999px; font-weight:600; font-size:.9375rem}
-.light i{width:12px; height:12px; border-radius:50%; background:currentColor; display:block}
+.ratio{font-family:var(--display); font-size:3rem; font-weight:700; line-height:1; letter-spacing:-0.04em}
+.light{display:inline-flex; align-items:center; gap:8px; padding:6px 12px 6px 10px; border-radius:999px; font-weight:600; font-size:.875rem}
+.light i{width:10px; height:10px; border-radius:50%; background:currentColor; display:block}
 .light.ottimale{background:var(--good-soft); color:var(--good)}
 .light.alto{background:var(--bad-soft); color:var(--bad)}
 .light.basso{background:var(--warn-soft); color:var(--warn)}
 .gauge{margin:18px 0 6px}
 .gauge .track{position:relative; height:12px; border-radius:6px; display:flex}
 .gauge .z{height:100%}
-.gauge .z1{background:var(--z-low); border-radius:6px 0 0 6px}
-.gauge .z2{background:var(--z-ok)}
-.gauge .z3{background:var(--z-high); border-radius:0 6px 6px 0}
+.gauge .z1{background:var(--z-low); border-radius:6px 0 0 6px} .gauge .z2{background:var(--z-ok)} .gauge .z3{background:var(--z-high); border-radius:0 6px 6px 0}
 .gauge .pin{position:absolute; top:-5px; left:0; width:6px; height:22px; background:var(--label); border-radius:3px; box-shadow:0 0 0 3px var(--surface)}
 .gauge .ticks{font-size:.75rem; color:var(--label-2); margin-top:8px; position:relative; height:16px}
 .gauge .ticks span{position:absolute; transform:translateX(-50%)}
-.legend{display:flex; gap:14px; flex-wrap:wrap; font-size:.8125rem; color:var(--label-2); margin-top:12px}
-.legend span{display:inline-flex; align-items:center; gap:6px}
-.legend i{width:10px; height:10px; border-radius:3px; display:block}
-.stats{display:flex; gap:24px; margin-top:16px; padding-top:14px; border-top:1px solid var(--separator); flex-wrap:wrap}
+.stats{display:flex; gap:24px; margin-top:16px; padding-top:14px; border-top:1px solid var(--sep); flex-wrap:wrap}
 .stats div{font-size:.8125rem; color:var(--label-2)}
-.stats b{display:block; font-size:1.25rem; color:var(--label); font-weight:600; letter-spacing:-0.01em}
-svg{display:block; overflow:visible}
-svg text{font-family:inherit; fill:var(--label-2); font-size:11px}
-.chart{position:relative; width:100%; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none}
-.chart svg{width:100%; touch-action:pan-y; cursor:crosshair}
-.chart svg:focus{outline:none}
-.chart svg:focus-visible{outline:3px solid var(--accent); outline-offset:4px; border-radius:6px}
-.readout{position:absolute; top:0; left:0; pointer-events:none; white-space:nowrap;
-  background:var(--surface); color:var(--label); border-radius:10px; padding:5px 10px; font-size:.8125rem; line-height:1.3;
-  box-shadow:0 2px 10px rgba(0,0,0,.14), 0 0 0 .5px rgba(0,0,0,.08); opacity:0; transition:opacity .12s ease}
-.readout.on{opacity:1}
-.readout b{font-weight:600; font-size:.9375rem}
-.readout span{color:var(--label-2); display:block}
-.bar{transition:opacity .15s ease}
-.scrubbing .bar{opacity:.35}
-.scrubbing .bar.on{opacity:1}
-.scrubbing .best{opacity:0}
-.mark{opacity:0; transition:opacity .12s ease}
-.scrubbing .mark{opacity:1}
-.seg{position:relative; display:inline-flex; background:var(--surface-2); border-radius:10px; padding:2px; margin-bottom:12px}
-.seg .thumb{position:absolute; top:2px; left:0; height:calc(100% - 4px); border-radius:8px; background:var(--surface);
-  box-shadow:0 1px 3px rgba(0,0,0,.16), 0 0 0 .5px rgba(0,0,0,.06); will-change:transform}
-.seg button{position:relative; font:inherit; font-size:.8125rem; font-weight:500; border:0; background:transparent; color:var(--label);
-  padding:6px 14px; border-radius:8px; cursor:pointer; min-height:32px; -webkit-tap-highlight-color:transparent;
-  transition:transform .1s ease-out, opacity .1s ease-out}
-.seg button:active{transform:scale(.95); opacity:.7}
-.seg button[aria-pressed="true"]{font-weight:600}
-.seg button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
-summary{-webkit-tap-highlight-color:transparent; transition:opacity .1s ease-out}
-summary:active{opacity:.55}
-.wb{grid-template-columns:repeat(4,1fr); gap:12px}
+.stats b{display:block; font-family:var(--display); font-size:1.25rem; color:var(--label); font-weight:700}
+
+/* Recupero */
+.wb{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px}
+.tile{background:var(--surface-2); border-radius:16px; padding:14px; min-width:0}
+.tile .nm{font-size:.8125rem; color:var(--label-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.tile .v{font-family:var(--display); font-size:1.75rem; font-weight:700; line-height:1.1; margin:2px 0 6px; letter-spacing:-0.03em}
+.tile .v small{font-size:.8125rem; font-weight:600; color:var(--label-2); letter-spacing:0}
+.tile.live .v{color:var(--cyan)}
+.tile .cmp{font-size:.75rem; color:var(--label-2); line-height:1.4; margin:0 0 8px}
+.tile .cmp b{color:var(--label); font-weight:600}
 .ph{display:flex; height:14px; border-radius:7px; overflow:hidden; gap:2px; margin:4px 0 10px}
 .ph i{display:block; height:100%; min-width:3px}
 .phl{display:grid; gap:4px}
-.phl span{display:block}
 .phl i{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px}
-.phl em{font-style:normal; opacity:.9}
-.tile .cmp{font-size:.75rem; color:var(--label-2); line-height:1.4; margin:0 0 8px}
-.tile .cmp b{color:var(--label); font-weight:600}
-.recnotes{margin:14px 0 0; padding:0 0 0 18px; color:var(--label-2); font-size:.875rem; line-height:1.47}
-.recnotes li{margin:2px 0}
-.tile{background:var(--surface-2); border-radius:14px; padding:14px; min-width:0}
-.tile .nm{font-size:.8125rem; color:var(--label-2); font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.tile .v{font-size:1.5rem; font-weight:700; line-height:1.15; margin:2px 0 6px; letter-spacing:-0.015em}
-.tile .v small{font-size:.8125rem; font-weight:500; color:var(--label-2); letter-spacing:0}
-.tile.live .v{color:var(--accent)}
-.empty{font-size:.9375rem; color:var(--label-2); margin:14px 0 0; line-height:1.4}
+.phl em{font-style:normal}
+.recnotes{margin:14px 0 0; padding:0 0 0 18px; color:var(--label-2); font-size:.8125rem; line-height:1.5}
+.empty{font-size:.9375rem; color:var(--label-2); margin:14px 0 0}
 .empty:empty{display:none}
-.list{width:100%; border-collapse:collapse; font-size:.9375rem}
-.list th{text-align:left; font-size:.75rem; font-weight:600; color:var(--label-2); padding:0 10px 8px 0; border-bottom:1px solid var(--separator); white-space:nowrap}
-.list td{padding:11px 10px 11px 0; border-bottom:1px solid var(--separator); vertical-align:middle}
-.list tr:last-child td{border-bottom:0}
-.list .num{text-align:right; white-space:nowrap}
-.list th.num{text-align:right}
-.tag{display:inline-block; font-size:.75rem; font-weight:600; padding:2px 8px; border-radius:6px; background:var(--accent-soft); color:var(--accent); white-space:nowrap}
-.nm2{font-weight:500}
-.alist{display:none; list-style:none; margin:0; padding:0}
-.alist li{display:grid; grid-template-columns:1fr auto; gap:2px 12px; padding:12px 0; border-bottom:1px solid var(--separator)}
+
+/* Attivita */
+.alist{list-style:none; margin:0; padding:0}
+.alist li{display:grid; grid-template-columns:1fr auto; gap:2px 12px; padding:12px 0; border-bottom:1px solid var(--sep)}
 .alist li:last-child{border-bottom:0}
 .alist .t{font-weight:500; line-height:1.3; min-width:0}
-.alist .d{font-size:.8125rem; color:var(--label-2); line-height:1.35}
-.alist .k{text-align:right; font-weight:600; white-space:nowrap}
-.alist .k small{font-weight:500; color:var(--label-2); font-size:.8125rem}
+.alist .d{font-size:.8125rem; color:var(--label-2)}
+.alist .k{text-align:right; font-family:var(--display); font-weight:700; white-space:nowrap}
+.alist .k small{font-family:Inter,sans-serif; font-weight:500; color:var(--label-2); font-size:.8125rem}
 .alist .m{text-align:right; font-size:.8125rem; color:var(--label-2); white-space:nowrap}
-.notes{margin:0; padding:0; list-style:none; display:grid; gap:14px}
-.notes li{display:flex; gap:12px; font-size:1rem; line-height:1.47}
-.notes .dot{flex:none; width:8px; height:8px; border-radius:50%; background:var(--accent); margin-top:9px}
-footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding:20px 4px 0}
-.vh{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
-@media (max-width:980px){ .kpis{grid-template-columns:repeat(2,1fr)} .two,.two-b{grid-template-columns:1fr} .wb{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:560px){
-  .wrap{padding:12px 16px 32px} h1{font-size:1.875rem} .upd{text-align:left}
-  .card{padding:18px 16px} .kpi{padding:16px} .kpi .val{font-size:1.75rem} .ratio{font-size:2.5rem}
+
+/* Note */
+.notes{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--gap)}
+.note{background:var(--surface); border-radius:22px; padding:20px; display:flex; flex-direction:column; gap:14px}
+.note h3{font-family:Inter,sans-serif; font-size:.8125rem; font-weight:600; letter-spacing:.02em}
+.note ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:14px}
+.note li{font-size:.9375rem; line-height:1.47; color:var(--label)}
+.note li::before{content:""; display:block; width:18px; height:3px; border-radius:2px; margin-bottom:8px}
+.n1{--k:var(--lime)} .n2{--k:var(--pink)} .n3{--k:var(--cyan)} .n4{--k:var(--amber)}
+.note h3{color:var(--k)} .note li::before{background:var(--k)}
+
+.notice{display:flex; gap:12px; align-items:flex-start; background:var(--warn-soft); border-radius:16px; padding:14px 16px; font-size:.9375rem}
+.notice .ic{flex:none; width:24px; height:24px; border-radius:50%; background:var(--warn); color:#000; font-weight:700; display:grid; place-items:center; font-size:.875rem}
+footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom:max(32px, env(safe-area-inset-bottom))}
+
+@media (max-width:1020px){
+  .metrics{grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px 16px}
+  .c7,.c5{grid-column:span 12}
+  .load-grid{grid-template-columns:1fr}
+  .wb{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .notes{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:620px){
+  .wrap{padding-left:max(16px, env(safe-area-inset-left)); padding-right:max(16px, env(safe-area-inset-right))}
+  .topbar{gap:10px; padding-top:10px; padding-bottom:10px}
+  .nav{width:100%}
+  .nav a{padding:8px 13px}
+  .card{padding:18px 16px} .hero{padding:22px 18px 24px}
+  .hero h1{font-size:1.75rem}
+  .metric{grid-template-columns:1fr} .metric .ring{grid-row:auto; width:44px; height:44px; order:-1}
+  .metric .ring text{display:none}
+  .metric .v{font-size:2.125rem}
+  .notes{grid-template-columns:1fr}
   .wb{gap:10px} .tile{padding:12px}
-  .actwrap{display:none} .alist{display:block}
+  .periodbar .seg{width:100%; display:grid; grid-template-columns:repeat(4,minmax(0,1fr))}
+  .periodbar .seg button{padding:9px 0}
+  .sec-title{font-size:1.5rem}
 }
-@media (prefers-reduced-motion: reduce){
-  .bar,.readout,.mark,.seg button,summary{transition:none}
-  .seg button:active{transform:none}
-}
+@media (prefers-reduced-motion: reduce){ *{transition:none !important} }
+@media (prefers-reduced-transparency: reduce){ .top{background:#000; -webkit-backdrop-filter:none; backdrop-filter:none} }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div>
-      <h1>Il tuo Garmin</h1>
-      <p class="sub" id="sub"></p>
-    </div>
-    <div class="upd" id="upd"></div>
-  </header>
+<header class="top" id="top">
+  <div class="wrap topbar">
+    <a class="brand" href="#panoramica" aria-label="My Fitness Tracker, torna all'inizio">
+      <svg width="44" height="44" viewBox="0 0 48 48" aria-hidden="true">
+        <rect width="48" height="48" rx="13" fill="#141416"/>
+        <circle cx="24" cy="24" r="17" fill="none" stroke="#c8f53b" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="90 107" transform="rotate(-90 24 24)"/>
+        <circle cx="24" cy="24" r="12" fill="none" stroke="#ff4f8b" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="55 76" transform="rotate(-90 24 24)"/>
+        <text x="24" y="28" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="800" font-size="10" fill="#f5f5f7">MS</text>
+      </svg>
+      <span><b>My Fitness Tracker</b><small id="upd"></small></span>
+    </a>
+    <nav class="nav" aria-label="Sezioni">
+      <a href="#panoramica">Panoramica</a>
+      <a href="#attivita">Attività</a>
+      <a href="#peso">Peso</a>
+      <a href="#recupero">Recupero</a>
+      <a href="#note">Note</a>
+    </nav>
+  </div>
+</header>
 
+<main class="wrap">
   <div class="notice" id="notice" role="note"><span class="ic" aria-hidden="true">!</span><div id="noticeTxt"></div></div>
 
-  <section class="grid kpis" id="kpis" aria-label="Ultimi 7 giorni"></section>
-
-  <section class="grid two">
-    <article class="card" id="loadCard" aria-labelledby="loadT"></article>
-    <article class="card" aria-labelledby="weekT">
-      <h2 id="weekT">Volume settimanale</h2>
-      <p class="lead" id="weekLead"></p>
-      <div class="seg" role="group" aria-label="Metrica del grafico">
+  <section id="panoramica" aria-labelledby="headline" style="display:flex; flex-direction:column; gap:var(--gap)">
+    <div class="periodbar">
+      <div class="seg" id="segPer" role="group" aria-label="Periodo">
         <span class="thumb" aria-hidden="true"></span>
-        <button type="button" data-m="km" aria-pressed="true">Chilometri</button>
-        <button type="button" data-m="dislivello_m" aria-pressed="false">Dislivello</button>
-        <button type="button" data-m="ore" aria-pressed="false">Ore</button>
+        <button type="button" data-v="7" aria-pressed="true">7 giorni</button>
+        <button type="button" data-v="30" aria-pressed="false">30 giorni</button>
+        <button type="button" data-v="all" aria-pressed="false">Sempre</button>
+        <button type="button" data-v="range" aria-pressed="false">Intervallo</button>
       </div>
-      <div class="chart" id="weekChart"></div>
+      <div class="opts">
+        <span class="field" id="rangeBox" hidden>
+          <label class="field">Dal <input type="date" id="rFrom"></label>
+          <label class="field">al <input type="date" id="rTo"></label>
+        </span>
+        <label class="field" id="cmpBox">Confronta con
+          <select id="cmp">
+            <option value="prev">il periodo precedente</option>
+            <option value="year">lo stesso periodo un anno prima</option>
+            <option value="none">nessun confronto</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <div class="card hero" id="hero">
+      <h1 id="headline"></h1>
+      <p class="when" id="when"></p>
+      <div class="metrics" id="metrics"></div>
+    </div>
+  </section>
+
+  <div class="cols">
+    <section class="card c7" id="attivita" aria-labelledby="hmT">
+      <div class="head">
+        <div><h2 id="hmT">Giorni attivi</h2><p class="lead" id="hmLead" style="margin-bottom:0"></p></div>
+        <div class="seg small" id="segHm" role="group" aria-label="Periodo della mappa">
+          <span class="thumb" aria-hidden="true"></span>
+          <button type="button" data-v="26" aria-pressed="true">6 mesi</button>
+          <button type="button" data-v="53" aria-pressed="false">1 anno</button>
+          <button type="button" data-v="all" aria-pressed="false">Sempre</button>
+        </div>
+      </div>
+      <div class="hm-tools" style="margin-top:16px">
+        <div class="chips" id="chips" role="group" aria-label="Tipo di attività"></div>
+      </div>
+      <div class="hm-wrap" id="hmWrap">
+        <div class="hm-scroll" id="hmScroll"></div>
+        <div class="tip" id="hmTip" role="status" aria-live="polite"></div>
+      </div>
+      <div class="hm-foot">
+        <span>Tocca o passa sopra un giorno per il dettaglio</span>
+        <span class="hm-legend" aria-label="Legenda: minuti di attività al giorno">Meno <i style="background:var(--h0)"></i><i style="background:var(--h1)"></i><i style="background:var(--h2)"></i><i style="background:var(--h3)"></i><i style="background:var(--h4)"></i> 90+ min</span>
+      </div>
+    </section>
+
+    <section class="card c5" id="peso" aria-labelledby="wtT">
+      <div class="head">
+        <h2 id="wtT">Peso</h2>
+        <div class="seg small" id="segWt" role="group" aria-label="Periodo del grafico del peso">
+          <span class="thumb" aria-hidden="true"></span>
+          <button type="button" data-v="90" aria-pressed="true">3 mesi</button>
+          <button type="button" data-v="365" aria-pressed="false">1 anno</button>
+          <button type="button" data-v="all" aria-pressed="false">Sempre</button>
+        </div>
+      </div>
+      <div id="wtBody" style="margin-top:16px"></div>
+    </section>
+
+    <section class="card c7" aria-labelledby="weekT">
+      <div class="head">
+        <div><h2 id="weekT">Volume settimanale</h2><p class="lead" id="weekLead" style="margin-bottom:0"></p></div>
+        <div class="seg small" id="segWk" role="group" aria-label="Metrica del grafico">
+          <span class="thumb" aria-hidden="true"></span>
+          <button type="button" data-v="km" aria-pressed="true">Km</button>
+          <button type="button" data-v="dislivello_m" aria-pressed="false">D+</button>
+          <button type="button" data-v="ore" aria-pressed="false">Ore</button>
+        </div>
+      </div>
+      <div class="chart" id="weekChart" style="margin-top:16px"></div>
       <div id="weekFoot"></div>
-    </article>
-  </section>
+    </section>
 
-  <section class="card" style="margin-bottom:var(--gap)" aria-labelledby="recT">
-    <h2 id="recT">Recupero</h2>
-    <p class="lead" id="recLead"></p>
-    <div class="grid wb" id="wb" style="margin-bottom:0"></div>
-    <p class="empty" id="recEmpty"></p>
-    <ul class="recnotes" id="recNotes"></ul>
-  </section>
-
-  <section class="grid two two-b">
-    <article class="card" aria-labelledby="actT">
-      <h2 id="actT">Ultime 10 attività</h2>
+    <section class="card c5" aria-labelledby="actT">
+      <h2 id="actT">Ultime attività</h2>
       <p class="lead" id="actLead"></p>
-      <div class="actwrap" style="overflow-x:auto">
-      <table class="list" id="act">
-        <thead><tr><th scope="col">Data</th><th scope="col">Attività</th><th scope="col" class="num">Km</th><th scope="col" class="num">Durata</th><th scope="col" class="num">D+ (m)</th><th scope="col" class="num">FC media</th></tr></thead>
-        <tbody></tbody>
-      </table>
-      </div>
       <ul class="alist" id="alist"></ul>
-    </article>
-    <article class="card" aria-labelledby="noteT">
-      <h2 id="noteT">Cosa notare</h2>
-      <p class="lead" id="noteLead">Osservazioni descrittive sui dati disponibili.</p>
-      <ul class="notes" id="notes"></ul>
-    </article>
+    </section>
+  </div>
+
+  <section id="recupero" aria-labelledby="recT" style="display:flex; flex-direction:column; gap:var(--gap)">
+    <h2 class="sec-title" id="recT">Recupero e carico</h2>
+    <div class="cols">
+      <div class="card c12">
+        <p class="lead" id="recLead" style="margin-top:0"></p>
+        <div class="wb" id="wb"></div>
+        <p class="empty" id="recEmpty"></p>
+        <ul class="recnotes" id="recNotes"></ul>
+      </div>
+      <div class="card c12" id="loadCard"></div>
+    </div>
+  </section>
+
+  <section id="note" aria-labelledby="noteT" style="display:flex; flex-direction:column; gap:var(--gap)">
+    <h2 class="sec-title" id="noteT">Cosa notare</h2>
+    <div class="notes" id="notes"></div>
   </section>
 
   <footer id="foot"></footer>
-</div>
+</main>
 
 <script>
 const D = /*DATA*/null;
+const ACT = /*ATT*/null;
 const MESI=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
-const TIPI={hiit:'HIIT',indoor_cycling:'Bici indoor',gravel_cycling:'Gravel',hiking:'Escursione',running:'Corsa',multi_sport:'Multisport',cycling:'Bici',trail_running:'Trail running',walking:'Camminata',road_biking:'Bici su strada',lap_swimming:'Nuoto in vasca'};
+const MESI_L=['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+const GG_L=['lunedì','martedì','mercoledì','giovedì','venerdì','sabato','domenica'];
+const TIPI={hiit:'HIIT',indoor_cycling:'Bici indoor',gravel_cycling:'Gravel',hiking:'Escursione',running:'Corsa',multi_sport:'Multisport',cycling:'Bici',trail_running:'Trail running',walking:'Camminata',road_biking:'Bici su strada',lap_swimming:'Nuoto in vasca',strength_training:'Forza',mountain_biking:'Mountain bike',open_water_swimming:'Nuoto in acque libere'};
+const GRUPPI=[
+  ['corsa','Corsa',['running','treadmill_running','track_running','indoor_running','street_running']],
+  ['trail','Trail',['trail_running','ultra_run']],
+  ['escursione','Escursione',['hiking','mountaineering']],
+  ['camminata','Camminata',['walking','casual_walking','speed_walking']],
+  ['hiit','HIIT e forza',['hiit','strength_training','indoor_cardio','fitness_equipment']],
+  ['bici','Bici',['cycling','road_biking','gravel_cycling','indoor_cycling','mountain_biking','virtual_ride','e_bike_fitness']],
+  ['nuoto','Nuoto',['lap_swimming','open_water_swimming','swimming']]];
+const gruppo=t=>{for(const g of GRUPPI)if(g[2].includes(t))return g[0];return 'altro'};
 const $=s=>document.querySelector(s);
 const nf=(v,d=0)=>v==null?'n.d.':Number(v).toLocaleString('it-IT',{minimumFractionDigits:d,maximumFractionDigits:d});
+const sgn=v=>(v>0?'+':v<0?'−':'')+nf(Math.abs(v),0);
 const fmtD=iso=>{const [y,m,d]=iso.slice(0,10).split('-');return `${+d} ${MESI[+m-1]} ${y}`};
 const fmtS=iso=>{const [y,m,d]=iso.slice(0,10).split('-');return `${+d} ${MESI[+m-1]}`};
-const fmtDur=min=>{const h=Math.floor(min/60),m=Math.round(min%60);return h?`${h} h ${String(m).padStart(2,'0')} min`:`${m} min`};
+const toD=s=>new Date(s.slice(0,10)+'T00:00:00Z');
+const iso=d=>d.toISOString().slice(0,10);
+const addD=(s,n)=>iso(new Date(toD(s).getTime()+n*864e5));
+const diffD=(a,b)=>Math.round((toD(b)-toD(a))/864e5);
+const yearBack=s=>{const d=toD(s);d.setUTCFullYear(d.getUTCFullYear()-1);return iso(d)};
+const fmtL=s=>{const t=toD(s);return `${GG_L[(t.getUTCDay()+6)%7]} ${t.getUTCDate()} ${MESI_L[t.getUTCMonth()]} ${t.getUTCFullYear()}`};
+const fmtDur=min=>{const h=Math.floor(min/60),m=Math.round(min%60);return h?`${h} h ${String(m).padStart(2,'0')}`:`${m} min`};
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const NS='http://www.w3.org/2000/svg';
 const el=(t,a={},txt)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e};
 const RM=matchMedia('(prefers-reduced-motion: reduce)');
+const ANCHOR=D.data_riferimento;
+const FIRST=ACT.length?ACT[0][1].slice(0,10):ANCHOR;
 
-/* Molla smorzata: parte sempre dal valore attuale e conserva la velocità se il bersaglio cambia a metà. */
+/* Molla smorzata: parte dal valore attuale e conserva la velocità se il bersaglio cambia a metà. */
 function spring(set,{response=.35,damping=1,from=0}={}){
   const k=(2*Math.PI/response)**2, c=4*Math.PI*damping/response;
-  let x=from, v=0, target=from, raf=0, last=0;
-  function step(t){
-    const dt=Math.min(.032,Math.max(.001,(t-last)/1000)); last=t;
-    v+=(-k*(x-target)-c*v)*dt; x+=v*dt;
-    if(Math.abs(v)<.05&&Math.abs(x-target)<.05){x=target;v=0;set(x);raf=0;return}
-    set(x); raf=requestAnimationFrame(step);
-  }
-  return {
-    to(t){target=t; if(RM.matches){this.jump(t);return} if(!raf){last=performance.now();raf=requestAnimationFrame(step)}},
-    jump(t){cancelAnimationFrame(raf);raf=0;x=target=t;v=0;set(t)}
-  };
+  let x=from,v=0,target=from,raf=0,last=0;
+  function step(t){const dt=Math.min(.032,Math.max(.001,(t-last)/1000));last=t;
+    v+=(-k*(x-target)-c*v)*dt;x+=v*dt;
+    if(Math.abs(v)<.0005&&Math.abs(x-target)<.0005){x=target;v=0;set(x);raf=0;return}
+    set(x);raf=requestAnimationFrame(step)}
+  return {to(t){target=t;if(RM.matches){this.jump(t);return}if(!raf){last=performance.now();raf=requestAnimationFrame(step)}},
+    jump(t){cancelAnimationFrame(raf);raf=0;x=target=t;v=0;set(t)}};
 }
-
-/* Ridisegna un grafico alla larghezza reale del contenitore, così le etichette restano a 11px veri. */
 function responsive(box,render){
-  let w=0, raf=0;
-  const go=()=>{raf=0;const nw=Math.round(box.clientWidth);if(nw&&nw!==w){w=nw;render(w)}};
-  new ResizeObserver(()=>{if(!raf)raf=requestAnimationFrame(go)}).observe(box);
-  go();
+  let w=0,raf=0;const go=()=>{raf=0;const nw=Math.round(box.clientWidth);if(nw&&nw!==w){w=nw;render(w)}};
+  new ResizeObserver(()=>{if(!raf)raf=requestAnimationFrame(go)}).observe(box);go();
 }
-
-/* Scrub: il dito (o il mouse) scorre sul grafico e la lettura lo segue 1:1. Risposta al pointerdown. */
+/* Scrub: il dito o il mouse scorre sul grafico e la lettura lo segue 1:1. */
 function scrub(svg,n,xAt,show,hide){
   svg.setAttribute('tabindex','0');
-  let idx=-1, down=false, t=0;
+  let idx=-1,down=false,t=0;
   const vbw=()=>svg.viewBox.baseVal.width||svg.getBoundingClientRect().width;
-  const pick=e=>{const r=svg.getBoundingClientRect(), px=(e.clientX-r.left)*vbw()/r.width;
+  const pick=e=>{const r=svg.getBoundingClientRect(),px=(e.clientX-r.left)*vbw()/r.width;
     let b=0,bd=Infinity;for(let i=0;i<n;i++){const d=Math.abs(xAt(i)-px);if(d<bd){bd=d;b=i}}return b};
   const set=i=>{clearTimeout(t);if(i!==idx){idx=i;svg.classList.add('scrubbing');show(i)}};
   const off=()=>{idx=-1;svg.classList.remove('scrubbing');hide()};
@@ -286,178 +447,308 @@ function scrub(svg,n,xAt,show,hide){
   svg.addEventListener('pointerleave',e=>{if(!down&&e.pointerType==='mouse')off()});
   svg.addEventListener('keydown',e=>{
     if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();const s=e.key==='ArrowLeft'?-1:1;set(idx<0?n-1:Math.max(0,Math.min(n-1,idx+s)))}
-    else if(e.key==='Escape')off();
-  });
+    else if(e.key==='Escape')off()});
   svg.addEventListener('blur',off);
 }
-
-/* Etichetta flottante sopra al grafico, tenuta dentro i bordi. */
 function readout(box){
   const r=document.createElement('div');r.className='readout';r.setAttribute('aria-live','polite');box.appendChild(r);
-  return {
-    show(x,y,html,top){r.innerHTML=html;const w=r.offsetWidth,h=r.offsetHeight,W=box.clientWidth;
+  return {show(x,y,html,top){r.innerHTML=html;const w=r.offsetWidth,h=r.offsetHeight,W=box.clientWidth;
       const left=Math.max(0,Math.min(W-w,x-w/2));r.style.transform=`translate(${left}px,${top!=null?top:Math.max(-h-6,y-h-12)}px)`;r.classList.add('on')},
-    hide(){r.classList.remove('on')}
-  };
+    hide(){r.classList.remove('on')}};
+}
+/* Segmented control: il cursore scivola con una molla, reindirizzabile a metà corsa. */
+function segmented(root,onChange){
+  const thumb=root.querySelector('.thumb'), btns=[...root.querySelectorAll('button')];
+  const ts=spring(x=>{thumb.style.transform=`translateX(${x}px)`},{response:.32});
+  const cur=()=>btns.find(b=>b.getAttribute('aria-pressed')==='true');
+  const place=(b,anim)=>{thumb.style.width=b.offsetWidth+'px';anim?ts.to(b.offsetLeft):ts.jump(b.offsetLeft)};
+  btns.forEach(b=>{
+    b.addEventListener('pointerdown',()=>place(b,true));
+    b.addEventListener('pointercancel',()=>place(cur(),true));
+    b.addEventListener('click',()=>{const was=cur();btns.forEach(x=>x.setAttribute('aria-pressed',x===b));place(b,true);if(was!==b)onChange(b.dataset.v)});
+  });
+  new ResizeObserver(()=>place(cur(),false)).observe(root);
 }
 
-const ref=D.data_riferimento, gen=D.generato_il;
-$('#sub').textContent=`Allenamento e recupero, ${D.attivita_totali} attività dal ${fmtD(D.intervallo_attivita[0])} al ${fmtD(D.intervallo_attivita[1])}`;
-$('#upd').innerHTML=`Pagina generata il <b>${fmtD(gen)}</b><br>Ultimo dato Garmin: <b>${fmtD(ref)}</b>`;
+/* Header e navigazione */
+$('#upd').textContent=`Aggiornato il ${fmtS(D.generato_il)}${D.generato_alle?' alle '+D.generato_alle:''}, ogni ora`;
 if(D.dati_aggiornati){$('#notice').remove()}else{
-  $('#noticeTxt').innerHTML=`<strong>Dati fermi al ${fmtD(ref)}.</strong> ${D.avviso_dati?esc(D.avviso_dati):"Le finestre di 7 e 30 giorni sono calcolate a ritroso dall'ultimo giorno con dati, non da oggi."}`;
+  $('#noticeTxt').innerHTML=`<strong>Dati fermi al ${fmtD(ANCHOR)}.</strong> ${D.avviso_dati?esc(D.avviso_dati):''}`;
 }
-
-/* KPI: chip neutri. La freccia dice la direzione, non se è un bene o un male. */
 (function(){
-  const k=D.kpi['7g'], c=k.corrente, p=k.precedente, v=k.variazione_pct;
-  const [a,b]=k.periodo;
-  const items=[
-    {nm:'Distanza',val:nf(c.km,1),u:'km',pf:nf(p.km,1)+' km',pct:v.km},
-    {nm:'Dislivello positivo',val:nf(c.dislivello_m),u:'m',pf:nf(p.dislivello_m)+' m',pct:v.dislivello_m},
-    {nm:'Tempo in movimento',val:nf(c.ore,1),u:'ore',pf:nf(p.ore,1)+' ore',pct:v.ore},
-    {nm:'Uscite',val:nf(c.uscite),u:'',pf:nf(p.uscite),pct:v.uscite}
-  ];
-  const box=$('#kpis');
-  items.forEach(it=>{
-    let chip, a11y;
-    if(it.pct==null){chip=`<span class="chip">Nuovo dato</span>`;a11y='nessun confronto possibile'}
-    else if(Math.abs(it.pct)<0.5){chip=`<span class="chip">Invariato</span>`;a11y='invariato'}
-    else{const up=it.pct>0;chip=`<span class="chip"><span class="ar" aria-hidden="true">${up?'▲':'▼'}</span>${up?'+':'−'}${nf(Math.abs(it.pct),0)}%</span>`;a11y=up?'in aumento':'in calo'}
-    const s=document.createElement('article');s.className='card kpi';
-    s.innerHTML=`<div class="eyebrow">${it.nm}</div><div class="val">${it.val}<small>${it.u}</small></div>${chip}<span class="vh"> ${a11y} rispetto alla settimana prima</span><span class="prev">Settimana prima: ${it.pf}</span>`;
-    box.appendChild(s);
-  });
-  box.setAttribute('aria-label',`Ultimi 7 giorni, dal ${fmtS(a)} al ${fmtS(b)}`);
+  const top=$('#top'), links=[...document.querySelectorAll('.nav a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  const setCur=id=>links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.setAttribute('aria-current',on);
+    if(on){const n=a.parentElement;if(n.scrollWidth>n.clientWidth)n.scrollTo({left:a.offsetLeft-n.clientWidth/2+a.offsetWidth/2,behavior:RM.matches?'auto':'smooth'})}});
+  let curId='';
+  const onScroll=()=>{top.classList.toggle('scrolled',scrollY>4);
+    const y=top.offsetHeight+40;let id=secs[0].id;
+    for(const s of secs)if(s.getBoundingClientRect().top<=y)id=s.id;
+    if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)id=secs[secs.length-1].id;
+    if(id!==curId){curId=id;setCur(id)}};
+  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
 })();
 
-/* Carico */
+/* Panoramica: periodo, confronto, anelli */
 (function(){
-  const c=D.carico, r=c.rapporto, sem=c.semaforo;
-  const etic={ottimale:'Ottimale',alto:'Alto',basso:'Basso'}[sem]||sem;
-  const pct=Math.min(r,2)/2*100;
-  const s=c.serie;
-  const peak=s.reduce((m,x)=>x.rapporto>m.rapporto?x:m,s[0]);
-  const concl={ottimale:'Carico recente in linea con quello abituale',alto:'Carico recente più alto del solito',basso:'Carico recente più basso del solito'}[sem];
-  const card=$('#loadCard');
-  card.innerHTML=`
-    <h2 id="loadT">Carico acuto e cronico</h2>
-    <p class="lead">${concl}</p>
-    <div class="load-main"><div class="ratio">${nf(r,2)}</div><span class="light ${sem}"><i aria-hidden="true"></i>${etic}</span></div>
-    <div class="gauge" role="img" aria-label="Rapporto ${nf(r,2)} su scala da 0 a 2. Zona ottimale tra 0,8 e 1,3. Stato: ${etic}.">
-      <div class="track"><div class="z z1" style="width:40%"></div><div class="z z2" style="width:25%"></div><div class="z z3" style="width:35%"></div><div class="pin" id="pin"></div></div>
-      <div class="ticks"><span style="left:0%;transform:none">0</span><span style="left:40%">0,8</span><span style="left:65%">1,3</span><span style="left:100%;transform:translateX(-100%)">2+</span></div>
+  const agg=(a,b)=>{let km=0,min=0,n=0,dp=0;for(const r of ACT){const d=r[1].slice(0,10);if(d<a||d>b)continue;n++;km+=r[3]||0;min+=r[4]||0;dp+=r[5]||0}return {km,min,n,dp}};
+  const COL=['var(--lime)','var(--pink)','var(--cyan)','var(--violet)'];
+  const DEF=[{k:'km',nm:'Distanza',fv:v=>nf(v,1),u:'km',pv:v=>nf(v,1)+' km'},
+    {k:'min',nm:'Tempo in movimento',fv:v=>{const h=Math.floor(v/60);return `${h}<small>h</small>${String(Math.round(v%60)).padStart(2,'0')}`},u:'',pv:v=>fmtDur(v)},
+    {k:'n',nm:'Uscite',fv:v=>nf(v),u:'',pv:v=>nf(v)},
+    {k:'dp',nm:'Dislivello',fv:v=>nf(v),u:'m',pv:v=>nf(v)+' m'}];
+  const box=$('#metrics'), rings=[], C=2*Math.PI*26;
+  DEF.forEach((df,i)=>{
+    const m=document.createElement('div');m.className='metric';
+    m.innerHTML=`<svg class="ring" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="26" fill="none" stroke="${COL[i]}" stroke-opacity=".2" stroke-width="9"/>
+      <circle class="a1" cx="32" cy="32" r="26" fill="none" stroke="${COL[i]}" stroke-width="9" stroke-linecap="round" transform="rotate(-90 32 32)" stroke-dasharray="0 ${C}"/>
+      <circle class="sh" cx="32" cy="32" r="26" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="10" stroke-linecap="round" transform="rotate(-90 32 32)" stroke-dasharray="0 ${C}"/>
+      <circle class="a2" cx="32" cy="32" r="26" fill="none" stroke="${COL[i]}" stroke-width="9" stroke-linecap="round" transform="rotate(-90 32 32)" stroke-dasharray="0 ${C}"/>
+      <text x="32" y="36.5" text-anchor="middle"></text></svg>
+      <span class="nm" style="color:${COL[i]}">${df.nm}</span><span class="v"></span><span class="cmp"></span>`;
+    box.appendChild(m);
+    const a1=m.querySelector('.a1'), a2=m.querySelector('.a2'), sh=m.querySelector('.sh');
+    const sp=spring(f=>{const p=Math.max(0,Math.min(1,f)), o=Math.max(0,Math.min(1,f-1));
+      a1.setAttribute('stroke-dasharray',`${(p*C).toFixed(2)} ${C}`);a1.style.visibility=p>0.004?'visible':'hidden';
+      a2.setAttribute('stroke-dasharray',`${(o*C).toFixed(2)} ${C}`);a2.style.visibility=o>0.004?'visible':'hidden';
+      sh.setAttribute('stroke-dasharray',`${(o*C+1.5).toFixed(2)} ${C}`);sh.style.visibility=o>0.004?'visible':'hidden'},{response:.6});
+    rings.push({sp,txt:m.querySelector('text'),v:m.querySelector('.v'),c:m.querySelector('.cmp')});
+  });
+  const rFrom=$('#rFrom'), rTo=$('#rTo'), cmpSel=$('#cmp');
+  [rFrom,rTo].forEach(x=>{x.min=FIRST;x.max=ANCHOR});
+  rFrom.value=addD(ANCHOR,-89)<FIRST?FIRST:addD(ANCHOR,-89); rTo.value=ANCHOR;
+  let per='7';
+  function update(){
+    let a,b;
+    if(per==='7'){a=addD(ANCHOR,-6);b=ANCHOR}
+    else if(per==='30'){a=addD(ANCHOR,-29);b=ANCHOR}
+    else if(per==='all'){a=FIRST;b=ANCHOR}
+    else{a=rFrom.value||FIRST;b=rTo.value||ANCHOR;if(a>b)[a,b]=[b,a]}
+    const len=diffD(a,b)+1, mode=per==='all'?'none':cmpSel.value;
+    let pa=null,pb=null;
+    if(mode==='prev'){pb=addD(a,-1);pa=addD(a,-len)}
+    else if(mode==='year'){pa=yearBack(a);pb=yearBack(b)}
+    const cur=agg(a,b), noData=!!pa&&pb<FIRST, prev=pa&&!noData?agg(pa,pb):null;
+    $('#cmpBox').hidden=per==='all';
+    $('#rangeBox').hidden=per!=='range';
+    $('#hero').classList.toggle('noring',!prev);
+    $('#when').textContent=per==='all'
+      ? `Dal ${fmtD(a)} al ${fmtD(b)}: ${nf(cur.n)} attività in ${nf(Math.max(1,Math.round(len/7)))} settimane`
+      : `${fmtD(a)} – ${fmtD(b)}`+(pa?(noData?`. Nessun dato da confrontare: lo storico parte dal ${fmtD(FIRST)}`:`, confrontato con ${fmtD(pa)} – ${fmtD(pb)}`+(pa<FIRST?` (dati solo dal ${fmtD(FIRST)})`:'')):'');
+    let h;
+    if(per==='all')h=`${nf(cur.km,0)} km e ${nf(cur.min/60,0)} ore da quando hai iniziato`;
+    else if(!cur.n)h='Nessuna attività nel periodo';
+    else if(!prev||!prev.n)h=`${nf(cur.n)} ${cur.n===1?'uscita':'uscite'}, ${nf(cur.km,1)} km`;
+    else{const pc=(c,p)=>p?(c-p)/p*100:0, dk=pc(cur.km,prev.km), dh=pc(cur.min,prev.min);
+      const w=(d,piu,meno,ug)=>d>5?piu:d<-5?meno:ug;
+      h=Math.abs(dk)<=5&&Math.abs(dh)<=5?'In linea con il periodo prima':`${w(dk,'Più chilometri','Meno chilometri','Chilometri stabili')}, ${w(dh,'più ore','meno ore','ore stabili')}`}
+    $('#headline').textContent=h;
+    DEF.forEach((df,i)=>{const R=rings[i], v=cur[df.k];
+      R.v.innerHTML=df.fv(v)+(df.u?`<small>${df.u}</small>`:'');
+      if(per==='all'){const wk=Math.max(1,len/7);R.c.textContent=`media ${df.k==='min'?fmtDur(v/wk):nf(v/wk,df.k==='km'?1:df.k==='n'?1:0)+(df.u?' '+df.u:'')} a settimana`;R.sp.jump(0);return}
+      if(!prev){R.c.textContent=noData?'nessun dato prima':'';R.sp.to(0);R.txt.textContent='';return}
+      const p=prev[df.k];
+      if(!p){R.c.textContent='erano 0';R.txt.textContent=v?'nuovo':'';R.sp.to(v?1:0);return}
+      const pct=(v-p)/p*100;
+      R.c.textContent=`${Math.abs(pct)<.5?'invariato':sgn(pct)+'%'} · erano ${df.pv(p)}`;
+      R.txt.textContent=Math.abs(pct)<.5?'=':sgn(pct)+'%';
+      R.sp.to(Math.min(2,v/p));
+    });
+  }
+  segmented($('#segPer'),v=>{per=v;update()});
+  [rFrom,rTo,cmpSel].forEach(x=>x.addEventListener('change',update));
+  update();
+})();
+
+/* Heatmap dei giorni attivi */
+(function(){
+  const present=new Set(ACT.map(r=>gruppo(r[2])));
+  const groups=[['tutte','Tutte']].concat(GRUPPI.filter(g=>present.has(g[0])).map(g=>[g[0],g[1]])).concat(present.has('altro')?[['altro','Altro']]:[]);
+  const chips=$('#chips'), scroll=$('#hmScroll'), tip=$('#hmTip'), wrap=$('#hmWrap');
+  let grp='tutte', span='26', day={}, W=0, tipT=0;
+  groups.forEach(([k,lab])=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=lab;b.setAttribute('aria-pressed',k==='tutte');
+    b.addEventListener('click',()=>{grp=k;chips.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));render()});chips.appendChild(b)});
+  function build(){day={};
+    for(const r of ACT){if(grp!=='tutte'&&gruppo(r[2])!==grp)continue;const d=r[1].slice(0,10);
+      const o=day[d]||(day[d]={min:0,km:0,n:0,t:{}});o.min+=r[4]||0;o.km+=r[3]||0;o.n++;o.t[r[2]]=1}}
+  const lvl=m=>!m?0:m<30?1:m<60?2:m<90?3:4;
+  const monday=s=>addD(s,-((toD(s).getUTCDay()+6)%7));
+  function block(start,cols,lo,hi){
+    const c=Math.max(7,Math.min(22,Math.floor((W-30-3*(cols-1))/cols)));
+    const b=document.createElement('div');b.className='hm-block';b.style.setProperty('--c',c+'px');
+    const days=document.createElement('div');days.className='hm-days';days.setAttribute('aria-hidden','true');
+    days.innerHTML='<span></span><span>lun</span><span></span><span>mer</span><span></span><span>ven</span><span></span><span>dom</span>';
+    const main=document.createElement('div');main.className='hm-main';
+    const months=document.createElement('div');months.className='hm-months';months.setAttribute('aria-hidden','true');
+    const grid=document.createElement('div');grid.className='hm-grid';
+    let act=0,mins=0,html='',mh='',lastM=-1;
+    for(let w=0;w<cols;w++){
+      const ws=addD(start,w*7);
+      for(let d=0;d<7;d++){const ds=addD(ws,d);
+        if(ds.slice(8)==='01'&&ds>=lo&&ds<=hi){const mm=+ds.slice(5,7)-1;if(mm!==lastM&&w<cols-1){mh+=`<span style="grid-column:${w+1}">${MESI[mm]}</span>`;lastM=mm}}
+        if(ds<lo||ds>hi){html+='<i class="x"></i>';continue}
+        const o=day[ds];if(o){act++;mins+=o.min}
+        html+=`<i class="l${lvl(o&&o.min)}" data-d="${ds}"></i>`}
+    }
+    months.innerHTML=mh;grid.innerHTML=html;
+    grid.setAttribute('role','img');grid.setAttribute('aria-label',`Dal ${fmtD(lo)} al ${fmtD(hi)}: ${act} giorni attivi, ${fmtDur(mins)} in totale`);
+    main.append(months,grid);b.append(days,main);
+    return {b,act,mins};
+  }
+  function render(){
+    if(!W)return;
+    build();scroll.innerHTML='';hideTip();
+    let totA=0,totM=0;
+    if(span==='all'){
+      const y0=+FIRST.slice(0,4), y1=+ANCHOR.slice(0,4);
+      for(let y=y1;y>=y0;y--){
+        const lo=y===y0?FIRST:`${y}-01-01`, hi=y===y1?ANCHOR:`${y}-12-31`, st=monday(`${y}-01-01`);
+        const weeks=Math.ceil((diffD(st,`${y}-12-31`)+1)/7);
+        const {b,act,mins}=block(st,weeks,lo,hi);totA+=act;totM+=mins;
+        const lab=document.createElement('p');lab.className='hm-year';lab.innerHTML=`<b>${y}</b> · ${act} giorni attivi · ${fmtDur(mins)}`;
+        scroll.append(lab,b);
+      }
+    }else{
+      const weeks=+span, st=addD(monday(ANCHOR),-(weeks-1)*7);
+      const {b,act,mins}=block(st,weeks,st<FIRST?FIRST:st,ANCHOR);totA=act;totM=mins;scroll.append(b);
+    }
+    const g=groups.find(x=>x[0]===grp)[1];
+    $('#hmLead').textContent=`${totA} giorni attivi, ${fmtDur(totM)}${grp==='tutte'?'':', solo '+g.toLowerCase()}`;
+    scroll.scrollLeft=span==='all'?0:scroll.scrollWidth;
+  }
+  function showTip(c){
+    const ds=c.dataset.d;if(!ds)return;
+    scroll.querySelectorAll('i.on').forEach(x=>x.classList.remove('on'));c.classList.add('on');
+    const o=day[ds];
+    tip.innerHTML=`<b>${fmtL(ds)}</b>`+(o?`<span>${o.n} ${o.n===1?'attività':'attività'} · ${fmtDur(o.min)}${o.km?` · ${nf(o.km,1)} km`:''}</span><span>${Object.keys(o.t).map(t=>TIPI[t]||t.replace(/_/g,' ')).join(', ')}</span>`:'<span>Riposo</span>');
+    const wr=wrap.getBoundingClientRect(), cr=c.getBoundingClientRect(), tw=tip.offsetWidth, th=tip.offsetHeight;
+    const x=Math.max(0,Math.min(wr.width-tw,cr.left-wr.left+cr.width/2-tw/2));
+    let y=cr.top-wr.top-th-8;if(y<-30)y=cr.bottom-wr.top+8;
+    tip.style.transform=`translate(${x}px,${y}px)`;tip.classList.add('on');
+  }
+  function hideTip(){tip.classList.remove('on');scroll.querySelectorAll('i.on').forEach(x=>x.classList.remove('on'))}
+  scroll.addEventListener('pointerover',e=>{if(e.pointerType==='mouse'&&e.target.dataset&&e.target.dataset.d)showTip(e.target)});
+  scroll.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')hideTip()});
+  scroll.addEventListener('click',e=>{if(e.target.dataset&&e.target.dataset.d){showTip(e.target);clearTimeout(tipT);tipT=setTimeout(hideTip,2600)}});
+  scroll.addEventListener('scroll',hideTip,{passive:true});
+  segmented($('#segHm'),v=>{span=v;render()});
+  responsive(scroll,w=>{W=w;render()});
+})();
+
+/* Peso */
+(function(){
+  const P=D.peso||{}, S=P.serie||[], T=P.target, body=$('#wtBody');
+  if(!S.length){body.innerHTML='<p class="empty">Nessuna pesata disponibile.</p>';$('#segWt').hidden=true;return}
+  const cur=S[S.length-1];
+  body.innerHTML=`<div class="wt-top">
+      <svg viewBox="0 0 80 80" width="76" height="76" role="img" id="wtRing">
+        <circle cx="40" cy="40" r="32" fill="none" stroke="var(--amber)" stroke-opacity=".2" stroke-width="10"/>
+        <circle id="wtArc" cx="40" cy="40" r="32" fill="none" stroke="var(--amber)" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 201.1" transform="rotate(-90 40 40)"/>
+      </svg>
+      <div><div class="wt-v">${nf(cur.kg,1)}<small> kg</small></div><div class="wt-t" id="wtTgt"></div></div>
     </div>
-    <div class="legend"><span><i style="background:var(--z-low)"></i>Basso &lt; 0,8</span><span><i style="background:var(--z-ok)"></i>Ottimale 0,8 a 1,3</span><span><i style="background:var(--z-high)"></i>Alto &gt; 1,3</span></div>
-    <div class="stats"><div><b>${nf(c.acuto_min_die,0)} min</b>acuto, media 7 giorni</div><div><b>${nf(c.cronico_min_die,0)} min</b>cronico, media 28 giorni</div></div>
-    <div style="margin-top:16px"><div class="eyebrow" style="margin-bottom:6px">Rapporto negli ultimi ${s.length} giorni</div><div class="chart" id="ratioChart"></div></div>
-    <p class="eyebrow" style="margin:10px 0 0">Picco ${nf(peak.rapporto,2)} il ${fmtS(peak.data)}. Tocca o scorri il grafico per leggere i singoli giorni. Indicazione orientativa, calcolata sui minuti di allenamento.</p>`;
-
-  /* Il cursore del gauge arriva dalla sinistra con una molla smorzata. */
-  const pin=$('#pin'), track=pin.parentElement;
-  const ps=spring(x=>{pin.style.transform=`translateX(${x-3}px)`},{response:.55});
-  responsive(track,w=>{ps.jump(0);ps.to(pct/100*w)});
-
-  const box=$('#ratioChart'), ro=readout(box);
-  responsive(box,W=>{
+    <p class="wt-trend" id="wtTrend"></p>
+    <div class="chart" id="wtChart"></div>`;
+  const diff=cur.kg-T;
+  $('#wtTgt').innerHTML=diff>0?`Target <b>${nf(T,0)} kg</b> · mancano ${nf(diff,1)} kg`:`Target <b>${nf(T,0)} kg</b> raggiunto`;
+  const fase=d=>{const t=toD(d),g=t.getUTCDate();return `${g<=10?'inizio':g<=20?'metà':'fine'} ${MESI_L[t.getUTCMonth()]}${t.getUTCFullYear()!==+ANCHOR.slice(0,4)?' '+t.getUTCFullYear():''}`};
+  $('#wtTrend').textContent=P.trend_kg_sett==null?'Servono più pesate negli ultimi 30 giorni per stimare il ritmo.'
+    :`Ultimi 30 giorni: ${P.trend_kg_sett>0?'+':P.trend_kg_sett<0?'−':''}${nf(Math.abs(P.trend_kg_sett),2)} kg a settimana`+(P.data_stimata?`, ${nf(T,0)} kg verso ${fase(P.data_stimata)}`:'');
+  const RC=2*Math.PI*32, arc=$('#wtArc'), ring=$('#wtRing');
+  const rs=spring(f=>{arc.setAttribute('stroke-dasharray',`${(Math.min(1,f)*RC).toFixed(2)} ${RC}`);arc.style.visibility=f>0.004?'visible':'hidden'},{response:.6});
+  const box=$('#wtChart'), ro=readout(box);
+  let span='90', Wd=0;
+  function draw(){
+    const W=Wd;if(!W)return;
     box.querySelector('svg')?.remove();
-    const H=118,L=24,R=8,T=10,B=20, iw=W-L-R, ih=H-T-B, ymax=Math.max(2.2,Math.ceil(peak.rapporto*2)/2);
-    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,height:H,role:'img','aria-label':`Andamento del rapporto acuto cronico dal ${fmtS(s[0].data)} al ${fmtS(s[s.length-1].data)}. Ultimo valore ${nf(r,2)}, picco ${nf(peak.rapporto,2)}. Usa le frecce per scorrere i giorni.`});
-    const y=v=>T+ih-(v/ymax)*ih, x=i=>L+i/(s.length-1)*iw;
-    svg.appendChild(el('rect',{x:L,y:y(1.3),width:iw,height:y(0.8)-y(1.3),fill:'var(--good)',opacity:.16}));
-    [0,1,2].forEach(g=>{svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(g),y2:y(g),stroke:'var(--grid)','stroke-width':1}));svg.appendChild(el('text',{x:L-6,y:y(g)+4,'text-anchor':'end'},g))});
-    svg.appendChild(el('path',{d:s.map((p,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(p.rapporto).toFixed(1)).join(''),fill:'none',stroke:'var(--accent)','stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
-    const li=s.length-1, pi=s.indexOf(peak);
-    svg.appendChild(el('circle',{cx:x(li),cy:y(s[li].rapporto),r:4,fill:'var(--accent)',stroke:'var(--surface)','stroke-width':2}));
-    svg.appendChild(el('circle',{cx:x(pi),cy:y(peak.rapporto),r:3.5,fill:'var(--surface)',stroke:'var(--bad)','stroke-width':2}));
-    const nLab=Math.max(2,Math.min(5,Math.floor(iw/70)));
-    for(let j=0;j<nLab;j++){const i=Math.round(j*(li)/(nLab-1));
-      svg.appendChild(el('text',{x:x(i),y:H-3,'text-anchor':j===0?'start':(j===nLab-1?'end':'middle')},fmtS(s[i].data)))}
-    const rule=el('line',{class:'mark',y1:T,y2:T+ih,stroke:'var(--label-2)','stroke-width':1}), dot=el('circle',{class:'mark',r:4.5,fill:'var(--accent)',stroke:'var(--surface)','stroke-width':2});
-    svg.append(rule,dot); box.prepend(svg);
-    scrub(svg,s.length,x,i=>{const px=x(i),py=y(s[i].rapporto);
-      rule.setAttribute('x1',px);rule.setAttribute('x2',px);dot.setAttribute('cx',px);dot.setAttribute('cy',py);
-      ro.show(px,T,`<b>${nf(s[i].rapporto,2)}</b><span>${fmtS(s[i].data)}</span>`)},()=>ro.hide());
-  });
+    const from=span==='all'?S[0].data:addD(ANCHOR,-(+span)+1);
+    let s=S.filter(p=>p.data>=from);if(s.length<2)s=S.slice(-Math.min(S.length,2));
+    const st=s[0].kg, prog=st>T?(st-cur.kg)/(st-T):1;
+    rs.to(cur.kg<=T?1:Math.max(0,prog));
+    ring.setAttribute('aria-label',`Dal ${fmtD(s[0].data)}: ${nf(Math.max(0,st-cur.kg),1)} kg in meno, ${nf(Math.max(0,Math.min(1,prog))*100,0)}% del percorso verso ${nf(T,0)} kg`);
+    const vals=s.map(p=>p.kg), lo=Math.min(Math.min(...vals),T)-.6, hi=Math.max(...vals)+.6;
+    const H=200,L=30,R=8,Tp=14,B=22,iw=W-L-R,ih=H-Tp-B;
+    const t0=toD(s[0].data).getTime(), t1=Math.max(t0+864e5,toD(s[s.length-1].data).getTime());
+    const x=i=>L+(toD(s[i].data).getTime()-t0)/(t1-t0)*iw, y=v=>Tp+(hi-v)/(hi-lo)*ih;
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,height:H,role:'img','aria-label':`Peso dal ${fmtD(s[0].data)} al ${fmtD(s[s.length-1].data)}, da ${nf(st,1)} a ${nf(cur.kg,1)} kg. Target ${nf(T,0)} kg. Usa le frecce per scorrere le pesate.`});
+    const sp_=hi-lo, step=sp_>20?5:sp_>8?2:1;
+    for(let v=Math.ceil(lo/step)*step;v<=hi;v+=step){svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:'var(--grid)'}));svg.appendChild(el('text',{x:L-6,y:y(v)+4,'text-anchor':'end'},v))}
+    svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(T),y2:y(T),stroke:'var(--amber)','stroke-dasharray':'5 6','stroke-opacity':.75,'stroke-width':1.5}));
+    svg.appendChild(el('text',{x:W-R,y:y(T)-6,'text-anchor':'end',style:'fill:var(--amber)'},`target ${nf(T,0)}`));
+    const defs=el('defs'), lg=el('linearGradient',{id:'wtg',x1:0,y1:0,x2:0,y2:1});
+    lg.append(el('stop',{offset:0,'stop-color':'#ffb547','stop-opacity':.25}),el('stop',{offset:1,'stop-color':'#ffb547','stop-opacity':0}));defs.appendChild(lg);svg.appendChild(defs);
+    const line=s.map((p,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(p.kg).toFixed(1)).join('');
+    svg.appendChild(el('path',{d:line+`L${x(s.length-1).toFixed(1)} ${Tp+ih}L${x(0).toFixed(1)} ${Tp+ih}Z`,fill:'url(#wtg)'}));
+    svg.appendChild(el('path',{d:line,fill:'none',stroke:'var(--amber)','stroke-width':2.25,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    svg.appendChild(el('circle',{cx:x(s.length-1),cy:y(cur.kg),r:4.5,fill:'var(--amber)',stroke:'var(--surface)','stroke-width':2}));
+    svg.appendChild(el('text',{x:L,y:H-4},fmtS(s[0].data)+(s[0].data.slice(0,4)!==ANCHOR.slice(0,4)?' '+s[0].data.slice(0,4):'')));
+    svg.appendChild(el('text',{x:W-R,y:H-4,'text-anchor':'end'},fmtS(s[s.length-1].data)));
+    const rule=el('line',{class:'mark',y1:Tp,y2:Tp+ih,stroke:'var(--label-2)','stroke-width':1}), dot=el('circle',{class:'mark',r:5,fill:'var(--amber)',stroke:'var(--surface)','stroke-width':2});
+    svg.append(rule,dot);box.prepend(svg);
+    scrub(svg,s.length,x,i=>{const px=x(i);rule.setAttribute('x1',px);rule.setAttribute('x2',px);dot.setAttribute('cx',px);dot.setAttribute('cy',y(s[i].kg));
+      ro.show(px,y(s[i].kg),`<b>${nf(s[i].kg,1)} kg</b><span>${fmtD(s[i].data)}</span>`)},()=>ro.hide());
+  }
+  segmented($('#segWt'),v=>{span=v;draw()});
+  responsive(box,w=>{Wd=w;draw()});
 })();
 
-/* Grafico settimanale: le barre crescono dall'altezza attuale, anche se cambi metrica a metà. */
+/* Volume settimanale */
 (function(){
   const S=D.settimane;
   const cfg={km:{u:'km',t:'Chilometri a settimana',d:1},dislivello_m:{u:'m',t:'Dislivello positivo a settimana',d:0},ore:{u:'ore',t:'Ore a settimana',d:1}};
   const box=$('#weekChart'), foot=$('#weekFoot'), ro=readout(box);
   let cur='km', G=null;
-
-  function scale(m){
-    const vals=S.map(x=>x[m]||0), mx=Math.max(...vals);
-    const step=m==='dislivello_m'?(mx>1500?500:250):(mx>40?10:(mx>12?5:2));
-    return {vals,mx,step,top:Math.max(step,Math.ceil(mx/step)*step)};
-  }
-
+  const scale=m=>{const vals=S.map(x=>x[m]||0), mx=Math.max(...vals);
+    const step=m==='dislivello_m'?(mx>3000?1000:mx>1500?500:250):(mx>80?20:mx>40?10:(mx>12?5:2));
+    return {vals,mx,step,top:Math.max(step,Math.ceil(mx/step)*step)}};
   function build(W){
     box.querySelector('svg')?.remove();
-    const H=W<480?236:276, L=36,R=6,T=58,B=24, iw=W-L-R, ih=H-T-B, bw=iw/S.length;
+    const H=W<480?226:250,L=36,R=6,T=46,B=24,iw=W-L-R,ih=H-T-B,bw=iw/S.length;
     const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,height:H,role:'img'});
-    const axis=el('g'), bars=el('g'), labels=el('g'), best=el('text',{class:'best','text-anchor':'middle',style:'fill:var(--label);font-weight:600'});
-    svg.append(axis,bars,labels,best);
-    box.prepend(svg);
+    const axis=el('g'),bars=el('g'),labels=el('g'),best=el('text',{class:'best','text-anchor':'middle',style:'fill:var(--label);font-weight:600'});
+    svg.append(axis,bars,labels,best);box.prepend(svg);
     const stride=Math.max(1,Math.ceil(64/bw));
-    S.forEach((w,i)=>{ if((S.length-1-i)%stride)return; const cx=L+i*bw+bw/2; if(cx-24<L-8)return;
+    S.forEach((w,i)=>{if((S.length-1-i)%stride)return;const cx=L+i*bw+bw/2;if(cx-24<L-8)return;
       labels.appendChild(el('text',{x:cx,y:H-6,'text-anchor':i===S.length-1?'end':'middle',dx:i===S.length-1?bw/2:0},fmtS(w.settimana)))});
     const base=T+ih;
-    const items=S.map((w,i)=>{
-      const x=L+i*bw+bw*0.18, ww=Math.max(2,bw*0.64);
-      const r=el('rect',{x,y:base,width:ww,height:0,rx:Math.min(3,ww/3),fill:i===S.length-1?'var(--bar-2)':'var(--bar)',class:'bar'});
-      const z=el('rect',{x,y:base-2,width:ww,height:2,rx:1,fill:'var(--separator)',opacity:0});
+    const items=S.map((w,i)=>{const x=L+i*bw+bw*0.18, ww=Math.max(2,bw*0.64);
+      const r=el('rect',{x,y:base,width:ww,height:0,rx:Math.min(3,ww/3),fill:i===S.length-1?'var(--pink)':'var(--lime)',class:'bar'});
+      const z=el('rect',{x,y:base-2,width:ww,height:2,rx:1,fill:'var(--surface-3)',opacity:0});
       bars.append(r,z);
-      const sp=spring(h=>{r.setAttribute('y',base-h);r.setAttribute('height',Math.max(0,h))},{response:.4});
-      return {r,z,sp};
-    });
+      return {r,z,sp:spring(h=>{r.setAttribute('y',base-h);r.setAttribute('height',Math.max(0,h))},{response:.4})}});
     G={svg,axis,best,items,L,R,W,T,ih,base,bw};
-    scrub(svg,S.length,i=>L+i*bw+bw/2,i=>{
-      const w=S[i], v=w[cur]||0, c=cfg[cur];
+    scrub(svg,S.length,i=>L+i*bw+bw/2,i=>{const w=S[i],v=w[cur]||0,c=cfg[cur];
       items.forEach((it,j)=>it.r.classList.toggle('on',j===i));
-      const top=scale(cur).top, h=(v/top)*ih;
-      ro.show(L+i*bw+bw/2,base-h,`<b>${nf(v,c.d)} ${c.u}</b><span>Sett. dal ${fmtS(w.settimana)} · ${w.uscite} ${w.uscite===1?'uscita':'uscite'}</span>`,0);
-    },()=>{ro.hide();items.forEach(it=>it.r.classList.remove('on'))});
+      ro.show(L+i*bw+bw/2,0,`<b>${nf(v,c.d)} ${c.u}</b><span>Sett. dal ${fmtS(w.settimana)} · ${w.uscite} ${w.uscite===1?'uscita':'uscite'}</span>`,0)},
+      ()=>{ro.hide();items.forEach(it=>it.r.classList.remove('on'))});
   }
-
   function draw(m,animate){
-    cur=m; const c=cfg[m], {vals,mx,step,top}=scale(m), g=G;
-    const tot=vals.reduce((a,b)=>a+b,0), bi=vals.indexOf(mx), bestW=S[bi];
-    $('#weekLead').textContent=`${nf(tot,c.d)} ${c.u} in ${S.length} settimane. Settimana più alta: ${nf(mx,c.d)} ${c.u}, dal ${fmtS(bestW.settimana)}.`;
-    g.svg.setAttribute('aria-label',`${c.t}, ultime ${S.length} settimane. Totale ${nf(tot,c.d)} ${c.u}. Massimo ${nf(mx,c.d)} ${c.u} nella settimana del ${fmtS(bestW.settimana)}. Usa le frecce per scorrere le settimane.`);
-    g.axis.innerHTML='';
-    const y=v=>g.T+g.ih-(v/top)*g.ih;
-    for(let v=0;v<=top;v+=step){g.axis.appendChild(el('line',{x1:g.L,x2:g.W-g.R,y1:y(v),y2:y(v),stroke:'var(--grid)','stroke-width':1}));g.axis.appendChild(el('text',{x:g.L-7,y:y(v)+4,'text-anchor':'end'},nf(v)))}
-    vals.forEach((v,i)=>{const h=v>0?Math.max(2,(v/top)*g.ih):0, it=g.items[i];
-      animate?it.sp.to(h):it.sp.jump(h); it.z.setAttribute('opacity',v?0:1)});
+    cur=m;const c=cfg[m],{vals,mx,step,top}=scale(m),g=G;
+    const tot=vals.reduce((a,b)=>a+b,0),bi=vals.indexOf(mx),bw_=S[bi];
+    $('#weekLead').textContent=`${nf(tot,c.d)} ${c.u} in ${S.length} settimane, la più alta ${nf(mx,c.d)} dal ${fmtS(bw_.settimana)}`;
+    g.svg.setAttribute('aria-label',`${c.t}, ultime ${S.length} settimane. Totale ${nf(tot,c.d)} ${c.u}. Usa le frecce per scorrere le settimane.`);
+    g.axis.innerHTML='';const y=v=>g.T+g.ih-(v/top)*g.ih;
+    for(let v=0;v<=top;v+=step){g.axis.appendChild(el('line',{x1:g.L,x2:g.W-g.R,y1:y(v),y2:y(v),stroke:'var(--grid)'}));g.axis.appendChild(el('text',{x:g.L-7,y:y(v)+4,'text-anchor':'end'},nf(v)))}
+    vals.forEach((v,i)=>{const h=v>0?Math.max(2,(v/top)*g.ih):0,it=g.items[i];animate?it.sp.to(h):it.sp.jump(h);it.z.setAttribute('opacity',v?0:1)});
     if(mx>0){const bx=g.L+bi*g.bw+g.bw/2;g.best.setAttribute('x',Math.max(g.L+12,Math.min(bx,g.W-g.R-14)));g.best.setAttribute('y',y(mx)-7);g.best.textContent=nf(mx,c.d)}else g.best.textContent='';
-    foot.innerHTML='';
-    const cap=document.createElement('p');cap.className='eyebrow';cap.style.margin='10px 0 0';
-    cap.textContent=`Ogni barra è una settimana da lunedì a domenica, l'ultima in viola. Tocca o scorri le barre per i valori.${m==='dislivello_m'?' Il dislivello manca in molte attività: il totale può essere sottostimato.':''}`;
-    foot.appendChild(cap);
-    const det=document.createElement('details');det.style.marginTop='8px';
-    det.innerHTML=`<summary class="eyebrow" style="cursor:pointer">Mostra i valori in tabella</summary>`;
-    const tb=document.createElement('table');tb.className='list';tb.innerHTML=`<thead><tr><th>Settimana dal</th><th class="num">${c.u}</th><th class="num">Uscite</th></tr></thead><tbody>`+S.filter(x=>x[m]>0||x.uscite>0).map(x=>`<tr><td>${fmtS(x.settimana)}</td><td class="num">${nf(x[m],c.d)}</td><td class="num">${x.uscite}</td></tr>`).join('')+'</tbody>';
-    det.appendChild(tb);foot.appendChild(det);
+    foot.innerHTML=`<p class="eyebrow" style="margin:10px 0 0">Settimane da lunedì a domenica, in rosa quella in corso. Tocca o scorri le barre.${m==='dislivello_m'?' Il dislivello manca in alcune attività.':''}</p>`;
   }
-
-  /* Segmented control: il cursore scivola con una molla e si può reindirizzare a metà corsa. */
-  const seg=$('.seg'), thumb=seg.querySelector('.thumb'), btns=[...seg.querySelectorAll('button')];
-  const ts=spring(x=>{thumb.style.transform=`translateX(${x}px)`},{response:.32});
-  const place=(b,anim)=>{thumb.style.width=b.offsetWidth+'px';const x=b.offsetLeft;anim?ts.to(x):ts.jump(x)};
-  btns.forEach(b=>b.addEventListener('pointerdown',()=>place(b,true)));
-  btns.forEach(b=>b.addEventListener('click',()=>{
-    btns.forEach(x=>x.setAttribute('aria-pressed',x===b));place(b,true);
-    if(b.dataset.m!==cur)draw(b.dataset.m,true)}));
-  btns.forEach(b=>b.addEventListener('pointercancel',()=>place(btns.find(x=>x.getAttribute('aria-pressed')==='true'),true)));
-  new ResizeObserver(()=>place(btns.find(x=>x.getAttribute('aria-pressed')==='true'),false)).observe(seg);
-
+  segmented($('#segWk'),v=>draw(v,true));
   let first=true;
-  responsive(box,W=>{build(W);draw(cur,false);if(first){first=false;
-    /* All'apertura le barre crescono una volta da zero. */
-    if(!RM.matches){G.items.forEach(it=>it.sp.jump(0));draw(cur,true)}}});
+  responsive(box,W=>{build(W);draw(cur,false);if(first){first=false;if(!RM.matches){G.items.forEach(it=>it.sp.jump(0));draw(cur,true)}}});
+})();
+
+/* Ultime attivita */
+(function(){
+  const A=(D.ultime_attivita||[]).slice(0,6), ul=$('#alist');
+  if(!A.length)return;
+  $('#actLead').textContent=`Dal ${fmtS(A[A.length-1].data)} al ${fmtS(A[0].data)}`;
+  A.forEach(a=>{const tipo=TIPI[a.tipo]||a.tipo.replace(/_/g,' '), ora=a.data.slice(11);
+    const li=document.createElement('li');
+    li.innerHTML=`<div class="t">${esc(a.nome||tipo)}</div><div class="k">${a.distanza_km>0?`${nf(a.distanza_km,1)} <small>km</small>`:fmtDur(a.durata_min)}</div>
+      <div class="d">${esc(tipo)} · ${fmtS(a.data)}, ${ora}</div><div class="m">${a.distanza_km>0?fmtDur(a.durata_min):''}${a.fc_media!=null?`${a.distanza_km>0?' · ':''}${nf(a.fc_media)} bpm`:''}</div>`;
+    ul.appendChild(li)});
 })();
 
 /* Recupero */
@@ -467,52 +758,41 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
     {k:'sonno_punteggio',nm:'Punteggio del sonno',u:'su 100',d:0,sk:'sonno_punteggio'},
     {k:'fasi'},
     {k:'fc_riposo',nm:'Battito a riposo',u:'bpm',d:0,sk:'fc_riposo'},
-    {k:'spo2',nm:'SpO2 media',u:'%',d:0,sk:'spo2'},
     {k:'hrv',nm:'HRV notturna',u:'ms',d:0,sk:'hrv'},
     {k:'stress',nm:'Stress medio',u:'su 100',d:0,sk:'stress'},
-    {k:'body_battery_max',nm:'Body Battery',u:'max',d:0,sk:'body_battery_max'}];
-  $('#recLead').textContent=B.disponibile?'Ultimo valore, media a 7 giorni e confronto con le 4 settimane precedenti. Grafici: ultimi 30 giorni, in chiaro la media mobile. Tocca un grafico per leggere il giorno.':'Sonno, HRV, stress e Body Battery';
+    {k:'body_battery_max',nm:'Body Battery',u:'max',d:0,sk:'body_battery_max'},
+    {k:'spo2',nm:'SpO2 media',u:'%',d:0,sk:'spo2'}];
+  $('#recLead').textContent=B.disponibile?'Ultimo valore, media a 7 giorni e confronto con le 4 settimane prima. Grafici: ultimi 30 giorni, in chiaro la media mobile. Tocca un grafico per leggere il giorno.':'Sonno, HRV, stress e Body Battery';
   const box=$('#wb');
   defs.forEach(df=>{
     const t=document.createElement('div');t.className='tile';
     if(df.k==='fasi'){
       const F=B.fasi_sonno;
-      if(F){
-        const u=F.ultima_notte_min, tot=u.profondo+u.rem+u.leggero+u.sveglio, m7=F.media_7gg_min;
+      if(F){const u=F.ultima_notte_min,tot=u.profondo+u.rem+u.leggero+u.sveglio,m7=F.media_7gg_min;
         const ph=[['profondo','Profondo','var(--s-deep)'],['rem','REM','var(--s-rem)'],['leggero','Leggero','var(--s-core)'],['sveglio','Sveglio','var(--s-awake)']];
-        t.innerHTML=`<div class="nm">Fasi del sonno, ultima notte</div><div class="v">${fmtDur(u.profondo+u.rem+u.leggero)} <small>dormito</small></div>`+
+        t.innerHTML=`<div class="nm">Fasi del sonno, ultima notte</div><div class="v">${fmtDur(u.profondo+u.rem+u.leggero)}</div>`+
           `<div class="ph" role="img" aria-label="${ph.map(p=>p[1]+' '+fmtDur(u[p[0]])).join(', ')}">${ph.map(p=>`<i style="width:${(u[p[0]]/tot*100).toFixed(1)}%;background:${p[2]}"></i>`).join('')}</div>`+
-          `<div class="cmp phl">${ph.map(p=>`<span><i style="background:${p[2]}"></i>${p[1]} <b>${fmtDur(u[p[0]])}</b>${m7?` <em>(media 7 g: ${fmtDur(m7[p[0]])})</em>`:''}</span>`).join('')}</div>`;
-      }else{
-        t.innerHTML=`<div class="nm">Fasi del sonno</div><div class="v" style="color:var(--label-2)">n.d.</div><div class="cmp">Nessun dato recente</div>`;
-      }
+          `<div class="cmp phl">${ph.map(p=>`<span><i style="background:${p[2]}"></i>${p[1]} <b>${fmtDur(u[p[0]])}</b>${m7?` <em>(7 g: ${fmtDur(m7[p[0]])})</em>`:''}</span>`).join('')}</div>`;
+      }else t.innerHTML=`<div class="nm">Fasi del sonno</div><div class="v" style="color:var(--label-2)">n.d.</div><div class="cmp">Nessun dato recente</div>`;
       box.appendChild(t);return;
     }
     const s=(B.serie[df.k]||[]);
-    if(!s.length){
-      t.innerHTML=`<div class="nm">${df.nm}</div><div class="v" style="color:var(--label-2)">n.d. <small>${df.u}</small></div><div class="cmp">Nessun dato recente<br>&nbsp;</div>`;
-      const svg=el('svg',{viewBox:'0 0 200 40',width:'100%',height:40,preserveAspectRatio:'none',role:'img','aria-label':`${df.nm}: dati non disponibili`});
-      svg.appendChild(el('line',{x1:0,x2:200,y1:20,y2:20,stroke:'var(--separator)','stroke-width':2,'stroke-dasharray':'4 5','stroke-linecap':'round','vector-effect':'non-scaling-stroke'}));
-      t.appendChild(svg);box.appendChild(t);return;
-    }
-    const last=s[s.length-1];
-    const nmTxt=df.nm, vTxt=`${nf(last.valore,df.d)} <small>${df.u}</small>`;
+    if(!s.length){t.innerHTML=`<div class="nm">${df.nm}</div><div class="v" style="color:var(--label-2)">n.d. <small>${df.u}</small></div><div class="cmp">Nessun dato recente</div>`;box.appendChild(t);return}
+    const last=s[s.length-1], nmTxt=df.nm, vTxt=`${nf(last.valore,df.d)} <small>${df.u}</small>`;
     t.innerHTML=`<div class="nm">${nmTxt}</div><div class="v">${vTxt}</div><div class="cmp">Media 7 giorni: <b>${nf(last.media_7gg,df.d)}</b>${B.sintesi&&B.sintesi[df.sk]?`<br>4 settimane prima: ${nf(B.sintesi[df.sk].media_28gg_prec,df.d)}`:''}</div><div class="chart"></div>`;
     box.appendChild(t);
-    const nmEl=t.querySelector('.nm'), vEl=t.querySelector('.v'), cbox=t.querySelector('.chart');
-    const vs=s.map(x=>x.valore), ms=s.map(x=>x.media_7gg).filter(x=>x!=null);
-    const all=vs.concat(ms), mn=Math.min(...all), rg=(Math.max(...all)-mn)||1;
+    const nmEl=t.querySelector('.nm'),vEl=t.querySelector('.v'),cbox=t.querySelector('.chart');
+    const vs=s.map(x=>x.valore),ms=s.map(x=>x.media_7gg).filter(x=>x!=null),all=vs.concat(ms),mn=Math.min(...all),rg=(Math.max(...all)-mn)||1;
     responsive(cbox,W=>{
       cbox.querySelector('svg')?.remove();
-      const H=40, P=5, x=i=>P+i/(s.length-1||1)*(W-2*P), y=v=>H-4-(v-mn)/rg*(H-8);
+      const H=40,P=5,x=i=>P+i/(s.length-1||1)*(W-2*P),y=v=>H-4-(v-mn)/rg*(H-8);
       const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,height:H,role:'img','aria-label':`${df.nm}, ultimi ${s.length} giorni, ultimo valore ${nf(last.valore,df.d)} ${df.u}. Usa le frecce per scorrere i giorni.`});
       const pts=s.map((p,i)=>[x(i),p.media_7gg]).filter(p=>p[1]!=null);
-      if(pts.length>1)svg.appendChild(el('path',{d:pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+y(p[1]).toFixed(1)).join(''),fill:'none',stroke:'var(--accent)','stroke-width':5,opacity:.18,'stroke-linecap':'round','stroke-linejoin':'round'}));
-      svg.appendChild(el('path',{d:vs.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join(''),fill:'none',stroke:'var(--accent)','stroke-width':1.75,'stroke-linecap':'round','stroke-linejoin':'round'}));
-      svg.appendChild(el('circle',{cx:x(vs.length-1),cy:y(last.valore),r:3.5,fill:'var(--accent)',stroke:'var(--surface-2)','stroke-width':2}));
-      const rule=el('line',{class:'mark',y1:0,y2:H,stroke:'var(--label-2)','stroke-width':1}), dot=el('circle',{class:'mark',r:4,fill:'var(--accent)',stroke:'var(--surface-2)','stroke-width':2});
-      svg.append(rule,dot); cbox.appendChild(svg);
-      /* Nei riquadri il numero grande diventa la lettura del giorno toccato, come in Salute. */
+      if(pts.length>1)svg.appendChild(el('path',{d:pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+y(p[1]).toFixed(1)).join(''),fill:'none',stroke:'var(--cyan)','stroke-width':5,opacity:.2,'stroke-linecap':'round','stroke-linejoin':'round'}));
+      svg.appendChild(el('path',{d:vs.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join(''),fill:'none',stroke:'var(--cyan)','stroke-width':1.75,'stroke-linecap':'round','stroke-linejoin':'round'}));
+      svg.appendChild(el('circle',{cx:x(vs.length-1),cy:y(last.valore),r:3.5,fill:'var(--cyan)',stroke:'var(--surface-2)','stroke-width':2}));
+      const rule=el('line',{class:'mark',y1:0,y2:H,stroke:'var(--label-2)','stroke-width':1}),dot=el('circle',{class:'mark',r:4,fill:'var(--cyan)',stroke:'var(--surface-2)','stroke-width':2});
+      svg.append(rule,dot);cbox.appendChild(svg);
       scrub(svg,s.length,x,i=>{const px=x(i);rule.setAttribute('x1',px);rule.setAttribute('x2',px);dot.setAttribute('cx',px);dot.setAttribute('cy',y(vs[i]));
         t.classList.add('live');nmEl.textContent=fmtS(s[i].data);vEl.innerHTML=`${nf(vs[i],df.d)} <small>${df.u}</small>`},
         ()=>{t.classList.remove('live');nmEl.textContent=nmTxt;vEl.innerHTML=vTxt});
@@ -522,35 +802,54 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
   (B.note||[]).forEach(n=>{const li=document.createElement('li');li.textContent=n;$('#recNotes').appendChild(li)});
 })();
 
-/* Attività: tabella su schermi larghi, lista a righe su telefono. */
+/* Carico */
 (function(){
-  const A=D.ultime_attivita, tb=$('#act tbody'), ul=$('#alist');
-  $('#actLead').textContent=`Dal ${fmtS(A[A.length-1].data)} al ${fmtS(A[0].data)}`;
-  A.forEach(a=>{
-    const tipo=TIPI[a.tipo]||a.tipo, ora=a.data.slice(11);
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${fmtS(a.data)}<div class="eyebrow">${ora}</div></td>
-      <td><div class="nm2">${esc(a.nome)}</div><span class="tag">${esc(tipo)}</span></td>
-      <td class="num">${a.distanza_km>0?nf(a.distanza_km,1):'-'}</td>
-      <td class="num">${fmtDur(a.durata_min)}</td>
-      <td class="num">${a.dislivello_m==null?'n.d.':nf(a.dislivello_m)}</td>
-      <td class="num">${a.fc_media==null?'n.d.':nf(a.fc_media)}</td>`;
-    tb.appendChild(tr);
-    const li=document.createElement('li');
-    li.innerHTML=`<div class="t">${esc(a.nome)}</div><div class="k">${a.distanza_km>0?`${nf(a.distanza_km,1)} <small>km</small>`:fmtDur(a.durata_min)}</div>
-      <div class="d">${esc(tipo)} · ${fmtS(a.data)}, ${ora}</div><div class="m">${a.distanza_km>0?fmtDur(a.durata_min):''}${a.fc_media!=null?`${a.distanza_km>0?' · ':''}${nf(a.fc_media)} bpm`:''}</div>`;
-    ul.appendChild(li);
+  const c=D.carico, r=c.rapporto, sem=c.semaforo, s=c.serie||[], card=$('#loadCard');
+  if(r==null||!s.length){card.innerHTML='<h2>Carico acuto e cronico</h2><p class="empty">Dati insufficienti.</p>';return}
+  const etic={ottimale:'Ottimale',alto:'Alto',basso:'Basso'}[sem]||sem, pct=Math.min(r,2)/2*100;
+  const peak=s.reduce((m,x)=>x.rapporto>m.rapporto?x:m,s[0]);
+  const concl={ottimale:'Carico recente in linea con quello abituale',alto:'Carico recente più alto del solito',basso:'Carico recente più basso del solito'}[sem];
+  card.innerHTML=`<div class="load-grid"><div><h2>Carico acuto e cronico</h2><p class="lead">${concl}</p>
+    <div class="load-main"><div class="ratio">${nf(r,2)}</div><span class="light ${sem}"><i aria-hidden="true"></i>${etic}</span></div>
+    <div class="gauge" role="img" aria-label="Rapporto ${nf(r,2)} su scala da 0 a 2. Zona ottimale tra 0,8 e 1,3. Stato: ${etic}.">
+      <div class="track"><div class="z z1" style="width:40%"></div><div class="z z2" style="width:25%"></div><div class="z z3" style="width:35%"></div><div class="pin" id="pin"></div></div>
+      <div class="ticks"><span style="left:0%;transform:none">0</span><span style="left:40%">0,8</span><span style="left:65%">1,3</span><span style="left:100%;transform:translateX(-100%)">2+</span></div></div>
+    <div class="stats"><div><b>${nf(c.acuto_min_die,0)} min</b>acuto, media 7 giorni</div><div><b>${nf(c.cronico_min_die,0)} min</b>cronico, media 28 giorni</div></div></div>
+    <div><div class="eyebrow" style="margin-bottom:6px">Rapporto negli ultimi ${s.length} giorni</div><div class="chart" id="ratioChart"></div>
+    <p class="eyebrow" style="margin:10px 0 0">Picco ${nf(peak.rapporto,2)} il ${fmtS(peak.data)}. Indicazione orientativa, sui minuti di allenamento.</p></div></div>`;
+  const pin=$('#pin'), track=pin.parentElement, ps=spring(x=>{pin.style.transform=`translateX(${x-3}px)`},{response:.55});
+  responsive(track,w=>{ps.jump(0);ps.to(pct/100*w)});
+  const box=$('#ratioChart'), ro=readout(box);
+  responsive(box,W=>{
+    box.querySelector('svg')?.remove();
+    const H=W>500?150:118,L=24,R=8,T=10,B=20,iw=W-L-R,ih=H-T-B,ymax=Math.max(2.2,Math.ceil(peak.rapporto*2)/2);
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,height:H,role:'img','aria-label':`Rapporto acuto cronico dal ${fmtS(s[0].data)} al ${fmtS(s[s.length-1].data)}. Ultimo ${nf(r,2)}, picco ${nf(peak.rapporto,2)}. Usa le frecce per scorrere i giorni.`});
+    const y=v=>T+ih-(v/ymax)*ih, x=i=>L+i/(s.length-1)*iw;
+    svg.appendChild(el('rect',{x:L,y:y(1.3),width:iw,height:y(0.8)-y(1.3),fill:'var(--good)',opacity:.14}));
+    [0,1,2].forEach(g=>{svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(g),y2:y(g),stroke:'var(--grid)'}));svg.appendChild(el('text',{x:L-6,y:y(g)+4,'text-anchor':'end'},g))});
+    svg.appendChild(el('path',{d:s.map((p,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(p.rapporto).toFixed(1)).join(''),fill:'none',stroke:'var(--lime)','stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    const li=s.length-1,pi=s.indexOf(peak);
+    svg.appendChild(el('circle',{cx:x(li),cy:y(s[li].rapporto),r:4,fill:'var(--lime)',stroke:'var(--surface)','stroke-width':2}));
+    svg.appendChild(el('circle',{cx:x(pi),cy:y(peak.rapporto),r:3.5,fill:'var(--surface)',stroke:'var(--pink)','stroke-width':2}));
+    const nL=Math.max(2,Math.min(5,Math.floor(iw/70)));
+    for(let j=0;j<nL;j++){const i=Math.round(j*li/(nL-1));svg.appendChild(el('text',{x:x(i),y:H-3,'text-anchor':j===0?'start':(j===nL-1?'end':'middle')},fmtS(s[i].data)))}
+    const rule=el('line',{class:'mark',y1:T,y2:T+ih,stroke:'var(--label-2)','stroke-width':1}),dot=el('circle',{class:'mark',r:4.5,fill:'var(--lime)',stroke:'var(--surface)','stroke-width':2});
+    svg.append(rule,dot);box.prepend(svg);
+    scrub(svg,s.length,x,i=>{const px=x(i),py=y(s[i].rapporto);rule.setAttribute('x1',px);rule.setAttribute('x2',px);dot.setAttribute('cx',px);dot.setAttribute('cy',py);
+      ro.show(px,T,`<b>${nf(s[i].rapporto,2)}</b><span>${fmtS(s[i].data)}</span>`)},()=>ro.hide());
   });
 })();
 
-/* Osservazioni */
+/* Cosa notare */
 (function(){
-  const ul=$('#notes'), n=D.osservazioni.length;
-  $('#noteLead').textContent=`${n===1?'Una osservazione':n+' osservazioni'} sui dati disponibili.`;
-  D.osservazioni.forEach(t=>{const li=document.createElement('li');li.innerHTML='<span class="dot" aria-hidden="true"></span><span></span>';li.lastChild.textContent=t;ul.appendChild(li)});
+  const O=D.osservazioni||{}, box=$('#notes'), list=Array.isArray(O)?{abitudini:O}:O;
+  [['record','Record e serie','n1'],['abitudini','Abitudini','n2'],['recupero','Recupero e carico','n3'],['proiezioni','Proiezioni','n4']].forEach(([k,t,c])=>{
+    const xs=list[k]||[];if(!xs.length)return;
+    const a=document.createElement('article');a.className='note '+c;
+    a.innerHTML=`<h3>${t}</h3><ul>${xs.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;box.appendChild(a)});
 })();
 
-$('#foot').innerHTML=`Dati Garmin Connect, aggiornati al ${fmtD(ref)}. Sono dati descrittivi: le soglie sono indicative e non costituiscono consiglio medico.<br>${D.dati_aggiornati?'':'Fonte: copia locale delle attività, non una lettura in tempo reale. '}${esc(D.nota_footer||'')}`;
+$('#foot').innerHTML=`Dati Garmin Connect, aggiornati al ${fmtD(ANCHOR)}. Dati descrittivi: le soglie sono indicative e non sono un parere medico.<br>${esc(D.nota_footer||'')}`;
 </script>
 </body>
 </html>

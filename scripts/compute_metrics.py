@@ -43,6 +43,7 @@ fresh = live and (today - last_act).days <= FRESH_DAYS
 # finestre ancorate a oggi se i dati sono aggiornati, altrimenti all'ultimo giorno con dati
 anchor = today if fresh else last_act
 RUN = ["running", "trail_running"]
+PESO_TARGET_KG = 82.0   # target di peso, senza data
 FOOT = ["running", "trail_running", "hiking"]
 
 def r(x, n=1):
@@ -192,26 +193,137 @@ tipi = [{"tipo": t.tipo_attivita, "uscite": int(t.uscite), "km": r(t.km), "ore":
 tipi.sort(key=lambda z: -z["ore"])
 
 
-# (6) osservazioni
+# (5b) peso: serie lunga, target, trend degli ultimi 30 giorni
+peso = {"target": PESO_TARGET_KG, "serie": [], "attuale": None, "data_attuale": None,
+        "trend_kg_sett": None, "settimane_al_target": None, "data_stimata": None}
+try:
+    pw = pd.read_csv(D + "weight.csv")
+except Exception:
+    pw = pd.DataFrame()
+if not len(pw) and len(wel) and "peso_kg" in wel.columns:
+    pw = wel[["data", "peso_kg"]].copy()
+if len(pw):
+    pw["data"] = pd.to_datetime(pw["data"])
+    pw["peso_kg"] = pd.to_numeric(pw["peso_kg"], errors="coerce")
+    pw = pw.dropna().sort_values("data")
+    pw = pw[pw["data"] <= anchor]
+if len(pw):
+    peso["serie"] = [{"data": str(d.date()), "kg": r(v, 1)} for d, v in zip(pw["data"], pw["peso_kg"])]
+    peso["attuale"] = r(pw["peso_kg"].iloc[-1], 1)
+    peso["data_attuale"] = str(pw["data"].iloc[-1].date())
+    rec = pw[pw["data"] > anchor - pd.Timedelta(days=30)]
+    if len(rec) >= 4 and (rec["data"].max() - rec["data"].min()).days >= 10:
+        xs = (rec["data"] - rec["data"].min()).dt.days.values.astype(float)
+        slope = float(np.polyfit(xs, rec["peso_kg"].values.astype(float), 1)[0]) * 7
+        peso["trend_kg_sett"] = r(slope, 2)
+        diff = peso["attuale"] - PESO_TARGET_KG
+        if diff > 0 and slope < -0.05:
+            weeks = diff / -slope
+            peso["settimane_al_target"] = r(weeks, 1)
+            peso["data_stimata"] = str((anchor + pd.Timedelta(days=round(weeks * 7))).date())
+
+
+# (6) osservazioni, in quattro famiglie
 k7 = kpis(act, anchor, 7); k30 = kpis(act, anchor, 30)
 
 def it(x, n=1):
-    return f"{x:.{n}f}".replace(".", ",")
+    return f"{x:.{n}f}".replace(".", ",").replace("-", "−")
 
-obs = []
-# Una frase per osservazione: solo l'insight, i numeri di dettaglio stanno già nei riquadri.
-d30 = k30["variazione_pct"]["ore"]
-if d30 is not None:
-    if abs(d30) < 3:
-        obs.append(f"Ultimi 30 giorni: tempo di allenamento stabile rispetto al mese prima ({it(k30['corrente']['ore'])} ore).")
-    else:
-        verso = "più" if d30 > 0 else "meno"
-        obs.append(f"Ultimi 30 giorni: {abs(d30):.0f}% di tempo di allenamento in {verso} rispetto al mese prima ({it(k30['corrente']['ore'])} ore contro {it(k30['precedente']['ore'])}).")
-if cur_ratio is not None:
-    pk_txt = f" Il picco degli ultimi 90 giorni è stato {it(peak['rapporto'], 2)} il {peak['data'][8:10]}/{peak['data'][5:7]}." if peak and peak["rapporto"] > 1.3 else ""
-    obs.append(f"Carico {light(cur_ratio)}, {'in linea con' if light(cur_ratio) == 'ottimale' else ('sopra' if cur_ratio > 1.3 else 'sotto')} l'abituale.{pk_txt}")
+MESI_L = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto",
+          "settembre", "ottobre", "novembre", "dicembre"]
+GIORNI_L = ["il lunedì", "il martedì", "il mercoledì", "il giovedì", "il venerdì", "il sabato", "la domenica"]
+TIPI_L = {"hiit": "HIIT", "running": "corsa", "trail_running": "trail running", "hiking": "escursione",
+          "walking": "camminata", "cycling": "bici", "road_biking": "bici su strada", "gravel_cycling": "gravel",
+          "indoor_cycling": "bici indoor", "lap_swimming": "nuoto in vasca", "strength_training": "forza",
+          "multi_sport": "multisport", "mountain_biking": "mountain bike"}
 
-# recupero: direzione rispetto alle 4 settimane prima, non l'elenco dei valori
+def quando(d):
+    d = pd.Timestamp(d)
+    return f"{d.day} {MESI_L[d.month - 1]}" + ("" if d.year == anchor.year else f" {d.year}")
+
+def art(prep, d):
+    """'il', 'dal', 'al' + data, con l'elisione giusta: l'8, dall'11, dal 1° maggio."""
+    g, q = pd.Timestamp(d).day, quando(d)
+    if g in (8, 11):
+        return {"il": "l'", "dal": "dall'", "al": "all'"}[prep] + q
+    if g == 1:
+        q = "1° " + q[2:]
+    return prep + " " + q
+
+def verso_data(d):
+    d = pd.Timestamp(d)
+    fase = "inizio" if d.day <= 10 else ("metà" if d.day <= 20 else "fine")
+    return f"{fase} {MESI_L[d.month - 1]}" + ("" if d.year == anchor.year else f" {d.year}")
+
+oss = {"record": [], "abitudini": [], "recupero": [], "proiezioni": []}
+past = act[act["day"] <= anchor]
+inizio30 = anchor - pd.Timedelta(days=29)
+
+# Record e serie
+if len(past):
+    wk = past.assign(sett=past["day"] - pd.to_timedelta(past["day"].dt.weekday, unit="D")).groupby("sett")["distanza_km"].sum()
+    if len(wk) and wk.max() > 0:
+        bw = wk.idxmax()
+        if bw >= inizio30 - pd.Timedelta(days=6):
+            oss["record"].append(f"Nuovo record: la settimana {art("dal", bw)} è la più lunga di sempre, {it(wk.max())} km.")
+        else:
+            oss["record"].append(f"Settimana più lunga di sempre: {it(wk.max())} km, {art("dal", bw)}.")
+    corse = past[past["tipo_attivita"].isin(RUN) & (past["distanza_km"] > 0)]
+    if len(corse):
+        lr = corse.loc[corse["distanza_km"].idxmax()]
+        dp = f", {it(lr['dislivello_pos_m'], 0)} m di dislivello" if pd.notna(lr["dislivello_pos_m"]) and lr["dislivello_pos_m"] >= 100 else ""
+        nuova = " È un nuovo record." if lr["day"] >= inizio30 else ""
+        oss["record"].append(f"Corsa più lunga: {it(lr['distanza_km'])} km {art('il', lr['day'])}{dp}.{nuova}")
+    giorni = sorted(set(past["day"]))
+    best, cur, prev, best_end = 0, 0, None, None
+    for d in giorni:
+        cur = cur + 1 if prev is not None and (d - prev).days == 1 else 1
+        if cur > best:
+            best, best_end = cur, d
+        prev = d
+    in_corso = 0
+    if giorni and (anchor - giorni[-1]).days <= 1:
+        in_corso, i = 1, len(giorni) - 1
+        while i > 0 and (giorni[i] - giorni[i - 1]).days == 1:
+            in_corso += 1; i -= 1
+    if best >= 3:
+        if in_corso == best:
+            oss["record"].append(f"Sei sulla tua serie più lunga: {best} giorni attivi di fila.")
+        else:
+            txt = f"Serie più lunga di giorni attivi consecutivi: {best}, fino {art("al", best_end)}."
+            if in_corso >= 3:
+                txt += f" Quella in corso è di {in_corso}."
+            oss["record"].append(txt)
+
+# Abitudini
+cnt = past["tipo_attivita"].value_counts()
+if len(cnt):
+    t0 = cnt.index[0]
+    oss["abitudini"].append(f"L'attività più frequente è {TIPI_L.get(t0, t0.replace('_', ' '))}: {cnt.iloc[0]} uscite su {len(past)}.")
+r90 = window(act, anchor, 90)
+if len(r90) >= 8:
+    wd = r90["data"].dt.weekday.value_counts()
+    oss["abitudini"].append(f"Negli ultimi 90 giorni il giorno più attivo è {GIORNI_L[int(wd.index[0])]}: {int(wd.iloc[0])} uscite su {len(r90)}.")
+    h = r90["data"].dt.hour
+    fasce = {"prima delle 9": (h < 9).mean(), "tra le 9 e le 18": ((h >= 9) & (h < 18)).mean(), "dopo le 18": (h >= 18).mean()}
+    f_, v_ = max(fasce.items(), key=lambda x: x[1])
+    if v_ >= 0.5:
+        oss["abitudini"].append(f"Il {v_ * 100:.0f}% delle uscite parte {f_}.")
+lun = anchor - pd.Timedelta(days=anchor.weekday())
+n_ok = sum(len(act[(act["day"] >= lun - pd.Timedelta(weeks=i)) & (act["day"] < lun - pd.Timedelta(weeks=i - 1))]) >= 3 for i in range(1, 13))
+if len(past) and past["day"].min() <= lun - pd.Timedelta(weeks=12):
+    oss["abitudini"].append(f"In {n_ok} delle ultime 12 settimane hai fatto almeno 3 uscite.")
+ly = anchor - pd.DateOffset(years=1)
+if len(past) and past["day"].min() <= ly - pd.Timedelta(days=29):
+    ha = window(act, anchor, 30)["durata_min"].sum() / 60
+    hb = window(act, ly, 30)["durata_min"].sum() / 60
+    if hb > 0:
+        dd = (ha - hb) / hb * 100
+        oss["abitudini"].append(f"Rispetto agli stessi 30 giorni del {ly.year}: {it(ha)} ore contro {it(hb)}, {'+' if dd >= 0 else '−'}{abs(dd):.0f}%.")
+    elif ha > 0:
+        oss["abitudini"].append(f"Negli stessi 30 giorni del {ly.year} non c'erano attività registrate.")
+
+# Recupero e carico
 S = wellness.get("sintesi", {}) if wellness["disponibile"] else {}
 def verso(k, meglio_se_alto=True, soglia=2.0):
     s = S.get(k) or {}
@@ -233,19 +345,59 @@ if wellness["disponibile"]:
     if su: parti.append(f"meglio {elenco(su)}")
     if giu: parti.append(f"peggio {elenco(giu)}")
     if uguali: parti.append(f"stabili {elenco(uguali)}" if len(uguali) > 1 else f"stabile {uguali[0]}")
-    hs = wellness.get("hrv_stato_30gg", {})
-    nb = hs.get("BALANCED", 0); tot_hs = sum(hs.values())
-    hrv_st = (" Garmin dà lo stato HRV equilibrato ogni giorno del mese." if nb == tot_hs else f" Garmin dà lo stato HRV equilibrato {nb} giorni su {tot_hs}.") if tot_hs else ""
-    obs.append("Recupero, rispetto alle 4 settimane prima: " + "; ".join(parti) + "." + hrv_st + " Per il menisco contano più fisioterapista e sensazioni.")
-else:
-    obs.append("Nessun dato di recupero disponibile. Per il menisco valgono le indicazioni di medico e fisioterapista.")
+    if parti:
+        oss["recupero"].append("Rispetto alle 4 settimane prima: " + "; ".join(parti) + ".")
+if cur_ratio is not None:
+    pk_txt = f" Il picco degli ultimi 90 giorni è stato {it(peak['rapporto'], 2)} {art('il', peak['data'])}." if peak and peak["rapporto"] > 1.3 else ""
+    oss["recupero"].append(f"Carico {light(cur_ratio)}, {'in linea con' if light(cur_ratio) == 'ottimale' else ('sopra' if cur_ratio > 1.3 else 'sotto')} l'abituale.{pk_txt}")
+if len(wel) and "hrv_notte_ms" in wel.columns:
+    hrv = pd.Series(pd.to_numeric(wel["hrv_notte_ms"], errors="coerce").values, index=pd.to_datetime(wel["data"]).values)
+    idx_h = pd.date_range(anchor - pd.Timedelta(days=89), anchor - pd.Timedelta(days=1))
+    dmin = act.groupby("day")["durata_min"].sum().reindex(idx_h, fill_value=0)
+    if (dmin > 0).sum() >= 8:
+        soglia = max(75.0, float(dmin[dmin > 0].quantile(0.75)))
+        pesanti = set(dmin[dmin >= soglia].index)
+        dopo = hrv.reindex([d + pd.Timedelta(days=1) for d in pesanti]).dropna()
+        altri = hrv.reindex([d + pd.Timedelta(days=1) for d in idx_h if d not in pesanti]).dropna()
+        if len(dopo) >= 4 and len(altri) >= 10:
+            a_, b_ = dopo.mean(), altri.mean()
+            if abs(a_ - b_) / b_ >= 0.03:
+                oss["recupero"].append(f"Dopo i giorni più pesanti (da {soglia:.0f} minuti in su) l'HRV della notte è in media {a_:.0f} ms, contro {b_:.0f} negli altri giorni.")
+            else:
+                oss["recupero"].append(f"Dopo i giorni più pesanti l'HRV della notte resta simile agli altri ({a_:.0f} contro {b_:.0f} ms): il recupero tiene.")
+    hv = hrv[hrv.index <= anchor].dropna()
+    if len(hv) >= 8 and (anchor - hv.index[-1]).days <= 1:
+        l_, m_ = hv.iloc[-1], hv.iloc[-8:-1].mean()
+        if l_ < m_ * 0.9 and (cur_ratio or 0) > 1.3:
+            oss["recupero"].append(f"Segnale di scarico: HRV di stanotte {l_:.0f} ms, sotto la media della settimana ({m_:.0f}), con il carico alto.")
+        elif l_ < m_ * 0.9:
+            oss["recupero"].append(f"HRV di stanotte {l_:.0f} ms, sotto la media della settimana ({m_:.0f}): vale la pena ascoltare come stai.")
+oss["recupero"].append("Per il menisco contano più fisioterapista e sensazioni di questi numeri.")
 
-run = [t for t in tipi if t["tipo"] in RUN]
-runkm = sum(t["km"] for t in run); runn = sum(t["uscite"] for t in run)
-hiit = next((t for t in tipi if t["tipo"] == "hiit"), None)
-w30 = window(act, anchor, 30)
-r30 = w30[w30["tipo_attivita"].isin(RUN)]
-obs.append(f"Corsa negli ultimi 30 giorni: {len(r30)} uscite, {it(r30['distanza_km'].sum(), 0)} km. In tutto il periodo {runn} corse e {hiit['uscite'] if hiit else 0} sedute HIIT.")
+# Proiezioni
+if peso["attuale"] is not None:
+    if peso["attuale"] <= PESO_TARGET_KG:
+        oss["proiezioni"].append(f"Peso {it(peso['attuale'])} kg: target di {it(PESO_TARGET_KG, 0)} kg raggiunto.")
+    elif peso["settimane_al_target"] is not None:
+        oss["proiezioni"].append(f"Al ritmo degli ultimi 30 giorni ({it(peso['trend_kg_sett'])} kg a settimana) arrivi a {it(PESO_TARGET_KG, 0)} kg in circa {peso['settimane_al_target']:.0f} settimane, verso {verso_data(peso['data_stimata'])}.")
+    elif peso["trend_kg_sett"] is not None:
+        oss["proiezioni"].append(f"Negli ultimi 30 giorni il peso è stabile o in salita ({'+' if peso['trend_kg_sett'] >= 0 else ''}{it(peso['trend_kg_sett'])} kg a settimana): al ritmo attuale non c'è una data stimata per {it(PESO_TARGET_KG, 0)} kg.")
+compl = [w["km"] or 0 for w in weekly[:-1]]
+media_sett = sum(compl) / len(compl) if compl else 0
+if media_sett > 0:
+    km_ora = weekly[-1]["km"] or 0
+    if km_ora < media_sett:
+        oss["proiezioni"].append(f"Settimana in corso: {it(km_ora)} km. Per la tua media ({it(media_sett)} km) ne mancano {it(media_sett - km_ora)} entro domenica.")
+    else:
+        oss["proiezioni"].append(f"Settimana in corso: {it(km_ora)} km, già sopra la tua media di {it(media_sett)}.")
+m0 = anchor.replace(day=1)
+if anchor.day >= 5:
+    mtd = act[(act["day"] >= m0) & (act["day"] <= anchor)]["distanza_km"].sum()
+    gm = pd.Period(anchor, "M").days_in_month
+    pm0 = (m0 - pd.Timedelta(days=1)).replace(day=1)
+    prec = act[(act["day"] >= pm0) & (act["day"] < m0)]["distanza_km"].sum()
+    oss["proiezioni"].append(f"{MESI_L[anchor.month - 1].capitalize()}: {it(mtd)} km finora, al ritmo attuale circa {mtd / anchor.day * gm:.0f} a fine mese ({MESI_L[pm0.month - 1]}: {prec:.0f}).")
+obs = oss
 
 n_act = len(act)
 miss_dis = int(act["dislivello_pos_m"].isna().sum())
@@ -268,6 +420,8 @@ nota_foot = (f"Il dislivello manca in {miss_dis} attività su {n_act}. " + avv_p
 
 out = {
     "generato_il": str(today.date()),
+    "generato_alle": _dt.datetime.now(__import__("zoneinfo").ZoneInfo("Europe/Rome")).strftime("%H:%M"),
+    "peso": peso,
     "data_riferimento": str(anchor.date()),
     "ultima_attivita": str(last_act.date()),
     "fonte_attivita": src,
@@ -289,7 +443,7 @@ out = {
     "lacune": lacune,
 }
 json.dump(out, open(os.path.join(OUT_DIR, "metrics.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-print(json.dumps({k: out[k] for k in ["data_riferimento", "dati_aggiornati", "kpi", "osservazioni", "nota_footer"]}, ensure_ascii=False, indent=1))
+print(json.dumps({k: out[k] for k in ["data_riferimento", "dati_aggiornati", "osservazioni", "peso"]}, ensure_ascii=False, indent=1)[:4000])
 print(cur_ratio, light(cur_ratio), peak)
 print(weekly[-6:])
 print(wellness.get("disponibile"), wellness.get("sintesi"), wellness.get("hrv_stato_30gg"))

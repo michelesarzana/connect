@@ -110,6 +110,19 @@ if r.status_code == 200:
         D['dailysummaries'] += ((s or {}).get('data') if isinstance(s, dict) else s) or []
     wt = get('weight', '/weight-service/weight/range/%s/%s' % (dates[0], dates[-1]), {'includeAll': True})
     D['weight'] = wt
+    # peso su un periodo lungo (6 anni), per il grafico e la distanza dal target
+    wl = get('weightLong', '/weight-service/weight/range/%s/%s'
+             % ((today - dt.timedelta(days=365 * 6)).isoformat(), today.isoformat()), {'includeAll': True})
+    pesi = {}
+    for it in ((wl or wt or {}).get('dailyWeightSummaries') or []):
+        d, w = it.get('summaryDate'), (it.get('latestWeight') or {}).get('weight')
+        if d and w:
+            pesi[d] = round(w / 1000.0, 1)
+    with open(os.path.join(OUT, 'weight.csv'), 'w', newline='') as f:
+        cw = csv.writer(f)
+        cw.writerow(['data', 'peso_kg'])
+        cw.writerows(sorted(pesi.items()))
+    print('peso storico', len(pesi), 'giorni')
     D['hrv'] = {}
     for d in dates:
         h = get('hrv', '/hrv-service/hrv/%s' % d)

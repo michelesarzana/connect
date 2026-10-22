@@ -1,4 +1,4 @@
-# Connect: dashboard Garmin
+# My Fitness Tracker
 
 Dashboard personale con allenamento e recupero, costruita a partire dai dati del mio account Garmin Connect.
 
@@ -6,20 +6,22 @@ Sito: https://michelesarzana.github.io/connect/
 
 ## Cosa mostra
 
-- Chilometri, dislivello, ore e uscite degli ultimi 7 e 30 giorni, con il confronto rispetto al periodo precedente.
-- Andamento settimanale delle ultime 26 settimane.
-- Rapporto fra carico acuto (7 giorni) e cronico (28 giorni), con una lettura orientativa.
-- Recupero: sonno (durata, fasi e punteggio), HRV, battito a riposo, SpO2, Body Battery, stress, passi e peso.
-- Ultime attività e ripartizione per tipo.
+- Panoramica per periodo: ultimi 7 giorni, ultimi 30, tutto lo storico o un intervallo a scelta, confrontati con il periodo precedente o con lo stesso periodo di un anno prima.
+- Giorni attivi in una mappa a calendario, filtrabile per tipo di attività e per periodo (6 mesi, 1 anno, sempre).
+- Peso con andamento, target di 82 kg e stima di quando arrivarci al ritmo attuale.
+- Volume settimanale, ultime attività, recupero (sonno, HRV, battito, stress, Body Battery, SpO2) e carico acuto e cronico.
+- Cosa notare: record e serie, abitudini, recupero e carico, proiezioni.
 
 Sono dati descrittivi. Non sono un parere medico o di allenamento.
 
+Il target di peso si cambia in `scripts/compute_metrics.py` (`PESO_TARGET_KG`).
+
 ## Come funziona
 
-1. `scripts/fetch_activities.py` scarica le attività degli ultimi 180 giorni dalla Garmin Personal API.
-2. `scripts/fetch_wellness.py` scarica sonno, FC a riposo, SpO2, HRV, stress, Body Battery, passi e peso degli ultimi 90 giorni.
+1. `scripts/fetch_activities.py` tiene l'archivio di tutte le attività in `docs/data/attivita.json`. Al primo giro scarica tutto lo storico, poi solo le ultime settimane e le unisce.
+2. `scripts/fetch_wellness.py` scarica sonno, FC a riposo, SpO2, HRV, stress, Body Battery e passi degli ultimi 90 giorni, e il peso degli ultimi 6 anni.
 3. `scripts/compute_metrics.py` calcola KPI, serie settimanali, carico e osservazioni e scrive `docs/data/metrics.json`.
-4. `scripts/build_dashboard.py` inserisce i dati nel modello `scripts/template.html` e genera `docs/index.html`.
+4. `scripts/build_dashboard.py` inserisce metriche e archivio nel modello `scripts/template.html` e genera `docs/index.html`.
 
 I file grezzi (CSV e JSON scaricati) finiscono nella cartella `data/`, che non viene versionata.
 
@@ -56,4 +58,4 @@ Il risultato è in `docs/index.html`.
 
 ## Privacy
 
-Il repository è pubblico e i dati sono pubblici per scelta: nella dashboard e in `docs/data/metrics.json` compaiono anche i nomi delle attività, i dati di salute (sonno, battito, SpO2, HRV) e il peso. Chi conosce l'indirizzo può leggerli.
+Il repository è pubblico e i dati sono pubblici per scelta: nella dashboard e in `docs/data/metrics.json` compaiono i nomi delle ultime attività, i dati di salute (sonno, battito, SpO2, HRV) e il peso. L'archivio `docs/data/attivita.json` contiene data, tipo, distanza, durata, dislivello e FC media di ogni attività, senza nomi. Chi conosce l'indirizzo può leggerli.

@@ -1,9 +1,14 @@
 import json, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-d = json.load(open(os.path.join(ROOT, 'docs', 'data', 'metrics.json'), encoding='utf-8'))
+DOCS = os.path.join(ROOT, 'docs')
+d = json.load(open(os.path.join(DOCS, 'data', 'metrics.json'), encoding='utf-8'))
+try:
+    att = json.load(open(os.path.join(DOCS, 'data', 'attivita.json'), encoding='utf-8'))
+except Exception:
+    att = {'campi': [], 'righe': []}
 t = open(os.path.join(ROOT, 'scripts', 'template.html'), encoding='utf-8').read()
-js = json.dumps(d, ensure_ascii=False).replace('</', '<\\/')
-assert '/*DATA*/null' in t
-os.makedirs(os.path.join(ROOT, 'docs'), exist_ok=True)
-open(os.path.join(ROOT, 'docs', 'index.html'), 'w', encoding='utf-8').write(t.replace('/*DATA*/null', js))
-print('ok docs/index.html')
+enc = lambda x: json.dumps(x, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
+assert '/*DATA*/null' in t and '/*ATT*/null' in t
+t = t.replace('/*DATA*/null', enc(d)).replace('/*ATT*/null', enc(att['righe']))
+open(os.path.join(DOCS, 'index.html'), 'w', encoding='utf-8').write(t)
+print('ok docs/index.html', len(att['righe']), 'attivita')

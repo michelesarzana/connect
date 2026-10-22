@@ -29,7 +29,7 @@ GitHub Pages pubblica la cartella `docs/` del branch `main`.
 
 Il workflow `.github/workflows/update.yml` si avvia:
 
-- ogni giorno alle 05:30 UTC (pianificazione);
+- ogni ora, al minuto 17 (pianificazione; GitHub può ritardare le esecuzioni di qualche minuto);
 - a mano dalla scheda Actions (`workflow_dispatch`);
 - a ogni push su `main` che modifica `scripts/` o il workflow stesso.
 

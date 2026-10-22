@@ -12,7 +12,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = os.path.join(ROOT, 'docs', 'data')
 ATT = os.path.join(DOCS, 'attivita.json')
 OUT = os.path.join(DOCS, 'tracce.json')
-MAX_PER_GIRO = int(os.environ.get('TRACCE_MAX', '250'))
+MAX_PER_GIRO = int(os.environ.get('TRACCE_MAX', '500'))
 TOLL_M = 10.0
 SENZA_GPS = {'hiit', 'strength_training', 'indoor_cycling', 'lap_swimming', 'indoor_cardio', 'yoga', 'pilates',
              'treadmill_running', 'indoor_rowing', 'fitness_equipment', 'virtual_ride', 'breathwork', 'meditation',

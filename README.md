@@ -20,7 +20,7 @@ Il target di peso si cambia in `scripts/compute_metrics.py` (`PESO_TARGET_KG`).
 ## Come funziona
 
 1. `scripts/fetch_activities.py` tiene l'archivio di tutte le attività in `docs/data/attivita.json`. Al primo giro scarica tutto lo storico, poi solo le ultime settimane e le unisce.
-2. `scripts/fetch_tracks.py` scarica le tracce GPS in `docs/data/tracce.json`, semplificate a circa 10 m, al massimo 250 per giro: lo storico si completa in qualche ora. Se qualcosa va storto non blocca l'aggiornamento.
+2. `scripts/fetch_tracks.py` scarica le tracce GPS in `docs/data/tracce.json`, semplificate a circa 10 m, al massimo 500 per giro: lo storico si completa in qualche ora. Se qualcosa va storto non blocca l'aggiornamento.
 3. `scripts/fetch_wellness.py` scarica sonno, FC a riposo, SpO2, HRV, stress, Body Battery e passi degli ultimi 90 giorni, e il peso degli ultimi 6 anni.
 4. `scripts/compute_metrics.py` calcola KPI, serie settimanali, carico e osservazioni e scrive `docs/data/metrics.json`.
 5. `scripts/build_dashboard.py` inserisce metriche e archivio nel modello `scripts/template.html` e genera `docs/index.html`.

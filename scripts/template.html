@@ -30,7 +30,7 @@ html{-webkit-text-size-adjust:100%; scroll-padding-top:120px; background:var(--b
 body{margin:0; background:var(--bg); color:var(--label);
   font-family:Inter,-apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",Roboto,sans-serif;
   font-size:1rem; line-height:1.45; font-variant-numeric:tabular-nums; -webkit-font-smoothing:antialiased}
-.wrap{max-width:1200px; margin:0 auto; padding-left:max(20px, env(safe-area-inset-left)); padding-right:max(20px, env(safe-area-inset-right))}
+.wrap{margin:0 auto; padding-left:max(clamp(16px,2.6vw,40px), env(safe-area-inset-left)); padding-right:max(clamp(16px,2.6vw,40px), env(safe-area-inset-right))}
 h1,h2,h3{font-family:var(--display); margin:0}
 button,select,input{font:inherit; color:inherit}
 :focus-visible{outline:3px solid var(--lime); outline-offset:2px; border-radius:8px}
@@ -83,7 +83,7 @@ select,input[type="date"]{background:var(--surface); border:1px solid var(--surf
 select{appearance:none; -webkit-appearance:none; padding-right:34px;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23a1a1a8' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5 6 7.5 9 4.5'/%3E%3C/svg%3E");
   background-repeat:no-repeat; background-position:right 12px center}
-.chips{display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; padding:2px; margin:-2px}
+.chips{display:flex; flex-wrap:wrap; gap:8px; scrollbar-width:none; padding:2px; margin:-2px}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none; border:1px solid var(--surface-3); background:transparent; padding:7px 14px; border-radius:999px; font-size:.8125rem; cursor:pointer;
   min-height:34px; -webkit-tap-highlight-color:transparent; transition:background-color .15s ease, color .15s ease, transform .1s ease-out}
@@ -159,7 +159,7 @@ svg text{font-family:inherit; fill:var(--label-2); font-size:11px}
 .scrubbing .mark{opacity:1}
 
 /* Mappa */
-.mapbox{position:relative; height:540px; border-radius:18px; overflow:hidden; background:#0b0b0d; margin-top:4px}
+.mapbox{position:relative; height:clamp(420px,62vh,780px); border-radius:18px; overflow:hidden; background:#0b0b0d; margin-top:4px}
 .mapbox[hidden]{display:none}
 #map{position:absolute; inset:0; background:#0b0b0d}
 .trk{position:absolute; left:0; top:0; pointer-events:none}
@@ -226,10 +226,17 @@ svg text{font-family:inherit; fill:var(--label-2); font-size:11px}
 
 /* Attivita */
 .alist{list-style:none; margin:0; padding:0}
-.alist li{display:grid; grid-template-columns:1fr auto; gap:2px 12px; padding:12px 0; border-bottom:1px solid var(--sep)}
+.alist li{border-bottom:1px solid var(--sep)}
 .alist li:last-child{border-bottom:0}
-.alist .t{font-weight:500; line-height:1.3; min-width:0}
-.alist .d{font-size:.8125rem; color:var(--label-2)}
+.arow{display:grid; grid-template-columns:48px 1fr auto; grid-template-rows:auto auto; gap:2px 14px; align-items:center; padding:11px 8px; margin:0 -8px;
+  border-radius:14px; color:inherit; text-decoration:none; -webkit-tap-highlight-color:transparent; transition:background-color .15s ease, transform .1s ease-out}
+a.arow:hover{background:var(--surface-2)}
+a.arow:active{transform:scale(.985); background:var(--surface-2)}
+.arow .th{grid-row:span 2; width:48px; height:48px; border-radius:12px; background:var(--surface-2); display:grid; place-items:center; overflow:hidden}
+.arow .th span{font-family:var(--display); font-weight:700; color:var(--label-2); font-size:1.125rem}
+.arow .th.has{background:#0e0e10}
+.alist .t{font-weight:500; line-height:1.3; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.alist .d{font-size:.8125rem; color:var(--label-2); min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .alist .k{text-align:right; font-family:var(--display); font-weight:700; white-space:nowrap}
 .alist .k small{font-family:Inter,sans-serif; font-weight:500; color:var(--label-2); font-size:.8125rem}
 .alist .m{text-align:right; font-size:.8125rem; color:var(--label-2); white-space:nowrap}
@@ -270,6 +277,7 @@ footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom
   .periodbar .seg button{padding:9px 0}
   .sec-title{font-size:1.5rem}
   .mapbox{height:420px}
+  .chips{flex-wrap:nowrap; overflow-x:auto}
 }
 @media (prefers-reduced-motion: reduce){ *{transition:none !important} }
 @media (prefers-reduced-transparency: reduce){ .top{background:#000; -webkit-backdrop-filter:none; backdrop-filter:none} }
@@ -524,6 +532,21 @@ function segmented(root,onChange){
   new ResizeObserver(()=>place(cur(),false)).observe(root);
 }
 
+/* Categorie a selezione multipla: "Tutte" azzera, le altre si sommano */
+function chipSet(box,groups,onChange){
+  const sel=new Set(); box.innerHTML='';
+  const sync=()=>box.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g==='tutte'?sel.size===0:sel.has(b.dataset.g)));
+  groups.forEach(([k,lab])=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=lab;b.dataset.g=k;
+    b.addEventListener('click',()=>{if(k==='tutte')sel.clear();else if(sel.has(k))sel.delete(k);else sel.add(k);
+      if(sel.size===groups.length-1)sel.clear();sync();onChange()});box.appendChild(b)});
+  sync();
+  return {has:g=>sel.size===0||sel.has(g), label:()=>sel.size?groups.filter(g=>sel.has(g[0])).map(g=>g[1].toLowerCase()).join(', ').replace(/, ([^,]*)$/,' e $1'):''};
+}
+const decodePL=str=>{const pts=[];let i=0,lat=0,lon=0;
+  while(i<str.length){for(let k=0;k<2;k++){let b,sh=0,res=0;do{b=str.charCodeAt(i++)-63;res|=(b&31)<<sh;sh+=5}while(b>=32);
+    const d=(res&1)?~(res>>1):(res>>1);if(k===0)lat+=d;else lon+=d}pts.push([lat/1e5,lon/1e5])}return pts};
+const TRACCE=fetch('data/tracce.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null);
+
 /* Header e navigazione */
 $('#upd').textContent=`Aggiornato il ${fmtS(D.generato_il)}${D.generato_alle?' alle '+D.generato_alle:''}, ogni ora`;
 if(D.dati_aggiornati){$('#notice').remove()}else{
@@ -670,16 +693,15 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
   const present=new Set(ACT.map(r=>gruppo(r[2])));
   const groups=[['tutte','Tutte']].concat(GRUPPI.filter(g=>present.has(g[0])).map(g=>[g[0],g[1]])).concat(present.has('altro')?[['altro','Altro']]:[]);
   const chips=$('#chips'), scroll=$('#hmScroll'), tip=$('#hmTip'), wrap=$('#hmWrap');
-  let grp='tutte', span='26', day={}, W=0, tipT=0;
-  groups.forEach(([k,lab])=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=lab;b.setAttribute('aria-pressed',k==='tutte');
-    b.addEventListener('click',()=>{grp=k;chips.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));render()});chips.appendChild(b)});
+  let span='26', day={}, W=0, tipT=0;
+  const cs=chipSet(chips,groups,()=>render());
   function build(){day={};
-    for(const r of ACT){if(grp!=='tutte'&&gruppo(r[2])!==grp)continue;const d=r[1].slice(0,10);
+    for(const r of ACT){if(!cs.has(gruppo(r[2])))continue;const d=r[1].slice(0,10);
       const o=day[d]||(day[d]={min:0,km:0,n:0,t:{}});o.min+=r[4]||0;o.km+=r[3]||0;o.n++;o.t[r[2]]=1}}
   const lvl=m=>!m?0:m<30?1:m<60?2:m<90?3:4;
   const monday=s=>addD(s,-((toD(s).getUTCDay()+6)%7));
   function block(start,cols,lo,hi){
-    const c=Math.max(7,Math.min(22,Math.floor((W-30-3*(cols-1))/cols)));
+    const c=Math.max(7,Math.min(30,Math.floor((W-30-3*(cols-1))/cols)));
     const b=document.createElement('div');b.className='hm-block';b.style.setProperty('--c',c+'px');
     const days=document.createElement('div');days.className='hm-days';days.setAttribute('aria-hidden','true');
     days.innerHTML='<span></span><span>lun</span><span></span><span>mer</span><span></span><span>ven</span><span></span><span>dom</span>';
@@ -717,8 +739,8 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
       const weeks=+span, st=addD(monday(ANCHOR),-(weeks-1)*7);
       const {b,act,mins}=block(st,weeks,st<FIRST?FIRST:st,ANCHOR);totA=act;totM=mins;scroll.append(b);
     }
-    const g=groups.find(x=>x[0]===grp)[1];
-    $('#hmLead').textContent=`${totA} giorni attivi, ${fmtDur(totM)}${grp==='tutte'?'':', solo '+g.toLowerCase()}`;
+    const lb=cs.label();
+    $('#hmLead').textContent=`${totA} giorni attivi, ${fmtDur(totM)}${lb?', solo '+lb:''}`;
     scroll.scrollLeft=span==='all'?0:scroll.scrollWidth;
   }
   function showTip(c){
@@ -780,25 +802,27 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
         for(let i=2;i<p.length;i+=2)g.lineTo(p[i]*sc-o.x,p[i+1]*sc-o.y);g.stroke()}
     }});
   const layer=new Tracks().addTo(map);
-  let T=[], grp='tutte', span='365';
+  let T=[], span='365', cs={has:()=>true};
   const chips=$('#mapChips');
-  function chipsFor(){chips.innerHTML='';const pres=new Set(T.map(t=>t.g));
+  function chipsFor(){const pres=new Set(T.map(t=>t.g));
     const gs=[['tutte','Tutte']].concat(GRUPPI.filter(g=>pres.has(g[0])).map(g=>[g[0],g[1]])).concat(pres.has('altro')?[['altro','Altro']]:[]);
-    gs.forEach(([k,lab])=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=lab;b.setAttribute('aria-pressed',k===grp);
-      b.addEventListener('click',()=>{grp=k;chips.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));apply(true)});chips.appendChild(b)})}
-  function filtered(){const from=span==='all'?'0000':addD(ANCHOR,-(+span)+1);return T.filter(t=>t.d>=from&&(grp==='tutte'||t.g===grp))}
+    cs=chipSet(chips,gs,()=>apply(true))}
+  function filtered(){const from=span==='all'?'0000':addD(ANCHOR,-(+span)+1);return T.filter(t=>t.d>=from&&cs.has(t.g))}
+  /* Vista iniziale sulla zona con piu partenze, cosi i viaggi lontani non allontanano lo zoom */
   function fit(f){if(!f.length)return;
-    const la=f.map(t=>t.s.lat).sort((a,b)=>a-b), lo=f.map(t=>t.s.lng).sort((a,b)=>a-b), q=(a,x)=>a[Math.min(a.length-1,Math.max(0,Math.round(x*(a.length-1))))];
-    const bb=L.latLngBounds([q(la,.1),q(lo,.1)],[q(la,.9),q(lo,.9)]);
-    f.forEach(t=>{if(bb.contains(t.s))bb.extend(t.b)});
-    map.fitBounds(bb.isValid()?bb:f[0].b,{padding:[24,24],maxZoom:13,animate:!RM.matches})}
+    const cnt={};let best=null,bn=0;
+    f.forEach(t=>{const k=Math.round(t.s.lat*4)+','+Math.round(t.s.lng*4);cnt[k]=(cnt[k]||0)+1;if(cnt[k]>bn){bn=cnt[k];best=k}});
+    const [ka,ko]=best.split(',').map(v=>v/4);
+    const near=f.filter(t=>Math.abs(t.s.lat-ka)<.35&&Math.abs(t.s.lng-ko)<.5);
+    const bb=L.latLngBounds(near[0].b.getSouthWest(),near[0].b.getNorthEast());near.forEach(t=>bb.extend(t.b));
+    map.fitBounds(bb,{padding:[24,24],maxZoom:14,animate:!RM.matches})}
   function apply(refit){const f=filtered();layer.set(f);
     const km=f.reduce((a,t)=>a+(byId[t.id][3]||0),0);
     lead.textContent=f.length?`${nf(f.length)} percorsi, ${nf(km,0)} km`:'Nessun percorso con questi filtri';
     if(refit)fit(f)}
   $('#mapFit').addEventListener('click',()=>fit(filtered()));
   segmented($('#segMap'),v=>{span=v;apply(true)});
-  fetch('data/tracce.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{
+  TRACCE.then(j=>{
     const tr=(j&&j.tracce)||{}, senza=new Set((j&&j.senza)||[]);
     for(const id in tr){const r=byId[id];if(!r)continue;const pts=decode(tr[id]);if(pts.length<2)continue;
       const p=new Float64Array(pts.length*2);pts.forEach((q,i)=>{const pp=map.project(q,0);p[2*i]=pp.x;p[2*i+1]=pp.y});
@@ -918,11 +942,25 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
   const A=(D.ultime_attivita||[]).slice(0,6), ul=$('#alist');
   if(!A.length)return;
   $('#actLead').textContent=`Dal ${fmtS(A[A.length-1].data)} al ${fmtS(A[0].data)}`;
-  A.forEach(a=>{const tipo=TIPI[a.tipo]||a.tipo.replace(/_/g,' '), ora=a.data.slice(11);
+  const idDi={};for(const r of ACT)idDi[r[1]]=r[0];
+  const thumbs=[];
+  A.forEach(a=>{const tipo=TIPI[a.tipo]||a.tipo.replace(/_/g,' '), ora=a.data.slice(11), id=a.id||idDi[a.data.replace(' ','T')];
     const li=document.createElement('li');
-    li.innerHTML=`<div class="t">${esc(a.nome||tipo)}</div><div class="k">${a.distanza_km>0?`${nf(a.distanza_km,1)} <small>km</small>`:fmtDur(a.durata_min)}</div>
-      <div class="d">${esc(tipo)} · ${fmtS(a.data)}, ${ora}</div><div class="m">${a.distanza_km>0?fmtDur(a.durata_min):''}${a.fc_media!=null?`${a.distanza_km>0?' · ':''}${nf(a.fc_media)} bpm`:''}</div>`;
-    ul.appendChild(li)});
+    const inner=`<span class="th" aria-hidden="true"><span>${esc(tipo.slice(0,1))}</span></span>
+      <span class="t">${esc(a.nome||tipo)}</span><span class="k">${a.distanza_km>0?`${nf(a.distanza_km,1)} <small>km</small>`:fmtDur(a.durata_min)}</span>
+      <span class="d">${esc(tipo)} · ${fmtS(a.data)}, ${ora}</span><span class="m">${a.distanza_km>0?fmtDur(a.durata_min):''}${a.fc_media!=null?`${a.distanza_km>0?' · ':''}${nf(a.fc_media)} bpm`:''}</span>`;
+    li.innerHTML=id?`<a class="arow" href="https://connect.garmin.com/modern/activity/${encodeURIComponent(id)}" target="_blank" rel="noopener" aria-label="${esc(a.nome||tipo)}, ${fmtS(a.data)}: apri su Garmin Connect">${inner}</a>`:`<div class="arow">${inner}</div>`;
+    ul.appendChild(li);thumbs.push({id,el:li.querySelector('.th')})});
+  /* Mini mappa: la forma del percorso, senza fondo cartografico */
+  TRACCE.then(j=>{const tr=(j&&j.tracce)||{};
+    thumbs.forEach(({id,el})=>{const s=id&&tr[id];if(!s)return;const pts=decodePL(s);if(pts.length<2)return;
+      const c=Math.cos(pts[0][0]*Math.PI/180), xs=pts.map(p=>p[1]*c), ys=pts.map(p=>-p[0]);
+      const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys), sz=Math.max(x1-x0,y1-y0)||1e-6, S=48, P=7, k=(S-2*P)/sz;
+      const ox=P+((S-2*P)-(x1-x0)*k)/2, oy=P+((S-2*P)-(y1-y0)*k)/2;
+      const d=xs.map((x,i)=>(i?'L':'M')+(ox+(x-x0)*k).toFixed(1)+' '+(oy+(ys[i]-y0)*k).toFixed(1)).join('');
+      const n=xs.length-1;
+      el.innerHTML=`<svg viewBox="0 0 ${S} ${S}" width="${S}" height="${S}"><path d="${d}" fill="none" stroke="var(--lime)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${(ox+(xs[n]-x0)*k).toFixed(1)}" cy="${(oy+(ys[n]-y0)*k).toFixed(1)}" r="2.4" fill="var(--pink)"/></svg>`;
+      el.classList.add('has')})});
 })();
 
 /* Recupero */

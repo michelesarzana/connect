@@ -171,6 +171,7 @@ svg text{font-family:inherit; fill:var(--label-2); font-size:11px}
 .mapbtn:active{transform:scale(.95)}
 #mapFit{right:12px} #mapLock{left:56px}
 .leaflet-container{font:inherit; background:#0b0b0d}
+.osm-dark{filter:invert(1) hue-rotate(180deg) brightness(.82) contrast(.92) saturate(.35)}
 .leaflet-control-attribution{background:rgba(0,0,0,.6) !important; color:var(--label-2) !important; font-size:10px}
 .leaflet-control-attribution a{color:#c7c7cc !important}
 .leaflet-bar{border:0 !important; box-shadow:0 4px 16px rgba(0,0,0,.4) !important}
@@ -772,8 +773,9 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
     while(i<str.length){for(let k=0;k<2;k++){let b,sh=0,res=0;do{b=str.charCodeAt(i++)-63;res|=(b&31)<<sh;sh+=5}while(b>=32);
       const d=(res&1)?~(res>>1):(res>>1);if(k===0)lat+=d;else lon+=d}pts.push([lat/1e5,lon/1e5])}return pts};
   const map=L.map('map',{zoomControl:true,attributionControl:true,scrollWheelZoom:false,zoomSnap:.5,fadeAnimation:!RM.matches,zoomAnimation:!RM.matches});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,
-    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'}).addTo(map);
+  /* Tile standard di OpenStreetMap, senza chiave; scurite via CSS per il tema scuro */
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,className:'osm-dark',
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
   map.setView([45.46,9.19],10);
   /* Su touch la mappa non ruba lo scroll della pagina: si sblocca con un tocco */
   const gate=$('#mapGate'), lock=$('#mapLock');

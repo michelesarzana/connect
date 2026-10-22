@@ -90,19 +90,27 @@ select{appearance:none; -webkit-appearance:none; padding-right:34px;
 .chip[aria-pressed="true"]{background:var(--lime); border-color:var(--lime); color:#000; font-weight:600}
 
 /* Hero */
-.hero{padding:30px 32px 32px}
+.hero{padding:30px 32px 28px}
 .hero h1{font-weight:700; font-size:2.25rem; line-height:1.08; letter-spacing:-0.035em}
-.hero .when{color:var(--label-2); font-size:.875rem; margin:8px 0 26px}
-.metrics{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px}
-.metric{display:grid; grid-template-columns:auto 1fr; gap:4px 14px; align-items:center}
-.metric .ring{grid-row:span 3; width:64px; height:64px}
-.metric .ring text{font-family:var(--display); font-weight:700; font-size:13px; fill:var(--label)}
-.metric .nm{font-size:.8125rem; font-weight:600}
+.hero .when{color:var(--label-2); font-size:.875rem; margin:8px 0 22px}
+.metrics{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px}
+.metric{display:flex; flex-direction:column; gap:4px; text-align:left; border:0; background:transparent; border-radius:16px; padding:12px 14px;
+  cursor:pointer; -webkit-tap-highlight-color:transparent; transition:background-color .2s ease, transform .1s ease-out; min-width:0}
+.metric:active{transform:scale(.97)}
+.metric[aria-pressed="true"]{background:var(--surface-2)}
+.metric .nm{font-size:.8125rem; font-weight:600; display:flex; align-items:center; gap:7px}
+.metric .nm i{width:8px; height:8px; border-radius:50%; background:currentColor}
 .metric .v{font-family:var(--display); font-weight:700; font-size:2.75rem; line-height:1; letter-spacing:-0.04em; white-space:nowrap}
 .metric .v small{font-size:1.0625rem; font-weight:600; color:var(--label-2); letter-spacing:0; margin:0 3px}
 .metric .cmp{font-size:.8125rem; color:var(--label-2)}
-.noring .metric{grid-template-columns:1fr}
-.noring .metric .ring{display:none}
+.metric .cmp b{font-weight:600; color:var(--label)}
+.cmpwrap{margin-top:20px; padding-top:18px; border-top:1px solid var(--sep)}
+.cmphead{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px 16px; margin-bottom:10px}
+.cmphead h3{font-family:Inter,sans-serif; font-size:.875rem; font-weight:600}
+.legend{display:flex; gap:16px; flex-wrap:wrap; font-size:.8125rem; color:var(--label-2)}
+.legend span{display:inline-flex; align-items:center; gap:7px}
+.legend i{width:18px; height:0; border-top:2.5px solid currentColor; display:block}
+.legend i.dash{border-top-style:dashed}
 
 /* Heatmap */
 .hm-tools{display:flex; flex-direction:column; gap:12px; margin-bottom:16px}
@@ -221,7 +229,7 @@ svg text{font-family:inherit; fill:var(--label-2); font-size:11px}
 footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom:max(32px, env(safe-area-inset-bottom))}
 
 @media (max-width:1020px){
-  .metrics{grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px 16px}
+  .metrics{grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px}
   .c7,.c5{grid-column:span 12}
   .load-grid{grid-template-columns:1fr}
   .wb{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -234,9 +242,8 @@ footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom
   .nav a{padding:8px 13px}
   .card{padding:18px 16px} .hero{padding:22px 18px 24px}
   .hero h1{font-size:1.75rem}
-  .metric{grid-template-columns:1fr} .metric .ring{grid-row:auto; width:44px; height:44px; order:-1}
-  .metric .ring text{display:none}
-  .metric .v{font-size:2.125rem}
+  .metric{padding:10px 12px}
+  .metric .v{font-size:2rem}
   .notes{grid-template-columns:1fr}
   .wb{gap:10px} .tile{padding:12px}
   .periodbar .seg{width:100%; display:grid; grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -298,7 +305,11 @@ footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom
     <div class="card hero" id="hero">
       <h1 id="headline"></h1>
       <p class="when" id="when"></p>
-      <div class="metrics" id="metrics"></div>
+      <div class="metrics" id="metrics" role="group" aria-label="Metrica del grafico"></div>
+      <div class="cmpwrap">
+        <div class="cmphead"><h3 id="cmpT"></h3><div class="legend" id="cmpLegend"></div></div>
+        <div class="chart" id="cmpChart"></div>
+      </div>
     </div>
   </section>
 
@@ -489,36 +500,31 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
   addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
 })();
 
-/* Panoramica: periodo, confronto, anelli */
+/* Panoramica: periodo, confronto e grafico cumulato */
 (function(){
-  const agg=(a,b)=>{let km=0,min=0,n=0,dp=0;for(const r of ACT){const d=r[1].slice(0,10);if(d<a||d>b)continue;n++;km+=r[3]||0;min+=r[4]||0;dp+=r[5]||0}return {km,min,n,dp}};
-  const COL=['var(--lime)','var(--pink)','var(--cyan)','var(--violet)'];
-  const DEF=[{k:'km',nm:'Distanza',fv:v=>nf(v,1),u:'km',pv:v=>nf(v,1)+' km'},
-    {k:'min',nm:'Tempo in movimento',fv:v=>{const h=Math.floor(v/60);return `${h}<small>h</small>${String(Math.round(v%60)).padStart(2,'0')}`},u:'',pv:v=>fmtDur(v)},
-    {k:'n',nm:'Uscite',fv:v=>nf(v),u:'',pv:v=>nf(v)},
-    {k:'dp',nm:'Dislivello',fv:v=>nf(v),u:'m',pv:v=>nf(v)+' m'}];
-  const box=$('#metrics'), rings=[], C=2*Math.PI*26;
-  DEF.forEach((df,i)=>{
-    const m=document.createElement('div');m.className='metric';
-    m.innerHTML=`<svg class="ring" viewBox="0 0 64 64" aria-hidden="true">
-      <circle cx="32" cy="32" r="26" fill="none" stroke="${COL[i]}" stroke-opacity=".2" stroke-width="9"/>
-      <circle class="a1" cx="32" cy="32" r="26" fill="none" stroke="${COL[i]}" stroke-width="9" stroke-linecap="round" transform="rotate(-90 32 32)" stroke-dasharray="0 ${C}"/>
-      <circle class="sh" cx="32" cy="32" r="26" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="10" stroke-linecap="round" transform="rotate(-90 32 32)" stroke-dasharray="0 ${C}"/>
-      <circle class="a2" cx="32" cy="32" r="26" fill="none" stroke="${COL[i]}" stroke-width="9" stroke-linecap="round" transform="rotate(-90 32 32)" stroke-dasharray="0 ${C}"/>
-      <text x="32" y="36.5" text-anchor="middle"></text></svg>
-      <span class="nm" style="color:${COL[i]}">${df.nm}</span><span class="v"></span><span class="cmp"></span>`;
-    box.appendChild(m);
-    const a1=m.querySelector('.a1'), a2=m.querySelector('.a2'), sh=m.querySelector('.sh');
-    const sp=spring(f=>{const p=Math.max(0,Math.min(1,f)), o=Math.max(0,Math.min(1,f-1));
-      a1.setAttribute('stroke-dasharray',`${(p*C).toFixed(2)} ${C}`);a1.style.visibility=p>0.004?'visible':'hidden';
-      a2.setAttribute('stroke-dasharray',`${(o*C).toFixed(2)} ${C}`);a2.style.visibility=o>0.004?'visible':'hidden';
-      sh.setAttribute('stroke-dasharray',`${(o*C+1.5).toFixed(2)} ${C}`);sh.style.visibility=o>0.004?'visible':'hidden'},{response:.6});
-    rings.push({sp,txt:m.querySelector('text'),v:m.querySelector('.v'),c:m.querySelector('.cmp')});
+  const DEF=[
+    {k:'km',nm:'Distanza',col:'var(--lime)',fv:v=>nf(v,1)+'<small>km</small>',tx:v=>nf(v,1)+' km',ax:v=>nf(v)},
+    {k:'min',nm:'Tempo',col:'var(--pink)',fv:v=>`${nf(Math.floor(v/60))}<small>h</small>${String(Math.round(v%60)).padStart(2,'0')}`,tx:v=>fmtDur(v),ax:v=>nf(v/60)+' h'},
+    {k:'n',nm:'Uscite',col:'var(--cyan)',fv:v=>nf(v),tx:v=>nf(v)+' '+(Math.round(v)===1?'uscita':'uscite'),ax:v=>nf(v)},
+    {k:'dp',nm:'Dislivello',col:'var(--violet)',fv:v=>nf(v)+'<small>m</small>',tx:v=>nf(v)+' m',ax:v=>nf(v)}];
+  const daily={};
+  for(const r of ACT){const d=r[1].slice(0,10), o=daily[d]||(daily[d]={km:0,min:0,n:0,dp:0});o.km+=r[3]||0;o.min+=r[4]||0;o.n++;o.dp+=r[5]||0}
+  const agg=(a,b)=>{const t={km:0,min:0,n:0,dp:0};for(const d in daily){if(d<a||d>b)continue;const o=daily[d];t.km+=o.km;t.min+=o.min;t.n+=o.n;t.dp+=o.dp}return t};
+  const cum=(a,len,k)=>{const out=[];let c=0;for(let i=0;i<len;i++){const o=daily[addD(a,i)];c+=o?o[k]:0;out.push(c)}return out};
+  const nice0=x=>{const e=10**Math.floor(Math.log10(x||1)),f=x/e;return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*e};
+  const nice=x=>met==='min'?Math.max(60,nice0(x/60)*60):met==='n'?Math.max(1,Math.round(nice0(x))):nice0(x);
+  const box=$('#metrics'), btns=[], chart=$('#cmpChart'), ro=readout(chart);
+  let met='km', per='7', st=null, Wc=0;
+  DEF.forEach(df=>{
+    const b=document.createElement('button');b.type='button';b.className='metric';b.setAttribute('aria-pressed',df.k===met);
+    b.innerHTML=`<span class="nm" style="color:${df.col}"><i aria-hidden="true"></i>${df.nm}</span><span class="v"></span><span class="cmp"></span>`;
+    b.addEventListener('click',()=>{if(met===df.k)return;met=df.k;btns.forEach(x=>x.b.setAttribute('aria-pressed',x.df.k===met));draw(true)});
+    box.appendChild(b);btns.push({b,df,v:b.querySelector('.v'),c:b.querySelector('.cmp')});
   });
   const rFrom=$('#rFrom'), rTo=$('#rTo'), cmpSel=$('#cmp');
   [rFrom,rTo].forEach(x=>{x.min=FIRST;x.max=ANCHOR});
   rFrom.value=addD(ANCHOR,-89)<FIRST?FIRST:addD(ANCHOR,-89); rTo.value=ANCHOR;
-  let per='7';
+
   function update(){
     let a,b;
     if(per==='7'){a=addD(ANCHOR,-6);b=ANCHOR}
@@ -532,7 +538,6 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
     const cur=agg(a,b), noData=!!pa&&pb<FIRST, prev=pa&&!noData?agg(pa,pb):null;
     $('#cmpBox').hidden=per==='all';
     $('#rangeBox').hidden=per!=='range';
-    $('#hero').classList.toggle('noring',!prev);
     $('#when').textContent=per==='all'
       ? `Dal ${fmtD(a)} al ${fmtD(b)}: ${nf(cur.n)} attività in ${nf(Math.max(1,Math.round(len/7)))} settimane`
       : `${fmtD(a)} – ${fmtD(b)}`+(pa?(noData?`. Nessun dato da confrontare: lo storico parte dal ${fmtD(FIRST)}`:`, confrontato con ${fmtD(pa)} – ${fmtD(pb)}`+(pa<FIRST?` (dati solo dal ${fmtD(FIRST)})`:'')):'');
@@ -540,24 +545,80 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
     if(per==='all')h=`${nf(cur.km,0)} km e ${nf(cur.min/60,0)} ore da quando hai iniziato`;
     else if(!cur.n)h='Nessuna attività nel periodo';
     else if(!prev||!prev.n)h=`${nf(cur.n)} ${cur.n===1?'uscita':'uscite'}, ${nf(cur.km,1)} km`;
-    else{const pc=(c,p)=>p?(c-p)/p*100:0, dk=pc(cur.km,prev.km), dh=pc(cur.min,prev.min);
-      const w=(d,piu,meno,ug)=>d>5?piu:d<-5?meno:ug;
+    else{const pc=(c,p)=>p?(c-p)/p*100:0, dk=pc(cur.km,prev.km), dh=pc(cur.min,prev.min), w=(d,piu,meno,ug)=>d>5?piu:d<-5?meno:ug;
       h=Math.abs(dk)<=5&&Math.abs(dh)<=5?'In linea con il periodo prima':`${w(dk,'Più chilometri','Meno chilometri','Chilometri stabili')}, ${w(dh,'più ore','meno ore','ore stabili')}`}
     $('#headline').textContent=h;
-    DEF.forEach((df,i)=>{const R=rings[i], v=cur[df.k];
-      R.v.innerHTML=df.fv(v)+(df.u?`<small>${df.u}</small>`:'');
-      if(per==='all'){const wk=Math.max(1,len/7);R.c.textContent=`media ${df.k==='min'?fmtDur(v/wk):nf(v/wk,df.k==='km'?1:df.k==='n'?1:0)+(df.u?' '+df.u:'')} a settimana`;R.sp.jump(0);return}
-      if(!prev){R.c.textContent=noData?'nessun dato prima':'';R.sp.to(0);R.txt.textContent='';return}
+    btns.forEach(({df,v,c})=>{const x=cur[df.k];v.innerHTML=df.fv(x);
+      if(per==='all'){const wk=Math.max(1,len/7);c.textContent=`media ${df.k==='min'?fmtDur(x/wk):nf(x/wk,df.k==='dp'?0:1)+(df.k==='km'?' km':df.k==='dp'?' m':'')} a settimana`;return}
+      if(!prev){c.textContent=noData?'nessun dato prima':'';return}
       const p=prev[df.k];
-      if(!p){R.c.textContent='erano 0';R.txt.textContent=v?'nuovo':'';R.sp.to(v?1:0);return}
-      const pct=(v-p)/p*100;
-      R.c.textContent=`${Math.abs(pct)<.5?'invariato':sgn(pct)+'%'} · erano ${df.pv(p)}`;
-      R.txt.textContent=Math.abs(pct)<.5?'=':sgn(pct)+'%';
-      R.sp.to(Math.min(2,v/p));
+      if(!p){c.innerHTML=x?'<b>nuovo</b> · erano 0':'erano 0';return}
+      const pct=(x-p)/p*100;
+      c.innerHTML=`${Math.abs(pct)<.5?'<b>invariato</b>':`<b>${sgn(pct)}%</b>`} · erano ${df.tx(p)}`;
     });
+    st={a,b,len,pa,pb,prev:!!prev,all:per==='all'};
+    draw(true);
+  }
+
+  function draw(fade){
+    if(!st||!Wc)return;
+    const df=DEF.find(d=>d.k===met), W=Wc;
+    chart.querySelector('svg')?.remove();ro.hide();
+    const H=W<480?190:220, L=44, R=10, T=12, B=24, iw=W-L-R, ih=H-T-B;
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,height:H,role:'img'});
+    if(st.all){
+      const y0=+FIRST.slice(0,4), y1=+ANCHOR.slice(0,4), ys=[];
+      for(let y=y0;y<=y1;y++)ys.push({y,v:agg(`${y}-01-01`,`${y}-12-31`)[met]});
+      $('#cmpT').textContent=`${df.nm}, anno per anno`;
+      $('#cmpLegend').innerHTML=`<span style="color:${df.col}"><i></i>anni completi</span><span style="color:var(--label-2)"><i style="opacity:.5"></i>${y1}, fino al ${fmtS(ANCHOR)}</span>`;
+      const mx=Math.max(...ys.map(x=>x.v),1), step=nice(mx/4), top=Math.ceil(mx/step)*step, y=v=>T+ih-(v/top)*ih, bw=iw/ys.length;
+      for(let v=0;v<=top+1e-9;v+=step){svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:'var(--grid)'}));svg.appendChild(el('text',{x:L-8,y:y(v)+4,'text-anchor':'end'},df.ax(v)))}
+      const bars=ys.map((o,i)=>{const ww=Math.min(56,bw*.62), x=L+i*bw+(bw-ww)/2, h=(o.v/top)*ih;
+        const r=el('rect',{x,y:T+ih-h,width:ww,height:Math.max(0,h),rx:Math.min(6,ww/4),fill:df.col,opacity:o.y===y1?.5:1,class:'bar'});svg.appendChild(r);
+        const stride=Math.ceil(ys.length/Math.max(1,Math.floor(iw/44)));
+        if((ys.length-1-i)%stride===0)svg.appendChild(el('text',{x:L+i*bw+bw/2,y:H-6,'text-anchor':'middle'},o.y));
+        return r});
+      svg.setAttribute('aria-label',`${df.nm} per anno dal ${y0} al ${y1}. ${ys.map(o=>o.y+': '+df.tx(o.v)).join(', ')}. Usa le frecce per scorrere gli anni.`);
+      chart.prepend(svg);
+      scrub(svg,ys.length,i=>L+i*bw+bw/2,i=>{bars.forEach((r,j)=>r.classList.toggle('on',j===i));
+        ro.show(L+i*bw+bw/2,y(ys[i].v),`<b>${df.tx(ys[i].v)}</b><span>${ys[i].y}${ys[i].y===y1?', fino al '+fmtS(ANCHOR):''}</span>`)},
+        ()=>{ro.hide();bars.forEach(r=>r.classList.remove('on'))});
+    }else{
+      const n=st.len, c=cum(st.a,n,met), p=st.prev?cum(st.pa,n,met):null;
+      $('#cmpT').textContent=`${df.nm}, accumulata giorno per giorno`;
+      $('#cmpLegend').innerHTML=`<span style="color:${df.col}"><i></i>${fmtS(st.a)} – ${fmtS(st.b)}</span>`+(p?`<span style="color:var(--label-2)"><i class="dash"></i>${fmtS(st.pa)} – ${fmtS(st.pb)}</span>`:'');
+      const mx=Math.max(c[n-1]||0,p?p[n-1]:0,1), step=nice(mx/4), top=Math.ceil(mx/step)*step;
+      const x=i=>L+(n>1?i/(n-1):.5)*iw, y=v=>T+ih-(v/top)*ih;
+      for(let v=0;v<=top+1e-9;v+=step){svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:'var(--grid)'}));svg.appendChild(el('text',{x:L-8,y:y(v)+4,'text-anchor':'end'},df.ax(v)))}
+      const path=a=>a.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join('');
+      const gid='cg'+met, defs=el('defs'), lg=el('linearGradient',{id:gid,x1:0,y1:0,x2:0,y2:1});
+      lg.append(el('stop',{offset:0,'stop-color':getComputedStyle(document.documentElement).getPropertyValue(df.col.slice(4,-1)).trim(),'stop-opacity':.22}),
+                el('stop',{offset:1,'stop-color':getComputedStyle(document.documentElement).getPropertyValue(df.col.slice(4,-1)).trim(),'stop-opacity':0}));
+      defs.appendChild(lg);svg.appendChild(defs);
+      svg.appendChild(el('path',{d:path(c)+`L${x(n-1).toFixed(1)} ${T+ih}L${x(0).toFixed(1)} ${T+ih}Z`,fill:`url(#${gid})`}));
+      if(p){svg.appendChild(el('path',{d:path(p),fill:'none',stroke:'var(--label-2)','stroke-width':2,'stroke-dasharray':'5 5','stroke-linejoin':'round','stroke-linecap':'round',opacity:.85}));
+        svg.appendChild(el('circle',{cx:x(n-1),cy:y(p[n-1]),r:3.5,fill:'var(--surface)',stroke:'var(--label-2)','stroke-width':2}))}
+      svg.appendChild(el('path',{d:path(c),fill:'none',stroke:df.col,'stroke-width':2.75,'stroke-linejoin':'round','stroke-linecap':'round'}));
+      svg.appendChild(el('circle',{cx:x(n-1),cy:y(c[n-1]),r:5,fill:df.col,stroke:'var(--surface)','stroke-width':2.5}));
+      const nL=Math.max(2,Math.min(n,Math.floor(iw/80)));
+      for(let j=0;j<nL;j++){const i=Math.round(j*(n-1)/(nL-1||1));svg.appendChild(el('text',{x:x(i),y:H-6,'text-anchor':j===0?'start':(j===nL-1?'end':'middle')},fmtS(addD(st.a,i))))}
+      const rule=el('line',{class:'mark',y1:T,y2:T+ih,stroke:'var(--label-2)','stroke-width':1});
+      const d1=el('circle',{class:'mark',r:5,fill:df.col,stroke:'var(--surface)','stroke-width':2});
+      const d2=el('circle',{class:'mark',r:4,fill:'var(--surface)',stroke:'var(--label-2)','stroke-width':2});
+      svg.append(rule);if(p)svg.append(d2);svg.append(d1);
+      const fin=p?` Periodo di confronto: ${df.tx(p[n-1])}.`:'';
+      svg.setAttribute('aria-label',`${df.nm} accumulata dal ${fmtD(st.a)} al ${fmtD(st.b)}: ${df.tx(c[n-1])}.${fin} Usa le frecce per scorrere i giorni.`);
+      chart.prepend(svg);
+      scrub(svg,n,x,i=>{const px=x(i);rule.setAttribute('x1',px);rule.setAttribute('x2',px);d1.setAttribute('cx',px);d1.setAttribute('cy',y(c[i]));
+        if(p){d2.setAttribute('cx',px);d2.setAttribute('cy',y(p[i]))}
+        const dd=p?c[i]-p[i]:0;
+        ro.show(px,0,`<b>${df.tx(c[i])}</b><span>${fmtS(addD(st.a,i))}, giorno ${i+1} di ${n}</span>`+(p?`<span>prima: ${df.tx(p[i])} (${dd>=0?'+':'−'}${df.tx(Math.abs(dd))})</span>`:''))},()=>ro.hide());
+    }
+    if(fade&&!RM.matches)svg.animate([{opacity:0},{opacity:1}],{duration:180,easing:'ease-out'});
   }
   segmented($('#segPer'),v=>{per=v;update()});
   [rFrom,rTo,cmpSel].forEach(x=>x.addEventListener('change',update));
+  responsive(chart,w=>{Wc=w;draw(false)});
   update();
 })();
 

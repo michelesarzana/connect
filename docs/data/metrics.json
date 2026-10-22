@@ -1182,44 +1182,29 @@
      "media_7gg": 80.86
     },
     {
-     "data": "2026-10-06",
-     "valore": 86.0,
-     "media_7gg": 80.71
-    },
-    {
-     "data": "2026-10-07",
-     "valore": 86.0,
-     "media_7gg": 79.86
-    },
-    {
-     "data": "2026-10-08",
-     "valore": 97.0,
-     "media_7gg": 81.14
-    },
-    {
      "data": "2026-10-09",
      "valore": 85.0,
-     "media_7gg": 80.86
+     "media_7gg": 74.25
     },
     {
      "data": "2026-10-10",
      "valore": 93.0,
-     "media_7gg": 83.0
+     "media_7gg": 78.0
     },
     {
      "data": "2026-10-11",
      "valore": 28.0,
-     "media_7gg": 80.14
+     "media_7gg": 73.0
     },
     {
      "data": "2026-10-12",
      "valore": 82.0,
-     "media_7gg": 79.57
+     "media_7gg": 72.0
     },
     {
      "data": "2026-10-13",
      "valore": 91.0,
-     "media_7gg": 80.29
+     "media_7gg": 75.8
     },
     {
      "data": "2026-10-15",
@@ -1250,6 +1235,16 @@
      "data": "2026-10-20",
      "valore": 81.0,
      "media_7gg": 81.83
+    },
+    {
+     "data": "2026-10-21",
+     "valore": 87.0,
+     "media_7gg": 82.57
+    },
+    {
+     "data": "2026-10-22",
+     "valore": 85.0,
+     "media_7gg": 82.29
     }
    ],
    "fc_riposo": [
@@ -2871,9 +2866,9 @@
     "giorni_7gg": 7
    },
    "hrv": {
-    "media_7gg": 80.8,
-    "media_28gg_prec": 79.74,
-    "giorni_7gg": 5
+    "media_7gg": 82.29,
+    "media_28gg_prec": 78.5,
+    "giorni_7gg": 7
    },
    "stress": {
     "media_7gg": 21.57,
@@ -2907,7 +2902,7 @@
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 28
+   "BALANCED": 27
   }
  },
  "ultime_attivita": [
@@ -3067,7 +3062,7 @@
  "osservazioni": [
   "Ultimi 30 giorni: 8% di tempo di allenamento in meno rispetto al mese prima (18,3 ore contro 20,0).",
   "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 07/08.",
-  "Recupero, rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, battito a riposo e stress; stabile HRV. Garmin dà lo stato HRV equilibrato ogni giorno del mese. Per il menisco contano più fisioterapista e sensazioni.",
+  "Recupero, rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, battito a riposo, HRV e stress. Garmin dà lo stato HRV equilibrato ogni giorno del mese. Per il menisco contano più fisioterapista e sensazioni.",
   "Corsa negli ultimi 30 giorni: 13 uscite, 97 km. In tutto il periodo 29 corse e 43 sedute HIIT."
  ],
  "nota_footer": "Il dislivello manca in 51 attività su 110. Il passo di corsa si basa su 13 uscite negli ultimi 30 giorni e su 3 negli ultimi 7: da leggere con cautela.",

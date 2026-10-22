@@ -3065,10 +3065,10 @@
   }
  ],
  "osservazioni": [
-  "Negli ultimi 30 giorni (fino al 22/10/2026) il tempo di allenamento è in calo dell'8% rispetto ai 30 giorni precedenti: 18,3 ore contro 20,0.",
-  "Il rapporto fra carico acuto e cronico è 1,12 (ottimale, soglie orientative 0,8 e 1,3). Il picco degli ultimi 90 giorni è 3,03 il 07/08. Un valore alto indica solo che il carico recente è salito più in fretta della media abituale.",
-  "Recupero: sonno 7,3 ore negli ultimi 7 giorni, contro 7,1 nelle 4 settimane prima; punteggio del sonno 86 su 100 negli ultimi 7 giorni, contro 79 nelle 4 settimane prima; battito a riposo 40 bpm negli ultimi 7 giorni, contro 42 nelle 4 settimane prima; HRV notturna 81 ms negli ultimi 7 giorni, contro 80 nelle 4 settimane prima. Garmin classifica l'HRV come equilibrata in 28 dei 28 giorni con dato negli ultimi 30. Sono dati descrittivi: nel rientro dal menisco contano il parere del medico o del fisioterapista e le sensazioni dell'articolazione, più di questi numeri.",
-  "Nel periodo disponibile ci sono 110 attività: 29 di corsa (239 km) e 43 sedute HIIT. Negli ultimi 30 giorni le uscite di corsa sono 13 (97,0 km). Sono dati descrittivi e non sostituiscono il parere di un medico."
+  "Ultimi 30 giorni: 8% di tempo di allenamento in meno rispetto al mese prima (18,3 ore contro 20,0).",
+  "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 07/08.",
+  "Recupero, rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, battito a riposo e stress; stabile HRV. Garmin dà lo stato HRV equilibrato ogni giorno del mese. Per il menisco contano più fisioterapista e sensazioni.",
+  "Corsa negli ultimi 30 giorni: 13 uscite, 97 km. In tutto il periodo 29 corse e 43 sedute HIIT."
  ],
  "nota_footer": "Il dislivello manca in 51 attività su 110. Il passo di corsa si basa su 13 uscite negli ultimi 30 giorni e su 3 negli ultimi 7: da leggere con cautela.",
  "avvertenze_kpi": [

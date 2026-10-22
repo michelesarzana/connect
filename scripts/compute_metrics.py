@@ -199,41 +199,53 @@ def it(x, n=1):
     return f"{x:.{n}f}".replace(".", ",")
 
 obs = []
+# Una frase per osservazione: solo l'insight, i numeri di dettaglio stanno già nei riquadri.
 d30 = k30["variazione_pct"]["ore"]
 if d30 is not None:
-    verso = "in aumento" if d30 > 0 else "in calo"
-    obs.append(f"Negli ultimi 30 giorni (fino al {anchor.strftime('%d/%m/%Y')}) il tempo di allenamento è {verso} {'dell' + chr(39) if round(abs(d30)) in (8, 11, 18) or 80 <= round(abs(d30)) < 90 else 'del '}{abs(d30):.0f}% rispetto ai 30 giorni precedenti: {it(k30['corrente']['ore'])} ore contro {it(k30['precedente']['ore'])}.")
+    if abs(d30) < 3:
+        obs.append(f"Ultimi 30 giorni: tempo di allenamento stabile rispetto al mese prima ({it(k30['corrente']['ore'])} ore).")
+    else:
+        verso = "più" if d30 > 0 else "meno"
+        obs.append(f"Ultimi 30 giorni: {abs(d30):.0f}% di tempo di allenamento in {verso} rispetto al mese prima ({it(k30['corrente']['ore'])} ore contro {it(k30['precedente']['ore'])}).")
 if cur_ratio is not None:
-    pk_txt = f" Il picco degli ultimi 90 giorni è {it(peak['rapporto'], 2)} il {peak['data'][8:10]}/{peak['data'][5:7]}." if peak else ""
-    obs.append(f"Il rapporto fra carico acuto e cronico è {it(cur_ratio, 2)} ({light(cur_ratio)}, soglie orientative 0,8 e 1,3).{pk_txt} Un valore alto indica solo che il carico recente è salito più in fretta della media abituale.")
+    pk_txt = f" Il picco degli ultimi 90 giorni è stato {it(peak['rapporto'], 2)} il {peak['data'][8:10]}/{peak['data'][5:7]}." if peak and peak["rapporto"] > 1.3 else ""
+    obs.append(f"Carico {light(cur_ratio)}, {'in linea con' if light(cur_ratio) == 'ottimale' else ('sopra' if cur_ratio > 1.3 else 'sotto')} l'abituale.{pk_txt}")
 
-# recupero (sonno stimato, HRV, Body Battery, stress)
+# recupero: direzione rispetto alle 4 settimane prima, non l'elenco dei valori
 S = wellness.get("sintesi", {}) if wellness["disponibile"] else {}
-def cmp_txt(nome, k, unita, n=1):
+def verso(k, meglio_se_alto=True, soglia=2.0):
     s = S.get(k) or {}
     a, b = s.get("media_7gg"), s.get("media_28gg_prec")
-    if a is None:
+    if a is None or not b:
         return None
-    if b is None:
-        return f"{nome} {it(a, n)} {unita} (media 7 giorni)"
-    return f"{nome} {it(a, n)} {unita} negli ultimi 7 giorni, contro {it(b, n)} nelle 4 settimane prima"
+    d = (a - b) / b * 100
+    if abs(d) < soglia:
+        return 0
+    return 1 if (d > 0) == meglio_se_alto else -1
 if wellness["disponibile"]:
-    parti = [p for p in [cmp_txt("durata del sonno stimata" if wellness.get("sonno_stimato") else "sonno", "sonno_ore", "ore"),
-                         cmp_txt("punteggio del sonno", "sonno_punteggio", "su 100", 0),
-                         cmp_txt("battito a riposo", "fc_riposo", "bpm", 0), cmp_txt("HRV notturna", "hrv", "ms", 0)] if p]
+    voci = [("sonno", verso("sonno_ore")), ("punteggio del sonno", verso("sonno_punteggio")),
+            ("battito a riposo", verso("fc_riposo", meglio_se_alto=False)), ("HRV", verso("hrv")),
+            ("stress", verso("stress", meglio_se_alto=False))]
+    su = [n for n, v in voci if v == 1]; giu = [n for n, v in voci if v == -1]; uguali = [n for n, v in voci if v == 0]
+    def elenco(xs):
+        return xs[0] if len(xs) == 1 else ", ".join(xs[:-1]) + " e " + xs[-1]
+    parti = []
+    if su: parti.append(f"meglio {elenco(su)}")
+    if giu: parti.append(f"peggio {elenco(giu)}")
+    if uguali: parti.append(f"stabili {elenco(uguali)}" if len(uguali) > 1 else f"stabile {uguali[0]}")
     hs = wellness.get("hrv_stato_30gg", {})
     nb = hs.get("BALANCED", 0); tot_hs = sum(hs.values())
-    hrv_st = f" Garmin classifica l'HRV come equilibrata in {nb} dei {tot_hs} giorni con dato negli ultimi 30." if tot_hs else ""
-    obs.append("Recupero: " + "; ".join(parti) + "." + hrv_st + " Sono dati descrittivi: nel rientro dal menisco contano il parere del medico o del fisioterapista e le sensazioni dell'articolazione, più di questi numeri.")
+    hrv_st = (" Garmin dà lo stato HRV equilibrato ogni giorno del mese." if nb == tot_hs else f" Garmin dà lo stato HRV equilibrato {nb} giorni su {tot_hs}.") if tot_hs else ""
+    obs.append("Recupero, rispetto alle 4 settimane prima: " + "; ".join(parti) + "." + hrv_st + " Per il menisco contano più fisioterapista e sensazioni.")
 else:
-    obs.append("Per sonno, HRV, Body Battery e stress non ci sono dati: per ora non è possibile commentare il recupero. Per il rientro dal menisco valgono le indicazioni del medico o del fisioterapista.")
+    obs.append("Nessun dato di recupero disponibile. Per il menisco valgono le indicazioni di medico e fisioterapista.")
 
 run = [t for t in tipi if t["tipo"] in RUN]
 runkm = sum(t["km"] for t in run); runn = sum(t["uscite"] for t in run)
 hiit = next((t for t in tipi if t["tipo"] == "hiit"), None)
 w30 = window(act, anchor, 30)
 r30 = w30[w30["tipo_attivita"].isin(RUN)]
-obs.append(f"Nel periodo disponibile ci sono {len(act)} attività: {runn} di corsa ({runkm:.0f} km) e {hiit['uscite'] if hiit else 0} sedute HIIT. Negli ultimi 30 giorni le uscite di corsa sono {len(r30)} ({it(r30['distanza_km'].sum())} km). Sono dati descrittivi e non sostituiscono il parere di un medico.")
+obs.append(f"Corsa negli ultimi 30 giorni: {len(r30)} uscite, {it(r30['distanza_km'].sum(), 0)} km. In tutto il periodo {runn} corse e {hiit['uscite'] if hiit else 0} sedute HIIT.")
 
 n_act = len(act)
 miss_dis = int(act["dislivello_pos_m"].isna().sum())

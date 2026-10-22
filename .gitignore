@@ -1,5 +1,5 @@
 # Dati grezzi scaricati da Garmin (si rigenerano a ogni esecuzione)
-data/
+/data/
 *.csv
 *_raw.json
 activities_source.txt

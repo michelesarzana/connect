@@ -271,7 +271,7 @@ if len(past):
     corse = past[past["tipo_attivita"].isin(RUN) & (past["distanza_km"] > 0)]
     if len(corse):
         lr = corse.loc[corse["distanza_km"].idxmax()]
-        dp = f", {it(lr['dislivello_pos_m'], 0)} m di dislivello" if pd.notna(lr["dislivello_pos_m"]) and lr["dislivello_pos_m"] >= 100 else ""
+        dp = f", {lr['dislivello_pos_m']:,.0f}".replace(",", ".") + " m di dislivello" if pd.notna(lr["dislivello_pos_m"]) and lr["dislivello_pos_m"] >= 100 else ""
         nuova = " È un nuovo record." if lr["day"] >= inizio30 else ""
         oss["record"].append(f"Corsa più lunga: {it(lr['distanza_km'])} km {art('il', lr['day'])}{dp}.{nuova}")
     giorni = sorted(set(past["day"]))

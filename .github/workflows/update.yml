@@ -62,5 +62,10 @@ jobs:
             echo "Nessuna modifica da pubblicare"
           else
             git commit -m "Aggiorna dashboard $(date +%Y-%m-%d)"
-            git push
+            # se nel frattempo qualcuno ha pubblicato su main, si riallinea e riprova
+            for i in 1 2 3; do
+              git pull --rebase -q origin main && git push && exit 0
+              sleep 10
+            done
+            exit 1
           fi

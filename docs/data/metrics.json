@@ -1,13 +1,1124 @@
 {
  "generato_il": "2026-10-22",
+ "generato_alle": "16:19",
+ "peso": {
+  "target": 82.0,
+  "serie": [
+   {
+    "data": "2020-12-03",
+    "kg": 82.3
+   },
+   {
+    "data": "2020-12-04",
+    "kg": 82.4
+   },
+   {
+    "data": "2021-01-12",
+    "kg": 85.8
+   },
+   {
+    "data": "2021-01-13",
+    "kg": 83.6
+   },
+   {
+    "data": "2021-01-14",
+    "kg": 84.5
+   },
+   {
+    "data": "2021-01-16",
+    "kg": 84.5
+   },
+   {
+    "data": "2021-01-17",
+    "kg": 84.9
+   },
+   {
+    "data": "2021-01-19",
+    "kg": 85.4
+   },
+   {
+    "data": "2021-01-20",
+    "kg": 83.4
+   },
+   {
+    "data": "2021-01-26",
+    "kg": 83.7
+   },
+   {
+    "data": "2021-01-27",
+    "kg": 83.0
+   },
+   {
+    "data": "2021-01-28",
+    "kg": 82.9
+   },
+   {
+    "data": "2021-01-29",
+    "kg": 83.0
+   },
+   {
+    "data": "2021-01-30",
+    "kg": 82.8
+   },
+   {
+    "data": "2021-01-31",
+    "kg": 83.0
+   },
+   {
+    "data": "2021-02-02",
+    "kg": 83.2
+   },
+   {
+    "data": "2021-02-03",
+    "kg": 83.0
+   },
+   {
+    "data": "2021-02-04",
+    "kg": 82.4
+   },
+   {
+    "data": "2021-02-05",
+    "kg": 82.4
+   },
+   {
+    "data": "2021-02-15",
+    "kg": 83.8
+   },
+   {
+    "data": "2021-03-01",
+    "kg": 82.1
+   },
+   {
+    "data": "2021-03-02",
+    "kg": 80.9
+   },
+   {
+    "data": "2021-03-03",
+    "kg": 81.8
+   },
+   {
+    "data": "2021-03-05",
+    "kg": 80.7
+   },
+   {
+    "data": "2021-03-06",
+    "kg": 80.3
+   },
+   {
+    "data": "2021-03-07",
+    "kg": 82.2
+   },
+   {
+    "data": "2021-03-09",
+    "kg": 81.6
+   },
+   {
+    "data": "2021-03-10",
+    "kg": 80.8
+   },
+   {
+    "data": "2021-03-11",
+    "kg": 80.8
+   },
+   {
+    "data": "2021-03-12",
+    "kg": 80.9
+   },
+   {
+    "data": "2021-03-15",
+    "kg": 81.7
+   },
+   {
+    "data": "2021-03-16",
+    "kg": 81.0
+   },
+   {
+    "data": "2021-03-18",
+    "kg": 80.5
+   },
+   {
+    "data": "2021-03-19",
+    "kg": 80.6
+   },
+   {
+    "data": "2021-03-20",
+    "kg": 79.4
+   },
+   {
+    "data": "2021-03-21",
+    "kg": 79.9
+   },
+   {
+    "data": "2021-03-23",
+    "kg": 80.8
+   },
+   {
+    "data": "2021-03-25",
+    "kg": 79.4
+   },
+   {
+    "data": "2021-03-28",
+    "kg": 79.9
+   },
+   {
+    "data": "2021-04-01",
+    "kg": 79.8
+   },
+   {
+    "data": "2021-04-04",
+    "kg": 79.8
+   },
+   {
+    "data": "2021-04-05",
+    "kg": 79.2
+   },
+   {
+    "data": "2021-04-06",
+    "kg": 78.8
+   },
+   {
+    "data": "2021-04-07",
+    "kg": 79.7
+   },
+   {
+    "data": "2021-04-10",
+    "kg": 78.7
+   },
+   {
+    "data": "2021-04-25",
+    "kg": 80.3
+   },
+   {
+    "data": "2021-04-29",
+    "kg": 80.3
+   },
+   {
+    "data": "2021-05-01",
+    "kg": 78.1
+   },
+   {
+    "data": "2021-05-02",
+    "kg": 78.4
+   },
+   {
+    "data": "2021-05-05",
+    "kg": 78.8
+   },
+   {
+    "data": "2021-05-06",
+    "kg": 79.4
+   },
+   {
+    "data": "2022-02-27",
+    "kg": 88.4
+   },
+   {
+    "data": "2022-02-28",
+    "kg": 87.5
+   },
+   {
+    "data": "2022-03-02",
+    "kg": 86.7
+   },
+   {
+    "data": "2022-03-03",
+    "kg": 87.5
+   },
+   {
+    "data": "2022-03-04",
+    "kg": 87.0
+   },
+   {
+    "data": "2022-03-06",
+    "kg": 86.7
+   },
+   {
+    "data": "2022-03-08",
+    "kg": 87.2
+   },
+   {
+    "data": "2022-03-09",
+    "kg": 86.2
+   },
+   {
+    "data": "2022-03-10",
+    "kg": 85.5
+   },
+   {
+    "data": "2022-03-15",
+    "kg": 86.7
+   },
+   {
+    "data": "2022-03-16",
+    "kg": 86.4
+   },
+   {
+    "data": "2022-03-17",
+    "kg": 85.7
+   },
+   {
+    "data": "2022-03-18",
+    "kg": 84.3
+   },
+   {
+    "data": "2022-03-21",
+    "kg": 86.1
+   },
+   {
+    "data": "2022-03-22",
+    "kg": 85.2
+   },
+   {
+    "data": "2022-03-23",
+    "kg": 85.7
+   },
+   {
+    "data": "2022-03-25",
+    "kg": 84.2
+   },
+   {
+    "data": "2022-03-26",
+    "kg": 84.0
+   },
+   {
+    "data": "2022-03-28",
+    "kg": 84.8
+   },
+   {
+    "data": "2022-04-02",
+    "kg": 84.6
+   },
+   {
+    "data": "2022-04-08",
+    "kg": 83.4
+   },
+   {
+    "data": "2022-04-10",
+    "kg": 84.0
+   },
+   {
+    "data": "2022-04-12",
+    "kg": 84.6
+   },
+   {
+    "data": "2022-04-14",
+    "kg": 83.6
+   },
+   {
+    "data": "2022-06-16",
+    "kg": 85.2
+   },
+   {
+    "data": "2022-07-12",
+    "kg": 84.6
+   },
+   {
+    "data": "2022-07-15",
+    "kg": 84.6
+   },
+   {
+    "data": "2022-08-29",
+    "kg": 85.6
+   },
+   {
+    "data": "2022-08-30",
+    "kg": 83.8
+   },
+   {
+    "data": "2022-08-31",
+    "kg": 84.4
+   },
+   {
+    "data": "2022-09-01",
+    "kg": 83.8
+   },
+   {
+    "data": "2022-09-06",
+    "kg": 85.5
+   },
+   {
+    "data": "2022-09-09",
+    "kg": 83.5
+   },
+   {
+    "data": "2022-09-13",
+    "kg": 85.3
+   },
+   {
+    "data": "2022-10-25",
+    "kg": 85.1
+   },
+   {
+    "data": "2022-10-31",
+    "kg": 84.8
+   },
+   {
+    "data": "2022-11-02",
+    "kg": 86.2
+   },
+   {
+    "data": "2022-11-03",
+    "kg": 85.9
+   },
+   {
+    "data": "2022-11-04",
+    "kg": 84.0
+   },
+   {
+    "data": "2022-11-08",
+    "kg": 85.4
+   },
+   {
+    "data": "2022-11-09",
+    "kg": 85.2
+   },
+   {
+    "data": "2023-01-11",
+    "kg": 89.3
+   },
+   {
+    "data": "2023-01-16",
+    "kg": 90.8
+   },
+   {
+    "data": "2023-01-18",
+    "kg": 90.6
+   },
+   {
+    "data": "2023-01-19",
+    "kg": 90.2
+   },
+   {
+    "data": "2023-01-20",
+    "kg": 90.2
+   },
+   {
+    "data": "2023-01-23",
+    "kg": 89.9
+   },
+   {
+    "data": "2023-01-24",
+    "kg": 89.1
+   },
+   {
+    "data": "2023-02-06",
+    "kg": 90.0
+   },
+   {
+    "data": "2023-02-09",
+    "kg": 90.6
+   },
+   {
+    "data": "2023-02-10",
+    "kg": 90.0
+   },
+   {
+    "data": "2023-02-20",
+    "kg": 90.7
+   },
+   {
+    "data": "2023-03-06",
+    "kg": 90.4
+   },
+   {
+    "data": "2023-03-07",
+    "kg": 90.7
+   },
+   {
+    "data": "2023-03-08",
+    "kg": 89.7
+   },
+   {
+    "data": "2023-03-09",
+    "kg": 90.1
+   },
+   {
+    "data": "2023-03-11",
+    "kg": 90.0
+   },
+   {
+    "data": "2023-03-13",
+    "kg": 88.7
+   },
+   {
+    "data": "2023-03-15",
+    "kg": 89.1
+   },
+   {
+    "data": "2023-03-20",
+    "kg": 92.1
+   },
+   {
+    "data": "2023-04-02",
+    "kg": 87.6
+   },
+   {
+    "data": "2023-04-03",
+    "kg": 88.8
+   },
+   {
+    "data": "2023-04-18",
+    "kg": 88.9
+   },
+   {
+    "data": "2023-04-27",
+    "kg": 88.2
+   },
+   {
+    "data": "2023-05-23",
+    "kg": 87.0
+   },
+   {
+    "data": "2023-06-01",
+    "kg": 87.0
+   },
+   {
+    "data": "2023-06-07",
+    "kg": 86.8
+   },
+   {
+    "data": "2023-06-10",
+    "kg": 87.0
+   },
+   {
+    "data": "2023-06-13",
+    "kg": 87.5
+   },
+   {
+    "data": "2023-06-20",
+    "kg": 88.3
+   },
+   {
+    "data": "2023-06-21",
+    "kg": 86.4
+   },
+   {
+    "data": "2023-09-03",
+    "kg": 90.2
+   },
+   {
+    "data": "2023-09-11",
+    "kg": 88.9
+   },
+   {
+    "data": "2023-09-14",
+    "kg": 91.5
+   },
+   {
+    "data": "2023-09-19",
+    "kg": 90.3
+   },
+   {
+    "data": "2023-10-01",
+    "kg": 91.5
+   },
+   {
+    "data": "2023-10-02",
+    "kg": 92.0
+   },
+   {
+    "data": "2023-10-03",
+    "kg": 90.3
+   },
+   {
+    "data": "2023-10-04",
+    "kg": 88.9
+   },
+   {
+    "data": "2023-10-16",
+    "kg": 90.5
+   },
+   {
+    "data": "2023-10-18",
+    "kg": 90.9
+   },
+   {
+    "data": "2023-10-23",
+    "kg": 90.6
+   },
+   {
+    "data": "2023-10-24",
+    "kg": 91.0
+   },
+   {
+    "data": "2023-10-25",
+    "kg": 89.0
+   },
+   {
+    "data": "2023-11-01",
+    "kg": 89.5
+   },
+   {
+    "data": "2023-11-06",
+    "kg": 89.6
+   },
+   {
+    "data": "2023-11-07",
+    "kg": 89.4
+   },
+   {
+    "data": "2023-11-08",
+    "kg": 88.8
+   },
+   {
+    "data": "2023-11-09",
+    "kg": 89.1
+   },
+   {
+    "data": "2023-11-10",
+    "kg": 89.7
+   },
+   {
+    "data": "2023-11-17",
+    "kg": 89.3
+   },
+   {
+    "data": "2023-11-22",
+    "kg": 89.0
+   },
+   {
+    "data": "2023-12-06",
+    "kg": 89.9
+   },
+   {
+    "data": "2024-01-08",
+    "kg": 91.4
+   },
+   {
+    "data": "2024-01-09",
+    "kg": 91.3
+   },
+   {
+    "data": "2024-01-16",
+    "kg": 90.9
+   },
+   {
+    "data": "2024-01-23",
+    "kg": 90.0
+   },
+   {
+    "data": "2024-02-06",
+    "kg": 89.8
+   },
+   {
+    "data": "2024-03-05",
+    "kg": 89.1
+   },
+   {
+    "data": "2024-03-09",
+    "kg": 89.4
+   },
+   {
+    "data": "2024-03-16",
+    "kg": 87.8
+   },
+   {
+    "data": "2024-03-19",
+    "kg": 90.0
+   },
+   {
+    "data": "2024-04-05",
+    "kg": 88.6
+   },
+   {
+    "data": "2024-04-08",
+    "kg": 89.8
+   },
+   {
+    "data": "2024-04-15",
+    "kg": 90.0
+   },
+   {
+    "data": "2024-04-16",
+    "kg": 89.4
+   },
+   {
+    "data": "2024-04-17",
+    "kg": 86.2
+   },
+   {
+    "data": "2024-04-19",
+    "kg": 89.5
+   },
+   {
+    "data": "2024-04-21",
+    "kg": 89.2
+   },
+   {
+    "data": "2024-05-18",
+    "kg": 90.1
+   },
+   {
+    "data": "2024-05-28",
+    "kg": 90.6
+   },
+   {
+    "data": "2024-06-19",
+    "kg": 93.0
+   },
+   {
+    "data": "2024-06-24",
+    "kg": 91.8
+   },
+   {
+    "data": "2024-09-01",
+    "kg": 93.8
+   },
+   {
+    "data": "2024-09-02",
+    "kg": 93.4
+   },
+   {
+    "data": "2024-09-03",
+    "kg": 92.5
+   },
+   {
+    "data": "2024-09-04",
+    "kg": 92.2
+   },
+   {
+    "data": "2024-09-05",
+    "kg": 91.8
+   },
+   {
+    "data": "2024-09-06",
+    "kg": 91.9
+   },
+   {
+    "data": "2024-09-07",
+    "kg": 91.9
+   },
+   {
+    "data": "2024-09-08",
+    "kg": 91.6
+   },
+   {
+    "data": "2024-09-09",
+    "kg": 92.6
+   },
+   {
+    "data": "2024-09-24",
+    "kg": 92.9
+   },
+   {
+    "data": "2024-11-26",
+    "kg": 94.4
+   },
+   {
+    "data": "2025-01-05",
+    "kg": 94.1
+   },
+   {
+    "data": "2025-01-19",
+    "kg": 94.0
+   },
+   {
+    "data": "2025-02-04",
+    "kg": 94.1
+   },
+   {
+    "data": "2025-03-03",
+    "kg": 95.5
+   },
+   {
+    "data": "2025-03-10",
+    "kg": 96.4
+   },
+   {
+    "data": "2025-03-11",
+    "kg": 94.7
+   },
+   {
+    "data": "2025-03-12",
+    "kg": 91.4
+   },
+   {
+    "data": "2025-03-13",
+    "kg": 93.3
+   },
+   {
+    "data": "2025-03-14",
+    "kg": 92.3
+   },
+   {
+    "data": "2025-04-02",
+    "kg": 92.7
+   },
+   {
+    "data": "2025-04-03",
+    "kg": 93.4
+   },
+   {
+    "data": "2025-04-14",
+    "kg": 94.5
+   },
+   {
+    "data": "2025-04-16",
+    "kg": 92.8
+   },
+   {
+    "data": "2025-04-29",
+    "kg": 93.3
+   },
+   {
+    "data": "2025-05-30",
+    "kg": 94.3
+   },
+   {
+    "data": "2025-06-07",
+    "kg": 93.8
+   },
+   {
+    "data": "2025-06-24",
+    "kg": 92.2
+   },
+   {
+    "data": "2025-07-24",
+    "kg": 94.5
+   },
+   {
+    "data": "2025-08-30",
+    "kg": 95.4
+   },
+   {
+    "data": "2025-09-01",
+    "kg": 95.0
+   },
+   {
+    "data": "2025-09-02",
+    "kg": 94.7
+   },
+   {
+    "data": "2025-09-03",
+    "kg": 92.9
+   },
+   {
+    "data": "2025-09-08",
+    "kg": 94.3
+   },
+   {
+    "data": "2025-09-10",
+    "kg": 93.0
+   },
+   {
+    "data": "2025-09-11",
+    "kg": 93.0
+   },
+   {
+    "data": "2025-09-16",
+    "kg": 93.5
+   },
+   {
+    "data": "2025-09-19",
+    "kg": 93.4
+   },
+   {
+    "data": "2025-09-22",
+    "kg": 94.0
+   },
+   {
+    "data": "2025-09-30",
+    "kg": 94.2
+   },
+   {
+    "data": "2025-10-01",
+    "kg": 92.2
+   },
+   {
+    "data": "2025-10-03",
+    "kg": 92.6
+   },
+   {
+    "data": "2025-10-07",
+    "kg": 93.7
+   },
+   {
+    "data": "2025-10-11",
+    "kg": 93.2
+   },
+   {
+    "data": "2025-10-23",
+    "kg": 91.7
+   },
+   {
+    "data": "2025-11-04",
+    "kg": 93.4
+   },
+   {
+    "data": "2025-11-19",
+    "kg": 92.6
+   },
+   {
+    "data": "2025-12-03",
+    "kg": 92.3
+   },
+   {
+    "data": "2026-01-07",
+    "kg": 94.1
+   },
+   {
+    "data": "2026-01-08",
+    "kg": 93.1
+   },
+   {
+    "data": "2026-01-09",
+    "kg": 92.9
+   },
+   {
+    "data": "2026-01-10",
+    "kg": 93.7
+   },
+   {
+    "data": "2026-01-12",
+    "kg": 95.1
+   },
+   {
+    "data": "2026-01-13",
+    "kg": 93.3
+   },
+   {
+    "data": "2026-01-14",
+    "kg": 93.9
+   },
+   {
+    "data": "2026-01-20",
+    "kg": 92.8
+   },
+   {
+    "data": "2026-01-21",
+    "kg": 92.4
+   },
+   {
+    "data": "2026-01-22",
+    "kg": 92.5
+   },
+   {
+    "data": "2026-01-28",
+    "kg": 92.5
+   },
+   {
+    "data": "2026-03-17",
+    "kg": 94.0
+   },
+   {
+    "data": "2026-03-18",
+    "kg": 95.0
+   },
+   {
+    "data": "2026-03-26",
+    "kg": 92.7
+   },
+   {
+    "data": "2026-04-21",
+    "kg": 93.2
+   },
+   {
+    "data": "2026-04-22",
+    "kg": 92.9
+   },
+   {
+    "data": "2026-04-26",
+    "kg": 93.5
+   },
+   {
+    "data": "2026-05-13",
+    "kg": 94.5
+   },
+   {
+    "data": "2026-06-16",
+    "kg": 94.9
+   },
+   {
+    "data": "2026-06-17",
+    "kg": 94.4
+   },
+   {
+    "data": "2026-06-18",
+    "kg": 94.7
+   },
+   {
+    "data": "2026-06-23",
+    "kg": 93.7
+   },
+   {
+    "data": "2026-06-24",
+    "kg": 93.7
+   },
+   {
+    "data": "2026-07-06",
+    "kg": 94.8
+   },
+   {
+    "data": "2026-07-07",
+    "kg": 94.0
+   },
+   {
+    "data": "2026-07-08",
+    "kg": 93.4
+   },
+   {
+    "data": "2026-08-24",
+    "kg": 94.4
+   },
+   {
+    "data": "2026-08-25",
+    "kg": 94.0
+   },
+   {
+    "data": "2026-08-26",
+    "kg": 93.7
+   },
+   {
+    "data": "2026-08-27",
+    "kg": 93.0
+   },
+   {
+    "data": "2026-08-28",
+    "kg": 94.1
+   },
+   {
+    "data": "2026-08-29",
+    "kg": 92.8
+   },
+   {
+    "data": "2026-08-31",
+    "kg": 92.9
+   },
+   {
+    "data": "2026-09-01",
+    "kg": 92.2
+   },
+   {
+    "data": "2026-09-02",
+    "kg": 93.1
+   },
+   {
+    "data": "2026-09-03",
+    "kg": 92.9
+   },
+   {
+    "data": "2026-09-04",
+    "kg": 93.0
+   },
+   {
+    "data": "2026-09-05",
+    "kg": 92.5
+   },
+   {
+    "data": "2026-09-06",
+    "kg": 92.5
+   },
+   {
+    "data": "2026-09-07",
+    "kg": 92.7
+   },
+   {
+    "data": "2026-09-08",
+    "kg": 91.6
+   },
+   {
+    "data": "2026-09-09",
+    "kg": 91.7
+   },
+   {
+    "data": "2026-09-10",
+    "kg": 90.9
+   },
+   {
+    "data": "2026-09-11",
+    "kg": 90.4
+   },
+   {
+    "data": "2026-09-14",
+    "kg": 91.1
+   },
+   {
+    "data": "2026-09-15",
+    "kg": 89.8
+   },
+   {
+    "data": "2026-09-18",
+    "kg": 90.9
+   },
+   {
+    "data": "2026-09-20",
+    "kg": 90.2
+   },
+   {
+    "data": "2026-09-21",
+    "kg": 90.1
+   },
+   {
+    "data": "2026-09-22",
+    "kg": 89.0
+   },
+   {
+    "data": "2026-09-23",
+    "kg": 88.7
+   },
+   {
+    "data": "2026-09-24",
+    "kg": 88.1
+   },
+   {
+    "data": "2026-09-25",
+    "kg": 88.7
+   },
+   {
+    "data": "2026-09-29",
+    "kg": 88.8
+   },
+   {
+    "data": "2026-09-30",
+    "kg": 88.7
+   },
+   {
+    "data": "2026-10-02",
+    "kg": 87.8
+   },
+   {
+    "data": "2026-10-03",
+    "kg": 87.4
+   },
+   {
+    "data": "2026-10-08",
+    "kg": 88.1
+   },
+   {
+    "data": "2026-10-09",
+    "kg": 86.7
+   },
+   {
+    "data": "2026-10-10",
+    "kg": 86.2
+   },
+   {
+    "data": "2026-10-20",
+    "kg": 87.1
+   },
+   {
+    "data": "2026-10-21",
+    "kg": 86.6
+   },
+   {
+    "data": "2026-10-22",
+    "kg": 86.0
+   }
+  ],
+  "attuale": 86.0,
+  "data_attuale": "2026-10-22",
+  "trend_kg_sett": -0.57,
+  "settimane_al_target": 7.0,
+  "data_stimata": "2026-12-10"
+ },
  "data_riferimento": "2026-10-22",
  "ultima_attivita": "2026-10-22",
  "fonte_attivita": "LIVE",
  "dati_aggiornati": true,
  "avviso_dati": null,
- "attivita_totali": 110,
+ "attivita_totali": 2444,
  "intervallo_attivita": [
-  "2026-04-26",
+  "2014-09-01",
   "2026-10-22"
  ],
  "kpi": {
@@ -1182,29 +2293,44 @@
      "media_7gg": 80.86
     },
     {
+     "data": "2026-10-06",
+     "valore": 86.0,
+     "media_7gg": 80.71
+    },
+    {
+     "data": "2026-10-07",
+     "valore": 86.0,
+     "media_7gg": 79.86
+    },
+    {
+     "data": "2026-10-08",
+     "valore": 97.0,
+     "media_7gg": 81.14
+    },
+    {
      "data": "2026-10-09",
      "valore": 85.0,
-     "media_7gg": 74.25
+     "media_7gg": 80.86
     },
     {
      "data": "2026-10-10",
      "valore": 93.0,
-     "media_7gg": 78.0
+     "media_7gg": 83.0
     },
     {
      "data": "2026-10-11",
      "valore": 28.0,
-     "media_7gg": 73.0
+     "media_7gg": 80.14
     },
     {
      "data": "2026-10-12",
      "valore": 82.0,
-     "media_7gg": 72.0
+     "media_7gg": 79.57
     },
     {
      "data": "2026-10-13",
      "valore": 91.0,
-     "media_7gg": 75.8
+     "media_7gg": 80.29
     },
     {
      "data": "2026-10-15",
@@ -1374,29 +2500,19 @@
      "media_7gg": 40.43
     },
     {
-     "data": "2026-10-18",
-     "valore": 42.0,
-     "media_7gg": 40.14
-    },
-    {
-     "data": "2026-10-19",
-     "valore": 42.0,
-     "media_7gg": 40.14
-    },
-    {
      "data": "2026-10-20",
      "valore": 43.0,
-     "media_7gg": 40.71
+     "media_7gg": 40.2
     },
     {
      "data": "2026-10-21",
      "valore": 37.0,
-     "media_7gg": 40.14
+     "media_7gg": 39.4
     },
     {
      "data": "2026-10-22",
      "valore": 40.0,
-     "media_7gg": 40.29
+     "media_7gg": 39.6
     }
    ],
    "body_battery_max": [
@@ -1519,36 +2635,6 @@
      "data": "2026-10-16",
      "valore": 94.0,
      "media_7gg": 84.43
-    },
-    {
-     "data": "2026-10-17",
-     "valore": 86.0,
-     "media_7gg": 82.43
-    },
-    {
-     "data": "2026-10-18",
-     "valore": 96.0,
-     "media_7gg": 91.0
-    },
-    {
-     "data": "2026-10-19",
-     "valore": 97.0,
-     "media_7gg": 93.43
-    },
-    {
-     "data": "2026-10-20",
-     "valore": 99.0,
-     "media_7gg": 93.29
-    },
-    {
-     "data": "2026-10-21",
-     "valore": 100.0,
-     "media_7gg": 94.57
-    },
-    {
-     "data": "2026-10-22",
-     "valore": 100.0,
-     "media_7gg": 96.0
     }
    ],
    "body_battery_min": [
@@ -1671,36 +2757,6 @@
      "data": "2026-10-16",
      "valore": 16.0,
      "media_7gg": 30.86
-    },
-    {
-     "data": "2026-10-17",
-     "valore": 19.0,
-     "media_7gg": 30.0
-    },
-    {
-     "data": "2026-10-18",
-     "valore": 27.0,
-     "media_7gg": 31.29
-    },
-    {
-     "data": "2026-10-19",
-     "valore": 32.0,
-     "media_7gg": 31.29
-    },
-    {
-     "data": "2026-10-20",
-     "valore": 36.0,
-     "media_7gg": 29.71
-    },
-    {
-     "data": "2026-10-21",
-     "valore": 36.0,
-     "media_7gg": 28.57
-    },
-    {
-     "data": "2026-10-22",
-     "valore": 56.0,
-     "media_7gg": 31.71
     }
    ],
    "stress": [
@@ -1823,36 +2879,6 @@
      "data": "2026-10-16",
      "valore": 28.0,
      "media_7gg": 24.14
-    },
-    {
-     "data": "2026-10-17",
-     "valore": 18.0,
-     "media_7gg": 23.29
-    },
-    {
-     "data": "2026-10-18",
-     "valore": 23.0,
-     "media_7gg": 20.57
-    },
-    {
-     "data": "2026-10-19",
-     "valore": 23.0,
-     "media_7gg": 21.29
-    },
-    {
-     "data": "2026-10-20",
-     "valore": 22.0,
-     "media_7gg": 22.14
-    },
-    {
-     "data": "2026-10-21",
-     "valore": 17.0,
-     "media_7gg": 21.43
-    },
-    {
-     "data": "2026-10-22",
-     "valore": 20.0,
-     "media_7gg": 21.57
     }
    ],
    "passi": [
@@ -2007,73 +3033,7 @@
      "media_7gg": 13207.57
     }
    ],
-   "peso_kg": [
-    {
-     "data": "2026-09-23",
-     "valore": 88.7,
-     "media_7gg": 89.78
-    },
-    {
-     "data": "2026-09-24",
-     "valore": 88.1,
-     "media_7gg": 89.5
-    },
-    {
-     "data": "2026-09-25",
-     "valore": 88.7,
-     "media_7gg": 89.13
-    },
-    {
-     "data": "2026-09-29",
-     "valore": 88.8,
-     "media_7gg": 88.58
-    },
-    {
-     "data": "2026-09-30",
-     "valore": 88.7,
-     "media_7gg": 88.58
-    },
-    {
-     "data": "2026-10-02",
-     "valore": 87.8,
-     "media_7gg": 88.43
-    },
-    {
-     "data": "2026-10-03",
-     "valore": 87.4,
-     "media_7gg": 88.18
-    },
-    {
-     "data": "2026-10-08",
-     "valore": 88.1,
-     "media_7gg": 87.77
-    },
-    {
-     "data": "2026-10-09",
-     "valore": 86.7,
-     "media_7gg": 87.4
-    },
-    {
-     "data": "2026-10-10",
-     "valore": 86.2,
-     "media_7gg": 87.0
-    },
-    {
-     "data": "2026-10-20",
-     "valore": 87.1,
-     "media_7gg": null
-    },
-    {
-     "data": "2026-10-21",
-     "valore": 86.6,
-     "media_7gg": null
-    },
-    {
-     "data": "2026-10-22",
-     "valore": 86.0,
-     "media_7gg": 86.57
-    }
-   ],
+   "peso_kg": [],
    "spo2": [
     {
      "data": "2026-09-23",
@@ -2201,29 +3161,19 @@
      "media_7gg": 93.57
     },
     {
-     "data": "2026-10-18",
-     "valore": 95.0,
-     "media_7gg": 93.86
-    },
-    {
-     "data": "2026-10-19",
-     "valore": 93.0,
-     "media_7gg": 93.71
-    },
-    {
      "data": "2026-10-20",
      "valore": 95.0,
-     "media_7gg": 93.71
+     "media_7gg": 93.6
     },
     {
      "data": "2026-10-21",
      "valore": 95.0,
-     "media_7gg": 93.86
+     "media_7gg": 93.8
     },
     {
      "data": "2026-10-22",
      "valore": 95.0,
-     "media_7gg": 94.29
+     "media_7gg": 94.4
     }
    ],
    "sonno_profondo_min": [
@@ -2831,13 +3781,14 @@
    "body_battery_min",
    "stress",
    "passi",
-   "peso_kg",
    "sonno_profondo_min",
    "sonno_rem_min",
    "sonno_leggero_min",
    "sonno_sveglio_min"
   ],
-  "metriche_non_disponibili": [],
+  "metriche_non_disponibili": [
+   "peso_kg"
+  ],
   "sonno_stimato": false,
   "note": [
    "Il sonno è il tempo dormito (profondo, REM e leggero) senza i risvegli; punteggio e fasi sono quelli calcolati da Garmin.",
@@ -2867,18 +3818,18 @@
    },
    "hrv": {
     "media_7gg": 82.29,
-    "media_28gg_prec": 78.5,
+    "media_28gg_prec": 79.74,
     "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 21.57,
+    "media_7gg": 28.0,
     "media_28gg_prec": 27.39,
-    "giorni_7gg": 7
+    "giorni_7gg": 1
    },
    "body_battery_max": {
-    "media_7gg": 96.0,
+    "media_7gg": 94.0,
     "media_28gg_prec": 84.96,
-    "giorni_7gg": 7
+    "giorni_7gg": 1
    },
    "passi": {
     "media_7gg": 13207.57,
@@ -2891,18 +3842,18 @@
     "giorni_7gg": 7
    },
    "fc_riposo": {
-    "media_7gg": 40.29,
+    "media_7gg": 39.6,
     "media_28gg_prec": 41.82,
-    "giorni_7gg": 7
+    "giorni_7gg": 5
    },
    "spo2": {
-    "media_7gg": 94.29,
+    "media_7gg": 94.4,
     "media_28gg_prec": 93.93,
-    "giorni_7gg": 7
+    "giorni_7gg": 5
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 27
+   "BALANCED": 30
   }
  },
  "ultime_attivita": [
@@ -2999,58 +3950,154 @@
  ],
  "per_tipo": [
   {
-   "tipo": "hiking",
-   "uscite": 17,
-   "km": 142.5,
-   "ore": 45.6
+   "tipo": "running",
+   "uscite": 1859,
+   "km": 21745.8,
+   "ore": 1986.4
   },
   {
    "tipo": "trail_running",
-   "uscite": 6,
-   "km": 82.2,
-   "ore": 20.1
+   "uscite": 126,
+   "km": 2654.4,
+   "ore": 476.1
   },
   {
-   "tipo": "hiit",
-   "uscite": 43,
-   "km": 0.0,
-   "ore": 17.4
-  },
-  {
-   "tipo": "running",
-   "uscite": 23,
-   "km": 156.9,
-   "ore": 14.7
-  },
-  {
-   "tipo": "gravel_cycling",
-   "uscite": 3,
-   "km": 161.4,
-   "ore": 7.9
-  },
-  {
-   "tipo": "walking",
-   "uscite": 7,
-   "km": 18.4,
-   "ore": 7.7
-  },
-  {
-   "tipo": "indoor_cycling",
-   "uscite": 7,
-   "km": 131.4,
-   "ore": 6.0
-  },
-  {
-   "tipo": "cycling",
-   "uscite": 2,
-   "km": 90.1,
-   "ore": 5.1
+   "tipo": "hiking",
+   "uscite": 87,
+   "km": 672.5,
+   "ore": 207.7
   },
   {
    "tipo": "road_biking",
+   "uscite": 57,
+   "km": 2817.1,
+   "ore": 116.0
+  },
+  {
+   "tipo": "cycling",
+   "uscite": 36,
+   "km": 1027.2,
+   "ore": 45.4
+  },
+  {
+   "tipo": "resort_skiing",
+   "uscite": 9,
+   "km": 572.4,
+   "ore": 44.1
+  },
+  {
+   "tipo": "virtual_ride",
+   "uscite": 34,
+   "km": 1165.3,
+   "ore": 40.6
+  },
+  {
+   "tipo": "hiit",
+   "uscite": 61,
+   "km": 0.0,
+   "ore": 28.6
+  },
+  {
+   "tipo": "gravel_cycling",
+   "uscite": 12,
+   "km": 557.1,
+   "ore": 27.2
+  },
+  {
+   "tipo": "strength_training",
+   "uscite": 67,
+   "km": 0.0,
+   "ore": 21.9
+  },
+  {
+   "tipo": "mountain_biking",
+   "uscite": 16,
+   "km": 297.8,
+   "ore": 20.0
+  },
+  {
+   "tipo": "resort_skiing_snowboarding_ws",
+   "uscite": 14,
+   "km": 410.1,
+   "ore": 19.5
+  },
+  {
+   "tipo": "walking",
+   "uscite": 14,
+   "km": 54.9,
+   "ore": 16.9
+  },
+  {
+   "tipo": "indoor_cycling",
+   "uscite": 16,
+   "km": 389.5,
+   "ore": 16.2
+  },
+  {
+   "tipo": "treadmill_running",
+   "uscite": 7,
+   "km": 48.0,
+   "ore": 6.7
+  },
+  {
+   "tipo": "multi_sport",
+   "uscite": 6,
+   "km": 60.4,
+   "ore": 6.4
+  },
+  {
+   "tipo": "street_running",
+   "uscite": 2,
+   "km": 33.8,
+   "ore": 3.2
+  },
+  {
+   "tipo": "backcountry_skiing_snowboarding_ws",
+   "uscite": 2,
+   "km": 15.1,
+   "ore": 2.7
+  },
+  {
+   "tipo": "recumbent_cycling",
+   "uscite": 5,
+   "km": 33.0,
+   "ore": 1.7
+  },
+  {
+   "tipo": "other",
+   "uscite": 2,
+   "km": 14.1,
+   "ore": 1.4
+  },
+  {
+   "tipo": "cross_country_skiing_ws",
    "uscite": 1,
-   "km": 54.6,
-   "ore": 2.2
+   "km": 10.2,
+   "ore": 1.1
+  },
+  {
+   "tipo": "floor_climbing",
+   "uscite": 4,
+   "km": 0.0,
+   "ore": 0.9
+  },
+  {
+   "tipo": "indoor_cardio",
+   "uscite": 3,
+   "km": 0.0,
+   "ore": 0.8
+  },
+  {
+   "tipo": "open_water_swimming",
+   "uscite": 2,
+   "km": 1.4,
+   "ore": 0.8
+  },
+  {
+   "tipo": "skate_skiing_ws",
+   "uscite": 1,
+   "km": 5.5,
+   "ore": 0.8
   },
   {
    "tipo": "lap_swimming",
@@ -3059,20 +4106,39 @@
    "ore": 0.1
   }
  ],
- "osservazioni": [
-  "Ultimi 30 giorni: 8% di tempo di allenamento in meno rispetto al mese prima (18,3 ore contro 20,0).",
-  "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 07/08.",
-  "Recupero, rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, battito a riposo, HRV e stress. Garmin dà lo stato HRV equilibrato ogni giorno del mese. Per il menisco contano più fisioterapista e sensazioni.",
-  "Corsa negli ultimi 30 giorni: 13 uscite, 97 km. In tutto il periodo 29 corse e 43 sedute HIIT."
- ],
- "nota_footer": "Il dislivello manca in 51 attività su 110. Il passo di corsa si basa su 13 uscite negli ultimi 30 giorni e su 3 negli ultimi 7: da leggere con cautela.",
+ "osservazioni": {
+  "record": [
+   "Settimana più lunga di sempre: 252,0 km, dal 13 aprile 2020.",
+   "Corsa più lunga: 121,1 km il 23 giugno 2023, 5941 m di dislivello.",
+   "Serie più lunga di giorni attivi consecutivi: 110, fino al 30 giugno 2020."
+  ],
+  "abitudini": [
+   "L'attività più frequente è corsa: 1859 uscite su 2444.",
+   "Negli ultimi 90 giorni il giorno più attivo è il martedì: 13 uscite su 70.",
+   "Il 51% delle uscite parte tra le 9 e le 18.",
+   "In 11 delle ultime 12 settimane hai fatto almeno 3 uscite.",
+   "Rispetto agli stessi 30 giorni del 2025: 18,3 ore contro 18,8, −3%."
+  ],
+  "recupero": [
+   "Rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, battito a riposo e HRV; peggio stress.",
+   "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 7 agosto.",
+   "Dopo i giorni più pesanti (da 124 minuti in su) l'HRV della notte è in media 66 ms, contro 81 negli altri giorni.",
+   "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
+  ],
+  "proiezioni": [
+   "Al ritmo degli ultimi 30 giorni (−0,6 kg a settimana) arrivi a 82 kg in circa 7 settimane, verso inizio dicembre.",
+   "Settimana in corso: 18,9 km. Per la tua media (30,0 km) ne mancano 11,1 entro domenica.",
+   "Ottobre: 92,9 km finora, al ritmo attuale circa 131 a fine mese (settembre: 84)."
+  ]
+ },
+ "nota_footer": "Il dislivello manca in 154 attività su 2444. Il passo di corsa si basa su 13 uscite negli ultimi 30 giorni e su 3 negli ultimi 7: da leggere con cautela.",
  "avvertenze_kpi": [
-  "Il dislivello manca in 51 attività su 110: le variazioni percentuali del dislivello e i totali possono essere sottostimati.",
+  "Il dislivello manca in 154 attività su 2444: le variazioni percentuali del dislivello e i totali possono essere sottostimati.",
   "Il passo di corsa si basa su 13 uscite negli ultimi 30 giorni e su 3 negli ultimi 7: da leggere con cautela.",
   "Le variazioni percentuali sono null quando il periodo precedente vale zero."
  ],
  "lacune": [
-  "Dislivello mancante in 51 attività su 110",
+  "Dislivello mancante in 154 attività su 2444",
   "Passo disponibile solo per corsa e trail running",
   "L'ultimo giorno di benessere è parziale (passi, stress e Body Battery)"
  ]

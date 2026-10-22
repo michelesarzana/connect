@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-10-22",
- "generato_alle": "16:19",
+ "generato_alle": "16:29",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2303,44 +2303,29 @@
      "media_7gg": 79.86
     },
     {
-     "data": "2026-10-08",
-     "valore": 97.0,
-     "media_7gg": 81.14
-    },
-    {
-     "data": "2026-10-09",
-     "valore": 85.0,
-     "media_7gg": 80.86
-    },
-    {
-     "data": "2026-10-10",
-     "valore": 93.0,
-     "media_7gg": 83.0
-    },
-    {
      "data": "2026-10-11",
      "valore": 28.0,
-     "media_7gg": 80.14
+     "media_7gg": 71.5
     },
     {
      "data": "2026-10-12",
      "valore": 82.0,
-     "media_7gg": 79.57
+     "media_7gg": 70.5
     },
     {
      "data": "2026-10-13",
      "valore": 91.0,
-     "media_7gg": 80.29
+     "media_7gg": 71.75
     },
     {
      "data": "2026-10-15",
      "valore": 87.0,
-     "media_7gg": 77.67
+     "media_7gg": 72.0
     },
     {
      "data": "2026-10-16",
      "valore": 84.0,
-     "media_7gg": 77.5
+     "media_7gg": 74.4
     },
     {
      "data": "2026-10-17",
@@ -2500,19 +2485,29 @@
      "media_7gg": 40.43
     },
     {
+     "data": "2026-10-18",
+     "valore": 42.0,
+     "media_7gg": 40.14
+    },
+    {
+     "data": "2026-10-19",
+     "valore": 42.0,
+     "media_7gg": 40.14
+    },
+    {
      "data": "2026-10-20",
      "valore": 43.0,
-     "media_7gg": 40.2
+     "media_7gg": 40.71
     },
     {
      "data": "2026-10-21",
      "valore": 37.0,
-     "media_7gg": 39.4
+     "media_7gg": 40.14
     },
     {
      "data": "2026-10-22",
      "valore": 40.0,
-     "media_7gg": 39.6
+     "media_7gg": 40.29
     }
    ],
    "body_battery_max": [
@@ -2635,6 +2630,36 @@
      "data": "2026-10-16",
      "valore": 94.0,
      "media_7gg": 84.43
+    },
+    {
+     "data": "2026-10-17",
+     "valore": 86.0,
+     "media_7gg": 82.43
+    },
+    {
+     "data": "2026-10-18",
+     "valore": 96.0,
+     "media_7gg": 91.0
+    },
+    {
+     "data": "2026-10-19",
+     "valore": 97.0,
+     "media_7gg": 93.43
+    },
+    {
+     "data": "2026-10-20",
+     "valore": 99.0,
+     "media_7gg": 93.29
+    },
+    {
+     "data": "2026-10-21",
+     "valore": 100.0,
+     "media_7gg": 94.57
+    },
+    {
+     "data": "2026-10-22",
+     "valore": 100.0,
+     "media_7gg": 96.0
     }
    ],
    "body_battery_min": [
@@ -2757,6 +2782,36 @@
      "data": "2026-10-16",
      "valore": 16.0,
      "media_7gg": 30.86
+    },
+    {
+     "data": "2026-10-17",
+     "valore": 19.0,
+     "media_7gg": 30.0
+    },
+    {
+     "data": "2026-10-18",
+     "valore": 27.0,
+     "media_7gg": 31.29
+    },
+    {
+     "data": "2026-10-19",
+     "valore": 32.0,
+     "media_7gg": 31.29
+    },
+    {
+     "data": "2026-10-20",
+     "valore": 36.0,
+     "media_7gg": 29.71
+    },
+    {
+     "data": "2026-10-21",
+     "valore": 36.0,
+     "media_7gg": 28.57
+    },
+    {
+     "data": "2026-10-22",
+     "valore": 56.0,
+     "media_7gg": 31.71
     }
    ],
    "stress": [
@@ -2879,6 +2934,36 @@
      "data": "2026-10-16",
      "valore": 28.0,
      "media_7gg": 24.14
+    },
+    {
+     "data": "2026-10-17",
+     "valore": 18.0,
+     "media_7gg": 23.29
+    },
+    {
+     "data": "2026-10-18",
+     "valore": 23.0,
+     "media_7gg": 20.57
+    },
+    {
+     "data": "2026-10-19",
+     "valore": 23.0,
+     "media_7gg": 21.29
+    },
+    {
+     "data": "2026-10-20",
+     "valore": 22.0,
+     "media_7gg": 22.14
+    },
+    {
+     "data": "2026-10-21",
+     "valore": 17.0,
+     "media_7gg": 21.43
+    },
+    {
+     "data": "2026-10-22",
+     "valore": 20.0,
+     "media_7gg": 21.57
     }
    ],
    "passi": [
@@ -3033,7 +3118,73 @@
      "media_7gg": 13207.57
     }
    ],
-   "peso_kg": [],
+   "peso_kg": [
+    {
+     "data": "2026-09-23",
+     "valore": 88.7,
+     "media_7gg": 89.78
+    },
+    {
+     "data": "2026-09-24",
+     "valore": 88.1,
+     "media_7gg": 89.5
+    },
+    {
+     "data": "2026-09-25",
+     "valore": 88.7,
+     "media_7gg": 89.13
+    },
+    {
+     "data": "2026-09-29",
+     "valore": 88.8,
+     "media_7gg": 88.58
+    },
+    {
+     "data": "2026-09-30",
+     "valore": 88.7,
+     "media_7gg": 88.58
+    },
+    {
+     "data": "2026-10-02",
+     "valore": 87.8,
+     "media_7gg": 88.43
+    },
+    {
+     "data": "2026-10-03",
+     "valore": 87.4,
+     "media_7gg": 88.18
+    },
+    {
+     "data": "2026-10-08",
+     "valore": 88.1,
+     "media_7gg": 87.77
+    },
+    {
+     "data": "2026-10-09",
+     "valore": 86.7,
+     "media_7gg": 87.4
+    },
+    {
+     "data": "2026-10-10",
+     "valore": 86.2,
+     "media_7gg": 87.0
+    },
+    {
+     "data": "2026-10-20",
+     "valore": 87.1,
+     "media_7gg": null
+    },
+    {
+     "data": "2026-10-21",
+     "valore": 86.6,
+     "media_7gg": null
+    },
+    {
+     "data": "2026-10-22",
+     "valore": 86.0,
+     "media_7gg": 86.57
+    }
+   ],
    "spo2": [
     {
      "data": "2026-09-23",
@@ -3161,19 +3312,29 @@
      "media_7gg": 93.57
     },
     {
+     "data": "2026-10-18",
+     "valore": 95.0,
+     "media_7gg": 93.86
+    },
+    {
+     "data": "2026-10-19",
+     "valore": 93.0,
+     "media_7gg": 93.71
+    },
+    {
      "data": "2026-10-20",
      "valore": 95.0,
-     "media_7gg": 93.6
+     "media_7gg": 93.71
     },
     {
      "data": "2026-10-21",
      "valore": 95.0,
-     "media_7gg": 93.8
+     "media_7gg": 93.86
     },
     {
      "data": "2026-10-22",
      "valore": 95.0,
-     "media_7gg": 94.4
+     "media_7gg": 94.29
     }
    ],
    "sonno_profondo_min": [
@@ -3781,14 +3942,13 @@
    "body_battery_min",
    "stress",
    "passi",
+   "peso_kg",
    "sonno_profondo_min",
    "sonno_rem_min",
    "sonno_leggero_min",
    "sonno_sveglio_min"
   ],
-  "metriche_non_disponibili": [
-   "peso_kg"
-  ],
+  "metriche_non_disponibili": [],
   "sonno_stimato": false,
   "note": [
    "Il sonno è il tempo dormito (profondo, REM e leggero) senza i risvegli; punteggio e fasi sono quelli calcolati da Garmin.",
@@ -3818,18 +3978,18 @@
    },
    "hrv": {
     "media_7gg": 82.29,
-    "media_28gg_prec": 79.74,
+    "media_28gg_prec": 78.25,
     "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 28.0,
+    "media_7gg": 21.57,
     "media_28gg_prec": 27.39,
-    "giorni_7gg": 1
+    "giorni_7gg": 7
    },
    "body_battery_max": {
-    "media_7gg": 94.0,
+    "media_7gg": 96.0,
     "media_28gg_prec": 84.96,
-    "giorni_7gg": 1
+    "giorni_7gg": 7
    },
    "passi": {
     "media_7gg": 13207.57,
@@ -3842,18 +4002,18 @@
     "giorni_7gg": 7
    },
    "fc_riposo": {
-    "media_7gg": 39.6,
+    "media_7gg": 40.29,
     "media_28gg_prec": 41.82,
-    "giorni_7gg": 5
+    "giorni_7gg": 7
    },
    "spo2": {
-    "media_7gg": 94.4,
+    "media_7gg": 94.29,
     "media_28gg_prec": 93.93,
-    "giorni_7gg": 5
+    "giorni_7gg": 7
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 30
+   "BALANCED": 27
   }
  },
  "ultime_attivita": [
@@ -4109,7 +4269,7 @@
  "osservazioni": {
   "record": [
    "Settimana più lunga di sempre: 252,0 km, dal 13 aprile 2020.",
-   "Corsa più lunga: 121,1 km il 23 giugno 2023, 5941 m di dislivello.",
+   "Corsa più lunga: 121,1 km il 23 giugno 2023. 5.941 m di dislivello.",
    "Serie più lunga di giorni attivi consecutivi: 110, fino al 30 giugno 2020."
   ],
   "abitudini": [
@@ -4120,9 +4280,9 @@
    "Rispetto agli stessi 30 giorni del 2025: 18,3 ore contro 18,8, −3%."
   ],
   "recupero": [
-   "Rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, battito a riposo e HRV; peggio stress.",
+   "Rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, battito a riposo, HRV e stress.",
    "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 7 agosto.",
-   "Dopo i giorni più pesanti (da 124 minuti in su) l'HRV della notte è in media 66 ms, contro 81 negli altri giorni.",
+   "Dopo i giorni più pesanti (da 124 minuti in su) l'HRV della notte è in media 66 ms, contro 80 negli altri giorni.",
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],
   "proiezioni": [

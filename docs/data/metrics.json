@@ -1250,16 +1250,6 @@
      "data": "2026-10-20",
      "valore": 81.0,
      "media_7gg": 81.83
-    },
-    {
-     "data": "2026-10-21",
-     "valore": 87.0,
-     "media_7gg": 82.57
-    },
-    {
-     "data": "2026-10-22",
-     "valore": 85.0,
-     "media_7gg": 82.29
     }
    ],
    "fc_riposo": [
@@ -1714,8 +1704,8 @@
     },
     {
      "data": "2026-10-22",
-     "valore": 57.0,
-     "media_7gg": 31.86
+     "valore": 56.0,
+     "media_7gg": 31.71
     }
    ],
    "stress": [
@@ -1866,8 +1856,8 @@
     },
     {
      "data": "2026-10-22",
-     "valore": 19.0,
-     "media_7gg": 21.43
+     "valore": 20.0,
+     "media_7gg": 21.57
     }
    ],
    "passi": [
@@ -2018,8 +2008,8 @@
     },
     {
      "data": "2026-10-22",
-     "valore": 11696.0,
-     "media_7gg": 13117.57
+     "valore": 12326.0,
+     "media_7gg": 13207.57
     }
    ],
    "peso_kg": [
@@ -2881,12 +2871,12 @@
     "giorni_7gg": 7
    },
    "hrv": {
-    "media_7gg": 82.29,
+    "media_7gg": 80.8,
     "media_28gg_prec": 79.74,
-    "giorni_7gg": 7
+    "giorni_7gg": 5
    },
    "stress": {
-    "media_7gg": 21.43,
+    "media_7gg": 21.57,
     "media_28gg_prec": 27.39,
     "giorni_7gg": 7
    },
@@ -2896,7 +2886,7 @@
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 13117.57,
+    "media_7gg": 13207.57,
     "media_28gg_prec": 15092.68,
     "giorni_7gg": 7
    },
@@ -2917,7 +2907,7 @@
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 30
+   "BALANCED": 28
   }
  },
  "ultime_attivita": [
@@ -3077,7 +3067,7 @@
  "osservazioni": [
   "Negli ultimi 30 giorni (fino al 22/10/2026) il tempo di allenamento è in calo dell'8% rispetto ai 30 giorni precedenti: 18,3 ore contro 20,0.",
   "Il rapporto fra carico acuto e cronico è 1,12 (ottimale, soglie orientative 0,8 e 1,3). Il picco degli ultimi 90 giorni è 3,03 il 07/08. Un valore alto indica solo che il carico recente è salito più in fretta della media abituale.",
-  "Recupero: sonno 7,3 ore negli ultimi 7 giorni, contro 7,1 nelle 4 settimane prima; punteggio del sonno 86 su 100 negli ultimi 7 giorni, contro 79 nelle 4 settimane prima; battito a riposo 40 bpm negli ultimi 7 giorni, contro 42 nelle 4 settimane prima; HRV notturna 82 ms negli ultimi 7 giorni, contro 80 nelle 4 settimane prima; stress medio 21 su 100 negli ultimi 7 giorni, contro 27 nelle 4 settimane prima; Body Battery massimo 96 su 100 negli ultimi 7 giorni, contro 85 nelle 4 settimane prima. Garmin classifica l'HRV come equilibrata in 30 dei 30 giorni con dato negli ultimi 30. Sono dati descrittivi: nel rientro dal menisco contano il parere del medico o del fisioterapista e le sensazioni dell'articolazione, più di questi numeri.",
+  "Recupero: sonno 7,3 ore negli ultimi 7 giorni, contro 7,1 nelle 4 settimane prima; punteggio del sonno 86 su 100 negli ultimi 7 giorni, contro 79 nelle 4 settimane prima; battito a riposo 40 bpm negli ultimi 7 giorni, contro 42 nelle 4 settimane prima; HRV notturna 81 ms negli ultimi 7 giorni, contro 80 nelle 4 settimane prima. Garmin classifica l'HRV come equilibrata in 28 dei 28 giorni con dato negli ultimi 30. Sono dati descrittivi: nel rientro dal menisco contano il parere del medico o del fisioterapista e le sensazioni dell'articolazione, più di questi numeri.",
   "Nel periodo disponibile ci sono 110 attività: 29 di corsa (239 km) e 43 sedute HIIT. Negli ultimi 30 giorni le uscite di corsa sono 13 (97,0 km). Sono dati descrittivi e non sostituiscono il parere di un medico."
  ],
  "nota_footer": "Il dislivello manca in 51 attività su 110. Il passo di corsa si basa su 13 uscite negli ultimi 30 giorni e su 3 negli ultimi 7: da leggere con cautela.",

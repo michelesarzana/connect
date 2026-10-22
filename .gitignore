@@ -1,0 +1,16 @@
+# Dati grezzi scaricati da Garmin (si rigenerano a ogni esecuzione)
+data/
+*.csv
+*_raw.json
+activities_source.txt
+wellness_source.txt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Credenziali locali: la chiave Garmin non va mai nel repository
+.garmin
+.env
+.maton/

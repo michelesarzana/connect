@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Il tuo Garmin</title>
+<style>
+:root{
+  --bg:#f2f2f7; --surface:#ffffff; --surface-2:#f2f2f7;
+  --label:#1c1c1e; --label-2:#55555a; --separator:#d8d8de;
+  --accent:#0060df; --accent-soft:#e3eeff;
+  --good:#1a7f37; --warn:#9a5b00; --bad:#c4251c;
+  --good-soft:#e1f4e6; --warn-soft:#fdf0d5; --bad-soft:#fde4e2;
+  --bar:#0060df; --bar-2:#5e5ce6; --grid:#e5e5ea;
+  --radius:20px; --gap:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#000000; --surface:#1c1c1e; --surface-2:#2c2c2e;
+    --label:#f2f2f7; --label-2:#aeaeb4; --separator:#3a3a3e;
+    --accent:#4da3ff; --accent-soft:#12263f;
+    --good:#4cd371; --warn:#ffb340; --bad:#ff7a70;
+    --good-soft:#12301b; --warn-soft:#3a2a08; --bad-soft:#3d1512;
+    --bar:#4da3ff; --bar-2:#9a98ff; --grid:#2f2f33;
+  }
+}
+@media (prefers-contrast: more){
+  :root{ --label-2:#3a3a3e; --separator:#8e8e93; }
+  @media (prefers-color-scheme: dark){ :root{ --label-2:#d1d1d6; } }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--label);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,"Segoe UI",Roboto,sans-serif;
+  font-size:1.0625rem; line-height:1.3; font-variant-numeric:tabular-nums;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.wrap{max-width:1200px; margin:0 auto; padding:24px 20px 40px}
+header{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:8px 24px; padding:16px 4px 20px}
+h1{font-size:2.125rem; line-height:1.2; font-weight:700; margin:0; letter-spacing:-0.01em}
+.sub{color:var(--label-2); font-size:.9375rem; margin:4px 0 0}
+.upd{color:var(--label-2); font-size:.8125rem; text-align:right; line-height:1.4}
+.upd b{color:var(--label); font-weight:600}
+.notice{
+  display:flex; gap:12px; align-items:flex-start; background:var(--warn-soft); color:var(--label);
+  border-radius:16px; padding:14px 16px; margin-bottom:var(--gap); font-size:.9375rem; line-height:1.35;
+}
+.notice .ic{flex:none; width:24px; height:24px; border-radius:50%; background:var(--warn); color:var(--surface);
+  font-weight:700; display:grid; place-items:center; font-size:.875rem}
+.notice strong{font-weight:600}
+.card{background:var(--surface); border-radius:var(--radius); padding:20px 22px}
+.card h2{font-size:1.25rem; line-height:1.25; margin:0 0 2px; font-weight:600}
+.card .lead{color:var(--label-2); font-size:.9375rem; margin:0 0 14px}
+.eyebrow{font-size:.8125rem; color:var(--label-2); font-weight:500}
+.grid{display:grid; gap:var(--gap); margin-bottom:var(--gap)}
+.kpis{grid-template-columns:repeat(4,1fr)}
+.kpi{padding:18px 20px}
+.kpi .val{font-size:2.125rem; font-weight:700; line-height:1.15; margin:4px 0 8px; letter-spacing:-0.01em}
+.kpi .val small{font-size:1rem; font-weight:500; color:var(--label-2); margin-left:3px}
+.chip{display:inline-flex; align-items:center; gap:4px; font-size:.8125rem; font-weight:600; padding:3px 9px; border-radius:999px; background:var(--surface-2); color:var(--label-2)}
+.chip.up{background:var(--good-soft); color:var(--good)}
+.chip.down{background:var(--warn-soft); color:var(--warn)}
+.kpi .prev{display:block; color:var(--label-2); font-size:.8125rem; margin-top:6px}
+.two{grid-template-columns:5fr 7fr} .two-b{grid-template-columns:7fr 5fr} .card{min-width:0}
+.load-main{display:flex; align-items:center; gap:14px; margin-bottom:6px; flex-wrap:wrap}
+.ratio{font-size:3rem; font-weight:700; line-height:1; letter-spacing:-0.02em}
+.light{display:inline-flex; align-items:center; gap:8px; padding:6px 12px 6px 10px; border-radius:999px; font-weight:600; font-size:.9375rem}
+.light i{width:12px; height:12px; border-radius:50%; background:currentColor; display:block}
+.light.ottimale{background:var(--good-soft); color:var(--good)}
+.light.alto{background:var(--bad-soft); color:var(--bad)}
+.light.basso{background:var(--warn-soft); color:var(--warn)}
+.gauge{margin:18px 0 6px}
+.gauge .track{position:relative; height:12px; border-radius:6px; display:flex; overflow:visible}
+.gauge .z{height:100%}
+.gauge .z1{background:var(--warn); border-radius:6px 0 0 6px; opacity:.55}
+.gauge .z2{background:var(--good); opacity:.75}
+.gauge .z3{background:var(--bad); border-radius:0 6px 6px 0; opacity:.55}
+.gauge .pin{position:absolute; top:-5px; width:6px; height:22px; background:var(--label); border-radius:3px; transform:translateX(-3px); box-shadow:0 0 0 3px var(--surface)}
+.gauge .ticks{display:flex; justify-content:space-between; font-size:.75rem; color:var(--label-2); margin-top:8px; position:relative; height:16px}
+.gauge .ticks span{position:absolute; transform:translateX(-50%)}
+.legend{display:flex; gap:14px; flex-wrap:wrap; font-size:.8125rem; color:var(--label-2); margin-top:12px}
+.legend span{display:inline-flex; align-items:center; gap:6px}
+.legend i{width:10px; height:10px; border-radius:3px; display:block}
+.stats{display:flex; gap:24px; margin-top:16px; padding-top:14px; border-top:1px solid var(--separator); flex-wrap:wrap}
+.stats div{font-size:.8125rem; color:var(--label-2)}
+.stats b{display:block; font-size:1.25rem; color:var(--label); font-weight:600}
+svg{display:block; width:100%; height:auto; overflow:visible}
+svg text{font-family:inherit; fill:var(--label-2); font-size:11px}
+.seg{display:inline-flex; background:var(--surface-2); border-radius:10px; padding:2px; margin-bottom:12px}
+.seg button{font:inherit; font-size:.8125rem; font-weight:500; border:0; background:transparent; color:var(--label); padding:6px 14px; border-radius:8px; cursor:pointer; min-height:32px}
+.seg button[aria-pressed="true"]{background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.18); font-weight:600}
+.seg button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+.wb{grid-template-columns:repeat(4,1fr); gap:12px}
+.ph{display:flex; height:14px; border-radius:7px; overflow:hidden; gap:2px; margin:4px 0 10px}
+.ph i{display:block; height:100%; min-width:3px}
+.phl{display:grid; gap:3px}
+.phl span{display:block}
+.phl i{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px}
+.phl em{font-style:normal; opacity:.9}
+.tile .cmp{font-size:.75rem; color:var(--label-2); line-height:1.35; margin:0 0 8px}
+.tile .cmp b{color:var(--label); font-weight:600}
+.recnotes{margin:14px 0 0; padding:0 0 0 18px; color:var(--label-2); font-size:.875rem; line-height:1.45}
+.recnotes li{margin:2px 0}
+.tile{background:var(--surface-2); border-radius:14px; padding:14px}
+.tile .nm{font-size:.8125rem; color:var(--label-2); font-weight:500}
+.tile .v{font-size:1.5rem; font-weight:700; margin:2px 0 6px}
+.tile .v small{font-size:.8125rem; font-weight:500; color:var(--label-2)}
+.tile svg{height:36px}
+.empty{font-size:.9375rem; color:var(--label-2); margin:14px 0 0; line-height:1.4}
+.list{width:100%; border-collapse:collapse; font-size:.9375rem}
+.list th{text-align:left; font-size:.75rem; font-weight:600; color:var(--label-2); padding:0 10px 8px 0; border-bottom:1px solid var(--separator); white-space:nowrap}
+.list td{padding:11px 10px 11px 0; border-bottom:1px solid var(--separator); vertical-align:middle}
+.list tr:last-child td{border-bottom:0}
+.list .num{text-align:right; white-space:nowrap}
+.list th.num{text-align:right}
+.tag{display:inline-block; font-size:.75rem; font-weight:600; padding:2px 8px; border-radius:6px; background:var(--accent-soft); color:var(--accent); white-space:nowrap}
+.nm2{font-weight:500}
+.notes{margin:0; padding:0; list-style:none; display:grid; gap:12px}
+.notes li{display:flex; gap:12px; font-size:1rem; line-height:1.4}
+.notes .dot{flex:none; width:8px; height:8px; border-radius:50%; background:var(--accent); margin-top:8px}
+footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding:20px 4px 0}
+.vh{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+@media (max-width:980px){ .kpis{grid-template-columns:repeat(2,1fr)} .two,.two-b{grid-template-columns:1fr} .wb{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:560px){
+  .wrap{padding:12px 16px 32px} h1{font-size:1.75rem} .upd{text-align:left}
+  .card{padding:18px 16px} .kpi .val{font-size:1.75rem} .ratio{font-size:2.5rem}
+  .col-hide{display:none}
+}
+@media (prefers-reduced-motion: no-preference){
+  .pin{transition:left .4s ease} .bar{transition:opacity .15s}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Il tuo Garmin</h1>
+      <p class="sub" id="sub"></p>
+    </div>
+    <div class="upd" id="upd"></div>
+  </header>
+
+  <div class="notice" id="notice" role="note"><span class="ic" aria-hidden="true">!</span><div id="noticeTxt"></div></div>
+
+  <section class="grid kpis" id="kpis" aria-label="Ultimi 7 giorni"></section>
+
+  <section class="grid two">
+    <article class="card" id="loadCard" aria-labelledby="loadT"></article>
+    <article class="card" aria-labelledby="weekT">
+      <h2 id="weekT">Volume settimanale</h2>
+      <p class="lead" id="weekLead"></p>
+      <div class="seg" role="group" aria-label="Metrica del grafico">
+        <button type="button" data-m="km" aria-pressed="true">Chilometri</button>
+        <button type="button" data-m="dislivello_m" aria-pressed="false">Dislivello</button>
+        <button type="button" data-m="ore" aria-pressed="false">Ore</button>
+      </div>
+      <div id="weekChart"></div>
+    </article>
+  </section>
+
+  <section class="card" style="margin-bottom:var(--gap)" aria-labelledby="recT">
+    <h2 id="recT">Recupero</h2>
+    <p class="lead" id="recLead"></p>
+    <div class="grid wb" id="wb" style="margin-bottom:0"></div>
+    <p class="empty" id="recEmpty"></p>
+    <ul class="recnotes" id="recNotes"></ul>
+  </section>
+
+  <section class="grid two two-b">
+    <article class="card" aria-labelledby="actT">
+      <h2 id="actT">Ultime 10 attività</h2>
+      <p class="lead" id="actLead"></p>
+      <div style="overflow-x:auto">
+      <table class="list" id="act">
+        <thead><tr><th scope="col">Data</th><th scope="col">Attività</th><th scope="col" class="num">Km</th><th scope="col" class="num">Durata</th><th scope="col" class="num col-hide">D+ (m)</th><th scope="col" class="num col-hide">FC media</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      </div>
+    </article>
+    <article class="card" aria-labelledby="noteT">
+      <h2 id="noteT">Cosa notare</h2>
+      <p class="lead" id="noteLead">Osservazioni descrittive sui dati disponibili.</p>
+      <ul class="notes" id="notes"></ul>
+    </article>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+const D = /*DATA*/null;
+const MESI=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+const TIPI={hiit:'HIIT',indoor_cycling:'Bici indoor',gravel_cycling:'Gravel',hiking:'Escursione',running:'Corsa',multi_sport:'Multisport',cycling:'Bici',trail_running:'Trail running',walking:'Camminata',road_biking:'Bici su strada',lap_swimming:'Nuoto in vasca'};
+const $=s=>document.querySelector(s);
+const nf=(v,d=0)=>v==null?'n.d.':Number(v).toLocaleString('it-IT',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtD=iso=>{const [y,m,d]=iso.slice(0,10).split('-');return `${+d} ${MESI[+m-1]} ${y}`};
+const fmtS=iso=>{const [y,m,d]=iso.slice(0,10).split('-');return `${+d} ${MESI[+m-1]}`};
+const fmtDur=min=>{const h=Math.floor(min/60),m=Math.round(min%60);return h?`${h} h ${String(m).padStart(2,'0')} min`:`${m} min`};
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a={},txt)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e};
+
+const ref=D.data_riferimento, gen=D.generato_il;
+$('#sub').textContent=`Allenamento e recupero, ${D.attivita_totali} attività dal ${fmtD(D.intervallo_attivita[0])} al ${fmtD(D.intervallo_attivita[1])}`;
+$('#upd').innerHTML=`Pagina generata il <b>${fmtD(gen)}</b><br>Ultimo dato Garmin: <b>${fmtD(ref)}</b>`;
+if(D.dati_aggiornati){$('#notice').remove()}else{
+  $('#noticeTxt').innerHTML=`<strong>Dati fermi al ${fmtD(ref)}.</strong> ${D.avviso_dati?D.avviso_dati:"Le finestre di 7 e 30 giorni sono calcolate a ritroso dall'ultimo giorno con dati, non da oggi."}`;
+}
+
+/* KPI */
+(function(){
+  const k=D.kpi['7g'], c=k.corrente, p=k.precedente, v=k.variazione_pct;
+  const [a,b]=k.periodo;
+  const items=[
+    {nm:'Distanza',val:nf(c.km,1),u:'km',pv:p.km,pf:nf(p.km,1)+' km',pct:v.km,dec:1},
+    {nm:'Dislivello positivo',val:nf(c.dislivello_m),u:'m',pv:p.dislivello_m,pf:nf(p.dislivello_m)+' m',pct:v.dislivello_m,warn:true},
+    {nm:'Tempo in movimento',val:nf(c.ore,1),u:'ore',pv:p.ore,pf:nf(p.ore,1)+' ore',pct:v.ore},
+    {nm:'Uscite',val:nf(c.uscite),u:'',pv:p.uscite,pf:nf(p.uscite)+'',pct:v.uscite}
+  ];
+  const box=$('#kpis');
+  items.forEach(it=>{
+    let chip;
+    if(it.pct==null){chip=`<span class="chip">Nuovo dato</span>`}
+    else if(it.pct>0.05){chip=`<span class="chip up"><span aria-hidden="true">▲</span> +${nf(it.pct,0)}%</span>`}
+    else if(it.pct<-0.05){chip=`<span class="chip down"><span aria-hidden="true">▼</span> ${nf(it.pct,0)}%</span>`}
+    else chip=`<span class="chip">Invariato</span>`;
+    const a11y=it.pct==null?'nessun confronto possibile':(it.pct>0?'in aumento':'in calo');
+    const s=document.createElement('article');s.className='card kpi';
+    s.innerHTML=`<div class="eyebrow">${it.nm}</div><div class="val">${it.val}<small>${it.u}</small></div>${chip}<span class="vh"> ${a11y}</span><span class="prev">Settimana prima: ${it.pf}</span>`;
+    box.appendChild(s);
+  });
+  box.setAttribute('aria-label',`Ultimi 7 giorni, dal ${fmtS(a)} al ${fmtS(b)}`);
+})();
+
+/* Carico */
+(function(){
+  const c=D.carico, r=c.rapporto, sem=c.semaforo;
+  const etic={ottimale:'Ottimale',alto:'Alto',basso:'Basso'}[sem]||sem;
+  const max=2, pct=Math.min(r,max)/max*100;
+  const s=D.carico.serie;
+  let peak=s.reduce((m,x)=>x.rapporto>m.rapporto?x:m,s[0]);
+  const card=$('#loadCard');
+  const concl={ottimale:'Carico recente in linea con quello abituale',alto:'Carico recente più alto del solito',basso:'Carico recente più basso del solito'}[sem];
+  card.innerHTML=`
+    <h2 id="loadT">Carico acuto e cronico</h2>
+    <p class="lead">${concl}</p>
+    <div class="load-main"><div class="ratio">${nf(r,2)}</div><span class="light ${sem}"><i aria-hidden="true"></i>${etic}</span></div>
+    <div class="gauge" role="img" aria-label="Rapporto ${nf(r,2)} su scala da 0 a 2. Zona ottimale tra 0,8 e 1,3. Stato: ${etic}.">
+      <div class="track"><div class="z z1" style="width:40%"></div><div class="z z2" style="width:25%"></div><div class="z z3" style="width:35%"></div><div class="pin" style="left:${pct}%"></div></div>
+      <div class="ticks"><span style="left:0%;transform:none">0</span><span style="left:40%">0,8</span><span style="left:65%">1,3</span><span style="left:100%;transform:translateX(-100%)">2+</span></div>
+    </div>
+    <div class="legend"><span><i style="background:var(--warn);opacity:.7"></i>Basso &lt; 0,8</span><span><i style="background:var(--good)"></i>Ottimale 0,8 a 1,3</span><span><i style="background:var(--bad);opacity:.7"></i>Alto &gt; 1,3</span></div>
+    <div class="stats"><div><b>${nf(c.acuto_min_die,0)} min</b>acuto, media 7 giorni</div><div><b>${nf(c.cronico_min_die,0)} min</b>cronico, media 28 giorni</div></div>
+    <div style="margin-top:16px"><div class="eyebrow" style="margin-bottom:6px">Rapporto negli ultimi ${s.length} giorni</div><div id="ratioChart"></div></div>
+    <p class="eyebrow" style="margin:10px 0 0">Picco ${nf(peak.rapporto,2)} il ${fmtS(peak.data)}. Indicazione orientativa, calcolata sui minuti di allenamento.</p>`;
+  const W=420,H=110,L=26,R=6,T=8,B=18, iw=W-L-R, ih=H-T-B, ymax=Math.max(2.2,Math.ceil(peak.rapporto*2)/2);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':`Andamento del rapporto acuto cronico dal ${fmtS(s[0].data)} al ${fmtS(s[s.length-1].data)}. Ultimo valore ${nf(r,2)}, picco ${nf(peak.rapporto,2)}.`});
+  const y=v=>T+ih-(v/ymax)*ih, x=i=>L+i/(s.length-1)*iw;
+  svg.appendChild(el('rect',{x:L,y:y(1.3),width:iw,height:y(0.8)-y(1.3),fill:'var(--good)',opacity:.16}));
+  [0,1,2].forEach(g=>{svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(g),y2:y(g),stroke:'var(--grid)','stroke-width':1}));svg.appendChild(el('text',{x:L-6,y:y(g)+4,'text-anchor':'end'},g))});
+  svg.appendChild(el('path',{d:s.map((p,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(p.rapporto).toFixed(1)).join(''),fill:'none',stroke:'var(--accent)','stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
+  const li=s.length-1;
+  svg.appendChild(el('circle',{cx:x(li),cy:y(s[li].rapporto),r:4,fill:'var(--accent)',stroke:'var(--surface)','stroke-width':2}));
+  const pi=s.indexOf(peak);
+  svg.appendChild(el('circle',{cx:x(pi),cy:y(peak.rapporto),r:3.5,fill:'var(--surface)',stroke:'var(--bad)','stroke-width':2}));
+  svg.appendChild(el('text',{x:x(0),y:H-2},fmtS(s[0].data)));
+  svg.appendChild(el('text',{x:W-R,y:H-2,'text-anchor':'end'},fmtS(s[li].data)));
+  $('#ratioChart').appendChild(svg);
+})();
+
+/* Grafico settimanale */
+(function(){
+  const S=D.settimane;
+  const cfg={km:{u:'km',t:'Chilometri a settimana',d:1},dislivello_m:{u:'m',t:'Dislivello positivo a settimana',d:0},ore:{u:'ore',t:'Ore a settimana',d:1}};
+  function draw(m){
+    const box=$('#weekChart');box.innerHTML='';
+    const vals=S.map(x=>x[m]||0), mx=Math.max(...vals), tot=vals.reduce((a,b)=>a+b,0);
+    const act=S.filter(x=>x[m]>0);
+    const best=S.reduce((b,x)=>x[m]>b[m]?x:b,S[0]);
+    const avgAct=act.length?tot/act.length:0;
+    $('#weekLead').textContent=`${nf(tot,cfg[m].d)} ${cfg[m].u} in ${S.length} settimane. Settimana più alta: ${nf(best[m],cfg[m].d)} ${cfg[m].u}, dal ${fmtS(best.settimana)}.`;
+    const W=640,H=250,L=40,R=8,T=14,B=26, iw=W-L-R, ih=H-T-B;
+    const step=m==='dislivello_m'?(mx>1500?500:250):(mx>40?10:(mx>12?5:2));
+    const top=Math.max(step,Math.ceil(mx/step)*step);
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':`${cfg[m].t}, ultime ${S.length} settimane. Totale ${nf(tot,cfg[m].d)} ${cfg[m].u}. Massimo ${nf(best[m],cfg[m].d)} ${cfg[m].u} nella settimana del ${fmtS(best.settimana)}.`});
+    const y=v=>T+ih-(v/top)*ih, bw=iw/S.length;
+    for(let g=0;g<=top;g+=step){svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(g),y2:y(g),stroke:'var(--grid)','stroke-width':1}));svg.appendChild(el('text',{x:L-8,y:y(g)+4,'text-anchor':'end'},nf(g)))}
+    S.forEach((w,i)=>{
+      const v=w[m]||0, h=(v/top)*ih, x=L+i*bw+bw*0.18, ww=bw*0.64;
+      const isLast=i===S.length-1;
+      const r=el('rect',{x,y:T+ih-Math.max(h,v>0?2:0),width:ww,height:Math.max(h,v>0?2:0),rx:3,fill:isLast?'var(--bar-2)':'var(--bar)',class:'bar'});
+      const t=el('title',{},`Settimana dal ${fmtS(w.settimana)}: ${nf(v,cfg[m].d)} ${cfg[m].u}, ${w.uscite} uscite`);
+      r.appendChild(t);svg.appendChild(r);
+      if(!v){svg.appendChild(el('rect',{x,y:T+ih-2,width:ww,height:2,rx:1,fill:'var(--separator)'}))}
+    });
+    if(mx>0){const bi=S.indexOf(best);const bx=L+bi*bw+bw/2;
+      svg.appendChild(el('text',{x:Math.min(bx,W-R-20),y:y(best[m])-6,'text-anchor':'middle',style:'fill:var(--label);font-weight:600'},nf(best[m],cfg[m].d)))}
+    S.forEach((w,i)=>{ if(i%5===0||i===S.length-1){ if(i===S.length-1&&(S.length-1)%5<2&&(S.length-1)%5!==0)return; svg.appendChild(el('text',{x:L+i*bw+bw/2,y:H-6,'text-anchor':'middle'},fmtS(w.settimana)))}});
+    box.appendChild(svg);
+    const cap=document.createElement('p');cap.className='eyebrow';cap.style.margin='8px 0 0';
+    cap.textContent=`Ogni barra è una settimana da lunedì a domenica. L'ultima barra, in viola, è la settimana dal ${fmtS(S[S.length-1].settimana)}. ${m==='dislivello_m'?'Il dislivello manca in molte attività: il totale può essere sottostimato.':''}`;
+    box.appendChild(cap);
+    const det=document.createElement('details');det.style.marginTop='8px';
+    det.innerHTML=`<summary class="eyebrow" style="cursor:pointer">Mostra i valori in tabella</summary>`;
+    const tb=document.createElement('table');tb.className='list';tb.innerHTML=`<thead><tr><th>Settimana dal</th><th class="num">${cfg[m].u}</th><th class="num">Uscite</th></tr></thead><tbody>`+S.filter(x=>x[m]>0||x.uscite>0).map(x=>`<tr><td>${fmtS(x.settimana)}</td><td class="num">${nf(x[m],cfg[m].d)}</td><td class="num">${x.uscite}</td></tr>`).join('')+'</tbody>';
+    det.appendChild(tb);box.appendChild(det);
+  }
+  document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw(b.dataset.m)}));
+  draw('km');
+})();
+
+/* Recupero */
+(function(){
+  const B=D.benessere, defs=[
+    {k:'sonno_ore',nm:B.sonno_stimato?'Sonno (stimato)':'Sonno',u:'ore',d:1,sk:'sonno_ore'},
+    {k:'sonno_punteggio',nm:'Punteggio del sonno',u:'su 100',d:0,sk:'sonno_punteggio'},
+    {k:'fasi'},
+    {k:'fc_riposo',nm:'Battito a riposo',u:'bpm',d:0,sk:'fc_riposo'},
+    {k:'spo2',nm:'SpO2 media',u:'%',d:0,sk:'spo2'},
+    {k:'hrv',nm:'HRV notturna',u:'ms',d:0,sk:'hrv'},
+    {k:'stress',nm:'Stress medio',u:'su 100',d:0,sk:'stress'},
+    {k:'body_battery_max',nm:'Body Battery',u:'max',d:0,sk:'body_battery_max'}];
+  $('#recLead').textContent=B.disponibile?'Ultimo valore, media a 7 giorni e confronto con le 4 settimane precedenti. Linea: ultimi 30 giorni':'Sonno, HRV, stress e Body Battery';
+  const box=$('#wb');
+  defs.forEach(df=>{
+    const t=document.createElement('div');t.className='tile';
+    if(df.k==='fasi'){
+      const F=B.fasi_sonno;
+      if(F){
+        const u=F.ultima_notte_min, tot=u.profondo+u.rem+u.leggero+u.sveglio, m7=F.media_7gg_min;
+        const ph=[['profondo','Profondo','var(--accent)'],['rem','REM','var(--bar-2)'],['leggero','Leggero','var(--separator)'],['sveglio','Sveglio','var(--warn)']];
+        t.innerHTML=`<div class="nm">Fasi del sonno, ultima notte</div><div class="v">${fmtDur(u.profondo+u.rem+u.leggero)} <small>dormito</small></div>`+
+          `<div class="ph" role="img" aria-label="${ph.map(p=>p[1]+' '+fmtDur(u[p[0]])).join(', ')}">${ph.map(p=>`<i style="width:${(u[p[0]]/tot*100).toFixed(1)}%;background:${p[2]}"></i>`).join('')}</div>`+
+          `<div class="cmp phl">${ph.map(p=>`<span><i style="background:${p[2]}"></i>${p[1]} <b>${fmtDur(u[p[0]])}</b>${m7?` <em>(media 7 g: ${fmtDur(m7[p[0]])})</em>`:''}</span>`).join('')}</div>`;
+      }else{
+        t.innerHTML=`<div class="nm">Fasi del sonno</div><div class="v" style="color:var(--label-2)">n.d.</div><div class="cmp">Nessun dato recente</div>`;
+      }
+      box.appendChild(t);return;
+    }
+    const s=(B.serie[df.k]||[]);
+    if(s.length){
+      const last=s[s.length-1], avg=last.media_7gg;
+      t.innerHTML=`<div class="nm">${df.nm}</div><div class="v">${nf(last.valore,df.d)} <small>${df.u}</small></div><div class="cmp">Media 7 giorni: <b>${nf(avg,df.d)}</b>${B.sintesi&&B.sintesi[df.sk]?`<br>4 settimane prima: ${nf(B.sintesi[df.sk].media_28gg_prec,df.d)}`:''}</div>`;
+      const W=200,H=36,vs=s.map(x=>x.valore),mn=Math.min(...vs),mx=Math.max(...vs)||1,rg=(mx-mn)||1;
+      const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':`${df.nm}, andamento recente, ultimo valore ${nf(last.valore,df.d)} ${df.u}`,preserveAspectRatio:'none'});
+      svg.appendChild(el('path',{d:vs.map((v,i)=>(i?'L':'M')+(i/(vs.length-1||1)*W).toFixed(1)+' '+(H-3-(v-mn)/rg*(H-6)).toFixed(1)).join(''),fill:'none',stroke:'var(--accent)','stroke-width':2,'vector-effect':'non-scaling-stroke'}));
+      t.appendChild(svg);
+    }else{
+      t.innerHTML=`<div class="nm">${df.nm}</div><div class="v" style="color:var(--label-2)">n.d. <small>${df.u}</small></div><div class="cmp">Nessun dato recente<br>&nbsp;</div>`;
+      const svg=el('svg',{viewBox:'0 0 200 36',role:'img','aria-label':`${df.nm}: dati non disponibili`});
+      svg.appendChild(el('line',{x1:0,x2:200,y1:18,y2:18,stroke:'var(--separator)','stroke-width':2,'stroke-dasharray':'4 5','stroke-linecap':'round'}));
+      t.appendChild(svg);
+    }
+    box.appendChild(t);
+  });
+  $('#recEmpty').textContent=B.disponibile?'':'Dati non disponibili. Gli indicatori di recupero non sono stati scaricati.';
+  (B.note||[]).forEach(n=>{const li=document.createElement('li');li.textContent=n;$('#recNotes').appendChild(li)});
+})();
+
+/* Attivita */
+(function(){
+  const A=D.ultime_attivita, tb=$('#act tbody');
+  $('#actLead').textContent=`Dal ${fmtS(A[A.length-1].data)} al ${fmtS(A[0].data)}`;
+  A.forEach(a=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${fmtS(a.data)}<div class="eyebrow">${a.data.slice(11)}</div></td>
+      <td><div class="nm2">${a.nome}</div><span class="tag">${TIPI[a.tipo]||a.tipo}</span></td>
+      <td class="num">${a.distanza_km>0?nf(a.distanza_km,1):'-'}</td>
+      <td class="num">${fmtDur(a.durata_min)}</td>
+      <td class="num col-hide">${a.dislivello_m==null?'n.d.':nf(a.dislivello_m)}</td>
+      <td class="num col-hide">${a.fc_media==null?'n.d.':nf(a.fc_media)}</td>`;
+    tb.appendChild(tr);
+  });
+})();
+
+/* Osservazioni */
+(function(){
+  const ul=$('#notes');
+  $('#noteLead').textContent=(D.osservazioni.length===4?'Quattro':D.osservazioni.length)+' osservazioni descrittive sui dati disponibili.';
+  D.osservazioni.forEach(t=>{const li=document.createElement('li');li.innerHTML='<span class="dot" aria-hidden="true"></span><span></span>';li.lastChild.textContent=t;ul.appendChild(li)});
+})();
+
+$('#foot').innerHTML=`Dati Garmin Connect, aggiornati al ${fmtD(ref)}. Le soglie sono indicative e non costituiscono consiglio medico.<br>${D.dati_aggiornati?'':'Fonte: copia locale delle attività, non una lettura in tempo reale. '}${D.nota_footer||''}`;
+</script>
+</body>
+</html>

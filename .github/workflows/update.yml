@@ -20,7 +20,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     env:
       TZ: Europe/Rome
       GARMIN_PERSONAL_KEY: ${{ secrets.GARMIN_PERSONAL_KEY }}
@@ -38,6 +38,11 @@ jobs:
 
       - name: Scarica attivita
         run: python scripts/fetch_activities.py
+
+      - name: Scarica tracce GPS
+        continue-on-error: true
+        timeout-minutes: 15
+        run: python scripts/fetch_tracks.py
 
       - name: Scarica benessere
         run: python scripts/fetch_wellness.py

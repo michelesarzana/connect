@@ -1,0 +1,61 @@
+name: Aggiorna dashboard Garmin
+
+on:
+  schedule:
+    - cron: '30 5 * * *'   # ogni giorno alle 05:30 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/update.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aggiorna-dashboard
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: Europe/Rome
+      GARMIN_PERSONAL_KEY: ${{ secrets.GARMIN_PERSONAL_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Installa dipendenze
+        run: pip install pandas requests
+
+      - name: Scarica attivita
+        run: python scripts/fetch_activities.py
+
+      - name: Scarica benessere
+        run: python scripts/fetch_wellness.py
+
+      - name: Calcola metriche
+        run: python scripts/compute_metrics.py
+
+      - name: Costruisci dashboard
+        run: python scripts/build_dashboard.py
+
+      - name: Commit e push se cambiato
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html docs/data
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica da pubblicare"
+          else
+            git commit -m "Aggiorna dashboard $(date +%Y-%m-%d)"
+            git push
+          fi

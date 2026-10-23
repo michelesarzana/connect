@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-10-23",
- "generato_alle": "00:24",
+ "generato_alle": "03:35",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2488,6 +2488,11 @@
      "data": "2026-10-22",
      "valore": 40.0,
      "media_7gg": 40.29
+    },
+    {
+     "data": "2026-10-23",
+     "valore": 43.0,
+     "media_7gg": 40.86
     }
    ],
    "body_battery_max": [
@@ -2635,6 +2640,11 @@
      "data": "2026-10-22",
      "valore": 100.0,
      "media_7gg": 96.0
+    },
+    {
+     "data": "2026-10-23",
+     "valore": 55.0,
+     "media_7gg": 90.43
     }
    ],
    "body_battery_min": [
@@ -2780,8 +2790,13 @@
     },
     {
      "data": "2026-10-22",
-     "valore": 38.0,
-     "media_7gg": 29.14
+     "valore": 35.0,
+     "media_7gg": 28.71
+    },
+    {
+     "data": "2026-10-23",
+     "valore": 44.0,
+     "media_7gg": 32.71
     }
    ],
    "stress": [
@@ -2927,8 +2942,13 @@
     },
     {
      "data": "2026-10-22",
-     "valore": 24.0,
-     "media_7gg": 22.14
+     "valore": 23.0,
+     "media_7gg": 22.0
+    },
+    {
+     "data": "2026-10-23",
+     "valore": 10.0,
+     "media_7gg": 19.43
     }
    ],
    "passi": [
@@ -3074,8 +3094,8 @@
     },
     {
      "data": "2026-10-22",
-     "valore": 15813.0,
-     "media_7gg": 13705.71
+     "valore": 16025.0,
+     "media_7gg": 13736.0
     }
    ],
    "peso_kg": [
@@ -3283,8 +3303,13 @@
     },
     {
      "data": "2026-10-22",
-     "valore": 95.0,
-     "media_7gg": 94.29
+     "valore": 96.0,
+     "media_7gg": 94.43
+    },
+    {
+     "data": "2026-10-23",
+     "valore": 98.0,
+     "media_7gg": 95.14
     }
    ],
    "sonno_profondo_min": [
@@ -3912,17 +3937,17 @@
     "giorni_7gg": 6
    },
    "stress": {
-    "media_7gg": 21.17,
+    "media_7gg": 19.43,
     "media_28gg_prec": 27.64,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "body_battery_max": {
-    "media_7gg": 96.33,
+    "media_7gg": 90.43,
     "media_28gg_prec": 84.75,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 12822.0,
+    "media_7gg": 12857.33,
     "media_28gg_prec": 15455.64,
     "giorni_7gg": 6
    },
@@ -3932,14 +3957,14 @@
     "giorni_7gg": 6
    },
    "fc_riposo": {
-    "media_7gg": 40.5,
+    "media_7gg": 40.86,
     "media_28gg_prec": 41.82,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "spo2": {
-    "media_7gg": 94.5,
+    "media_7gg": 95.14,
     "media_28gg_prec": 93.89,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    }
   },
   "hrv_stato_30gg": {

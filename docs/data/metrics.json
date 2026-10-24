@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-10-24",
- "generato_alle": "07:52",
+ "generato_alle": "12:58",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2510,8 +2510,8 @@
     },
     {
      "data": "2026-10-24",
-     "valore": 41.0,
-     "media_7gg": 40.86
+     "valore": 40.0,
+     "media_7gg": 40.71
     }
    ],
    "body_battery_max": [
@@ -3118,8 +3118,8 @@
     },
     {
      "data": "2026-10-24",
-     "valore": 37.0,
-     "media_7gg": 11596.29
+     "valore": 259.0,
+     "media_7gg": 11628.0
     }
    ],
    "peso_kg": [
@@ -3991,7 +3991,7 @@
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 11596.29,
+    "media_7gg": 11628.0,
     "media_28gg_prec": 14590.75,
     "giorni_7gg": 7
    },
@@ -4001,7 +4001,7 @@
     "giorni_7gg": 7
    },
    "fc_riposo": {
-    "media_7gg": 40.86,
+    "media_7gg": 40.71,
     "media_28gg_prec": 41.64,
     "giorni_7gg": 7
    },
@@ -4279,7 +4279,7 @@
    "Rispetto agli stessi 30 giorni del 2025: 17,9 ore contro 19,4, −8%."
   ],
   "recupero": [
-   "Rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, HRV e stress; stabile battito a riposo.",
+   "Rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, battito a riposo, HRV e stress.",
    "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 7 agosto.",
    "Dopo i giorni più pesanti (da 119 minuti in su) l'HRV della notte è in media 68 ms, contro 82 negli altri giorni.",
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."

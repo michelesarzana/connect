@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-10-24",
- "generato_alle": "02:41",
+ "generato_alle": "07:52",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2076,6 +2076,11 @@
      "data": "2026-10-23",
      "valore": 7.97,
      "media_7gg": 7.55
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 6.91,
+     "media_7gg": 7.42
     }
    ],
    "sonno_punteggio": [
@@ -2218,6 +2223,11 @@
      "data": "2026-10-23",
      "valore": 83.0,
      "media_7gg": 86.57
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 91.0,
+     "media_7gg": 87.43
     }
    ],
    "hrv": [
@@ -2297,44 +2307,29 @@
      "media_7gg": 80.86
     },
     {
-     "data": "2026-10-10",
-     "valore": 93.0,
-     "media_7gg": 83.0
-    },
-    {
-     "data": "2026-10-11",
-     "valore": 28.0,
-     "media_7gg": 80.14
-    },
-    {
-     "data": "2026-10-12",
-     "valore": 82.0,
-     "media_7gg": 79.57
-    },
-    {
      "data": "2026-10-13",
      "valore": 91.0,
-     "media_7gg": 80.29
+     "media_7gg": 89.75
     },
     {
      "data": "2026-10-15",
      "valore": 87.0,
-     "media_7gg": 77.67
+     "media_7gg": 87.67
     },
     {
      "data": "2026-10-16",
      "valore": 84.0,
-     "media_7gg": 77.5
+     "media_7gg": 87.33
     },
     {
      "data": "2026-10-17",
      "valore": 80.0,
-     "media_7gg": 75.33
+     "media_7gg": 85.5
     },
     {
      "data": "2026-10-18",
      "valore": 78.0,
-     "media_7gg": 83.67
+     "media_7gg": 84.0
     },
     {
      "data": "2026-10-19",
@@ -2360,6 +2355,11 @@
      "data": "2026-10-23",
      "valore": 88.0,
      "media_7gg": 82.86
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 89.0,
+     "media_7gg": 84.14
     }
    ],
    "fc_riposo": [
@@ -2507,6 +2507,11 @@
      "data": "2026-10-23",
      "valore": 41.0,
      "media_7gg": 40.57
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 41.0,
+     "media_7gg": 40.86
     }
    ],
    "body_battery_max": [
@@ -2654,6 +2659,11 @@
      "data": "2026-10-23",
      "valore": 100.0,
      "media_7gg": 96.86
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 100.0,
+     "media_7gg": 98.86
     }
    ],
    "body_battery_min": [
@@ -2801,6 +2811,11 @@
      "data": "2026-10-23",
      "valore": 38.0,
      "media_7gg": 31.86
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 43.0,
+     "media_7gg": 35.29
     }
    ],
    "stress": [
@@ -2948,6 +2963,11 @@
      "data": "2026-10-23",
      "valore": 20.0,
      "media_7gg": 20.86
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 9.0,
+     "media_7gg": 19.57
     }
    ],
    "passi": [
@@ -3095,6 +3115,11 @@
      "data": "2026-10-23",
      "valore": 11949.0,
      "media_7gg": 12727.57
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 37.0,
+     "media_7gg": 11596.29
     }
    ],
    "peso_kg": [
@@ -3304,6 +3329,11 @@
      "data": "2026-10-23",
      "valore": 96.0,
      "media_7gg": 94.86
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 96.0,
+     "media_7gg": 95.14
     }
    ],
    "sonno_profondo_min": [
@@ -3446,6 +3476,11 @@
      "data": "2026-10-23",
      "valore": 110.0,
      "media_7gg": 85.0
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 97.0,
+     "media_7gg": 91.57
     }
    ],
    "sonno_rem_min": [
@@ -3588,6 +3623,11 @@
      "data": "2026-10-23",
      "valore": 117.0,
      "media_7gg": 107.14
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 88.0,
+     "media_7gg": 106.71
     }
    ],
    "sonno_leggero_min": [
@@ -3730,6 +3770,11 @@
      "data": "2026-10-23",
      "valore": 251.0,
      "media_7gg": 260.57
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 230.0,
+     "media_7gg": 247.14
     }
    ],
    "sonno_sveglio_min": [
@@ -3872,6 +3917,11 @@
      "data": "2026-10-23",
      "valore": 43.0,
      "media_7gg": 12.43
+    },
+    {
+     "data": "2026-10-24",
+     "valore": 7.0,
+     "media_7gg": 12.71
     }
    ]
   },
@@ -3904,65 +3954,65 @@
    "L'ultimo giorno è parziale: passi, stress e Body Battery sono quelli accumulati finora. Il sonno è quello della notte appena conclusa."
   ],
   "fasi_sonno": {
-   "data": "2026-10-23",
+   "data": "2026-10-24",
    "ultima_notte_min": {
-    "profondo": 110.0,
-    "rem": 117.0,
-    "leggero": 251.0,
-    "sveglio": 43.0
+    "profondo": 97.0,
+    "rem": 88.0,
+    "leggero": 230.0,
+    "sveglio": 7.0
    },
    "media_7gg_min": {
-    "profondo": 91.0,
-    "rem": 110.0,
-    "leggero": 250.0,
-    "sveglio": 14.0
+    "profondo": 92.0,
+    "rem": 107.0,
+    "leggero": 247.0,
+    "sveglio": 13.0
    },
-   "giorni_7gg": 6
+   "giorni_7gg": 7
   },
   "sintesi": {
    "sonno_ore": {
-    "media_7gg": 7.51,
+    "media_7gg": 7.42,
     "media_28gg_prec": 7.03,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "hrv": {
-    "media_7gg": 83.33,
-    "media_28gg_prec": 79.81,
-    "giorni_7gg": 6
+    "media_7gg": 84.14,
+    "media_28gg_prec": 81.33,
+    "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 21.33,
+    "media_7gg": 19.57,
     "media_28gg_prec": 26.82,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "body_battery_max": {
-    "media_7gg": 98.67,
+    "media_7gg": 98.86,
     "media_28gg_prec": 84.93,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 13522.83,
+    "media_7gg": 11596.29,
     "media_28gg_prec": 14590.75,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "sonno_punteggio": {
-    "media_7gg": 86.83,
+    "media_7gg": 87.43,
     "media_28gg_prec": 78.96,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "fc_riposo": {
-    "media_7gg": 40.83,
+    "media_7gg": 40.86,
     "media_28gg_prec": 41.64,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "spo2": {
-    "media_7gg": 95.0,
+    "media_7gg": 95.14,
     "media_28gg_prec": 94.0,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 29
+   "BALANCED": 27
   }
  },
  "ultime_attivita": [
@@ -4231,7 +4281,7 @@
   "recupero": [
    "Rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, HRV e stress; stabile battito a riposo.",
    "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 7 agosto.",
-   "Dopo i giorni più pesanti (da 119 minuti in su) l'HRV della notte è in media 68 ms, contro 81 negli altri giorni.",
+   "Dopo i giorni più pesanti (da 119 minuti in su) l'HRV della notte è in media 68 ms, contro 82 negli altri giorni.",
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],
   "proiezioni": [

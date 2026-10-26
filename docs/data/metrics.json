@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-10-26",
- "generato_alle": "07:12",
+ "generato_alle": "13:59",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2306,19 +2306,24 @@
      "media_7gg": 83.0
     },
     {
+     "data": "2026-10-11",
+     "valore": 28.0,
+     "media_7gg": 80.14
+    },
+    {
      "data": "2026-10-15",
      "valore": 87.0,
-     "media_7gg": 88.33
+     "media_7gg": 73.25
     },
     {
      "data": "2026-10-16",
      "valore": 84.0,
-     "media_7gg": 88.0
+     "media_7gg": 73.0
     },
     {
      "data": "2026-10-17",
      "valore": 80.0,
-     "media_7gg": 83.67
+     "media_7gg": 69.75
     },
     {
      "data": "2026-10-18",
@@ -2970,8 +2975,8 @@
     },
     {
      "data": "2026-10-26",
-     "valore": 9.0,
-     "media_7gg": 19.86
+     "valore": 16.0,
+     "media_7gg": 20.86
     }
    ],
    "passi": [
@@ -3122,8 +3127,8 @@
     },
     {
      "data": "2026-10-26",
-     "valore": 5869.0,
-     "media_7gg": 12811.57
+     "valore": 9876.0,
+     "media_7gg": 13384.0
     }
    ],
    "peso_kg": [
@@ -3981,11 +3986,11 @@
    },
    "hrv": {
     "media_7gg": 81.86,
-    "media_28gg_prec": 82.04,
+    "media_28gg_prec": 79.88,
     "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 19.86,
+    "media_7gg": 20.86,
     "media_28gg_prec": 26.21,
     "giorni_7gg": 7
    },
@@ -3995,7 +4000,7 @@
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 12811.57,
+    "media_7gg": 13384.0,
     "media_28gg_prec": 14488.75,
     "giorni_7gg": 7
    },
@@ -4282,9 +4287,9 @@
    "Rispetto agli stessi 30 giorni del 2025: 19,5 ore contro 19,6, −1%."
   ],
   "recupero": [
-   "Rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, battito a riposo e stress; stabile HRV.",
+   "Rispetto alle 4 settimane prima: meglio sonno, punteggio del sonno, battito a riposo, HRV e stress.",
    "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 7 agosto.",
-   "Dopo i giorni più pesanti (da 116 minuti in su) l'HRV della notte è in media 68 ms, contro 82 negli altri giorni.",
+   "Dopo i giorni più pesanti (da 116 minuti in su) l'HRV della notte è in media 68 ms, contro 81 negli altri giorni.",
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],
   "proiezioni": [

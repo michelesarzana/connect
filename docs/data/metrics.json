@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-10-28",
- "generato_alle": "17:00",
+ "generato_alle": "22:03",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2315,44 +2315,34 @@
      "media_7gg": 80.29
     },
     {
-     "data": "2026-10-15",
-     "valore": 87.0,
-     "media_7gg": 77.67
-    },
-    {
-     "data": "2026-10-16",
-     "valore": 84.0,
-     "media_7gg": 77.5
-    },
-    {
      "data": "2026-10-17",
      "valore": 80.0,
-     "media_7gg": 75.33
+     "media_7gg": 70.25
     },
     {
      "data": "2026-10-18",
      "valore": 78.0,
-     "media_7gg": 83.67
+     "media_7gg": 82.75
     },
     {
      "data": "2026-10-19",
      "valore": 81.0,
-     "media_7gg": 83.5
+     "media_7gg": 82.5
     },
     {
      "data": "2026-10-20",
      "valore": 81.0,
-     "media_7gg": 81.83
+     "media_7gg": 80.0
     },
     {
      "data": "2026-10-21",
      "valore": 87.0,
-     "media_7gg": 82.57
+     "media_7gg": 81.4
     },
     {
      "data": "2026-10-22",
      "valore": 85.0,
-     "media_7gg": 82.29
+     "media_7gg": 82.0
     },
     {
      "data": "2026-10-23",
@@ -2837,8 +2827,8 @@
     },
     {
      "data": "2026-10-28",
-     "valore": 14.0,
-     "media_7gg": 29.43
+     "valore": 5.0,
+     "media_7gg": 28.14
     }
    ],
    "stress": [
@@ -2989,8 +2979,8 @@
     },
     {
      "data": "2026-10-28",
-     "valore": 55.0,
-     "media_7gg": 27.86
+     "valore": 59.0,
+     "media_7gg": 28.43
     }
    ],
    "passi": [
@@ -3141,8 +3131,8 @@
     },
     {
      "data": "2026-10-28",
-     "valore": 12671.0,
-     "media_7gg": 14009.86
+     "valore": 18133.0,
+     "media_7gg": 14790.14
     }
    ],
    "peso_kg": [
@@ -4005,11 +3995,11 @@
    },
    "hrv": {
     "media_7gg": 75.0,
-    "media_28gg_prec": 79.81,
+    "media_28gg_prec": 79.36,
     "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 27.86,
+    "media_7gg": 28.43,
     "media_28gg_prec": 25.93,
     "giorni_7gg": 7
    },
@@ -4019,7 +4009,7 @@
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 14009.86,
+    "media_7gg": 14790.14,
     "media_28gg_prec": 14750.04,
     "giorni_7gg": 7
    },
@@ -4040,7 +4030,7 @@
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 29
+   "BALANCED": 27
   }
  },
  "ultime_attivita": [
@@ -4308,7 +4298,7 @@
   "recupero": [
    "Rispetto alle 4 settimane prima: meglio sonno; peggio HRV e stress; stabili punteggio del sonno e battito a riposo.",
    "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 7 agosto.",
-   "Dopo i giorni più pesanti (da 113 minuti in su) l'HRV della notte è in media 68 ms, contro 81 negli altri giorni.",
+   "Dopo i giorni più pesanti (da 113 minuti in su) l'HRV della notte è in media 66 ms, contro 81 negli altri giorni.",
    "HRV di stanotte 31 ms, sotto la media della settimana (83): vale la pena ascoltare come stai.",
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],

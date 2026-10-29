@@ -1,6 +1,6 @@
 {
- "generato_il": "2026-10-29",
- "generato_alle": "20:42",
+ "generato_il": "2026-10-30",
+ "generato_alle": "00:57",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -1123,11 +1123,11 @@
   ],
   "attuale": 85.4,
   "data_attuale": "2026-10-29",
-  "trend_kg_sett": -0.52,
-  "settimane_al_target": 6.5,
-  "data_stimata": "2026-12-14"
+  "trend_kg_sett": -0.44,
+  "settimane_al_target": 7.8,
+  "data_stimata": "2026-12-24"
  },
- "data_riferimento": "2026-10-29",
+ "data_riferimento": "2026-10-30",
  "ultima_attivita": "2026-10-29",
  "fonte_attivita": "LIVE",
  "dati_aggiornati": true,
@@ -1140,58 +1140,58 @@
  "kpi": {
   "7g": {
    "periodo": [
-    "2026-10-23",
-    "2026-10-29"
+    "2026-10-24",
+    "2026-10-30"
    ],
    "periodo_precedente": [
-    "2026-10-16",
-    "2026-10-22"
+    "2026-10-17",
+    "2026-10-23"
    ],
    "corrente": {
-    "km": 31.9,
-    "dislivello_m": 434.0,
-    "ore": 3.41,
-    "uscite": 5,
-    "passo_corsa_min_km": 5.77,
-    "uscite_corsa": 4
+    "km": 25.6,
+    "dislivello_m": 423.0,
+    "ore": 2.82,
+    "uscite": 4,
+    "passo_corsa_min_km": 5.82,
+    "uscite_corsa": 3
    },
    "precedente": {
-    "km": 33.0,
-    "dislivello_m": 192.0,
-    "ore": 4.85,
-    "uscite": 5,
-    "passo_corsa_min_km": 5.32,
+    "km": 28.3,
+    "dislivello_m": 150.0,
+    "ore": 4.08,
+    "uscite": 4,
+    "passo_corsa_min_km": 5.36,
     "uscite_corsa": 3
    },
    "variazione_pct": {
-    "km": -3.3,
-    "dislivello_m": 126.0,
-    "ore": -29.7,
+    "km": -9.5,
+    "dislivello_m": 182.0,
+    "ore": -30.9,
     "uscite": 0.0,
-    "passo_corsa_min_km": 8.5
+    "passo_corsa_min_km": 8.6
    }
   },
   "30g": {
    "periodo": [
-    "2026-09-30",
-    "2026-10-29"
+    "2026-10-01",
+    "2026-10-30"
    ],
    "periodo_precedente": [
-    "2026-08-31",
-    "2026-09-29"
+    "2026-09-01",
+    "2026-09-30"
    ],
    "corrente": {
     "km": 124.9,
     "dislivello_m": 964.0,
-    "ore": 18.9,
-    "uscite": 26,
+    "ore": 18.57,
+    "uscite": 25,
     "passo_corsa_min_km": 5.54,
     "uscite_corsa": 14
    },
    "precedente": {
     "km": 84.5,
     "dislivello_m": 1144.0,
-    "ore": 15.4,
+    "ore": 15.48,
     "uscite": 25,
     "passo_corsa_min_km": 5.76,
     "uscite_corsa": 11
@@ -1199,8 +1199,8 @@
    "variazione_pct": {
     "km": 47.8,
     "dislivello_m": -15.7,
-    "ore": 22.7,
-    "uscite": 4.0,
+    "ore": 20.0,
+    "uscite": 0.0,
     "passo_corsa_min_km": -3.8
    }
   }
@@ -1391,10 +1391,10 @@
  ],
  "carico": {
   "unita": "minuti di allenamento al giorno (media 7 gg / media 28 gg)",
-  "data_riferimento": "2026-10-29",
-  "acuto_min_die": 29.2,
-  "cronico_min_die": 39.8,
-  "rapporto": 0.73,
+  "data_riferimento": "2026-10-30",
+  "acuto_min_die": 24.2,
+  "cronico_min_die": 38.3,
+  "rapporto": 0.63,
   "semaforo": "basso",
   "soglie": {
    "basso": "<0.8",
@@ -1403,12 +1403,6 @@
   },
   "nota": "Indicazione orientativa, non un parere medico o di allenamento.",
   "serie": [
-   {
-    "data": "2026-08-01",
-    "acuto_min_die": 3.3,
-    "cronico_min_die": 22.2,
-    "rapporto": 0.15
-   },
    {
     "data": "2026-08-02",
     "acuto_min_die": 13.8,
@@ -1942,6 +1936,12 @@
     "acuto_min_die": 29.2,
     "cronico_min_die": 39.8,
     "rapporto": 0.73
+   },
+   {
+    "data": "2026-10-30",
+    "acuto_min_die": 24.2,
+    "cronico_min_die": 38.3,
+    "rapporto": 0.63
    }
   ]
  },
@@ -1949,11 +1949,6 @@
   "disponibile": true,
   "serie": {
    "sonno_ore": [
-    {
-     "data": "2026-09-30",
-     "valore": 8.07,
-     "media_7gg": 7.08
-    },
     {
      "data": "2026-10-01",
      "valore": 5.62,
@@ -2097,11 +2092,6 @@
    ],
    "sonno_punteggio": [
     {
-     "data": "2026-09-30",
-     "valore": 97.0,
-     "media_7gg": 76.57
-    },
-    {
      "data": "2026-10-01",
      "valore": 71.0,
      "media_7gg": 75.71
@@ -2244,11 +2234,6 @@
    ],
    "hrv": [
     {
-     "data": "2026-09-30",
-     "valore": 92.0,
-     "media_7gg": 77.43
-    },
-    {
      "data": "2026-10-01",
      "valore": 88.0,
      "media_7gg": 77.57
@@ -2319,49 +2304,34 @@
      "media_7gg": 77.67
     },
     {
-     "data": "2026-10-16",
-     "valore": 84.0,
-     "media_7gg": 77.5
-    },
-    {
-     "data": "2026-10-17",
-     "valore": 80.0,
-     "media_7gg": 75.33
-    },
-    {
-     "data": "2026-10-18",
-     "valore": 78.0,
-     "media_7gg": 83.67
-    },
-    {
      "data": "2026-10-19",
      "valore": 81.0,
-     "media_7gg": 83.5
+     "media_7gg": 86.33
     },
     {
      "data": "2026-10-20",
      "valore": 81.0,
-     "media_7gg": 81.83
+     "media_7gg": 83.0
     },
     {
      "data": "2026-10-21",
      "valore": 87.0,
-     "media_7gg": 82.57
+     "media_7gg": 84.0
     },
     {
      "data": "2026-10-22",
      "valore": 85.0,
-     "media_7gg": 82.29
+     "media_7gg": 83.5
     },
     {
      "data": "2026-10-23",
      "valore": 88.0,
-     "media_7gg": 82.86
+     "media_7gg": 84.4
     },
     {
      "data": "2026-10-24",
      "valore": 89.0,
-     "media_7gg": 84.14
+     "media_7gg": 85.17
     },
     {
      "data": "2026-10-25",
@@ -2390,11 +2360,6 @@
     }
    ],
    "fc_riposo": [
-    {
-     "data": "2026-09-30",
-     "valore": 40.0,
-     "media_7gg": 42.0
-    },
     {
      "data": "2026-10-01",
      "valore": 43.0,
@@ -2539,14 +2504,14 @@
      "data": "2026-10-29",
      "valore": 41.0,
      "media_7gg": 40.86
+    },
+    {
+     "data": "2026-10-30",
+     "valore": 45.0,
+     "media_7gg": 41.43
     }
    ],
    "body_battery_max": [
-    {
-     "data": "2026-09-30",
-     "valore": 100.0,
-     "media_7gg": 81.71
-    },
     {
      "data": "2026-10-01",
      "valore": 86.0,
@@ -2691,14 +2656,14 @@
      "data": "2026-10-29",
      "valore": 98.0,
      "media_7gg": 86.0
+    },
+    {
+     "data": "2026-10-30",
+     "valore": 55.0,
+     "media_7gg": 79.57
     }
    ],
    "body_battery_min": [
-    {
-     "data": "2026-09-30",
-     "valore": 23.0,
-     "media_7gg": 16.14
-    },
     {
      "data": "2026-10-01",
      "valore": 19.0,
@@ -2843,14 +2808,14 @@
      "data": "2026-10-29",
      "valore": 18.0,
      "media_7gg": 25.71
+    },
+    {
+     "data": "2026-10-30",
+     "valore": 52.0,
+     "media_7gg": 27.71
     }
    ],
    "stress": [
-    {
-     "data": "2026-09-30",
-     "valore": 25.0,
-     "media_7gg": 31.71
-    },
     {
      "data": "2026-10-01",
      "valore": 30.0,
@@ -2993,16 +2958,16 @@
     },
     {
      "data": "2026-10-29",
-     "valore": 20.0,
-     "media_7gg": 27.0
+     "valore": 19.0,
+     "media_7gg": 26.86
+    },
+    {
+     "data": "2026-10-30",
+     "valore": 15.0,
+     "media_7gg": 26.14
     }
    ],
    "passi": [
-    {
-     "data": "2026-09-30",
-     "valore": 7754.0,
-     "media_7gg": 14798.29
-    },
     {
      "data": "2026-10-01",
      "valore": 15385.0,
@@ -3145,16 +3110,11 @@
     },
     {
      "data": "2026-10-29",
-     "valore": 10280.0,
-     "media_7gg": 14043.0
+     "valore": 10321.0,
+     "media_7gg": 14048.86
     }
    ],
    "peso_kg": [
-    {
-     "data": "2026-09-30",
-     "valore": 88.7,
-     "media_7gg": 88.58
-    },
     {
      "data": "2026-10-02",
      "valore": 87.8,
@@ -3217,11 +3177,6 @@
     }
    ],
    "spo2": [
-    {
-     "data": "2026-09-30",
-     "valore": 94.0,
-     "media_7gg": 93.86
-    },
     {
      "data": "2026-10-01",
      "valore": 94.0,
@@ -3366,14 +3321,14 @@
      "data": "2026-10-29",
      "valore": 96.0,
      "media_7gg": 94.86
+    },
+    {
+     "data": "2026-10-30",
+     "valore": 97.0,
+     "media_7gg": 95.0
     }
    ],
    "sonno_profondo_min": [
-    {
-     "data": "2026-09-30",
-     "valore": 117.0,
-     "media_7gg": 93.71
-    },
     {
      "data": "2026-10-01",
      "valore": 42.0,
@@ -3517,11 +3472,6 @@
    ],
    "sonno_rem_min": [
     {
-     "data": "2026-09-30",
-     "valore": 109.0,
-     "media_7gg": 83.0
-    },
-    {
      "data": "2026-10-01",
      "valore": 39.0,
      "media_7gg": 81.57
@@ -3663,11 +3613,6 @@
     }
    ],
    "sonno_leggero_min": [
-    {
-     "data": "2026-09-30",
-     "valore": 258.0,
-     "media_7gg": 248.0
-    },
     {
      "data": "2026-10-01",
      "valore": 256.0,
@@ -3811,11 +3756,6 @@
    ],
    "sonno_sveglio_min": [
     {
-     "data": "2026-09-30",
-     "valore": 4.0,
-     "media_7gg": 9.14
-    },
-    {
      "data": "2026-10-01",
      "valore": 0.0,
      "media_7gg": 9.14
@@ -3958,10 +3898,10 @@
    ]
   },
   "motivo": null,
-  "ultimo_giorno": "2026-10-29",
+  "ultimo_giorno": "2026-10-30",
   "finestra_serie": [
-   "2026-09-30",
-   "2026-10-29"
+   "2026-10-01",
+   "2026-10-30"
   ],
   "metriche_disponibili": [
    "sonno_ore",
@@ -3994,57 +3934,57 @@
     "sveglio": 0
    },
    "media_7gg_min": {
-    "profondo": 88.0,
-    "rem": 81.0,
-    "leggero": 280.0,
-    "sveglio": 16.0
+    "profondo": 84.0,
+    "rem": 75.0,
+    "leggero": 285.0,
+    "sveglio": 11.0
    },
-   "giorni_7gg": 7
+   "giorni_7gg": 6
   },
   "sintesi": {
    "sonno_ore": {
-    "media_7gg": 7.49,
-    "media_28gg_prec": 7.12,
-    "giorni_7gg": 7
+    "media_7gg": 7.41,
+    "media_28gg_prec": 7.1,
+    "giorni_7gg": 6
    },
    "hrv": {
-    "media_7gg": 75.43,
-    "media_28gg_prec": 79.74,
-    "giorni_7gg": 7
+    "media_7gg": 73.33,
+    "media_28gg_prec": 79.71,
+    "giorni_7gg": 6
    },
    "stress": {
-    "media_7gg": 27.0,
-    "media_28gg_prec": 25.61,
+    "media_7gg": 26.14,
+    "media_28gg_prec": 25.54,
     "giorni_7gg": 7
    },
    "body_battery_max": {
-    "media_7gg": 86.0,
-    "media_28gg_prec": 87.75,
+    "media_7gg": 79.57,
+    "media_28gg_prec": 87.79,
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 14043.0,
-    "media_28gg_prec": 14659.79,
-    "giorni_7gg": 7
+    "media_7gg": 14398.83,
+    "media_28gg_prec": 14793.68,
+    "giorni_7gg": 6
    },
    "sonno_punteggio": {
-    "media_7gg": 78.0,
-    "media_28gg_prec": 80.33,
-    "giorni_7gg": 7
+    "media_7gg": 77.17,
+    "media_28gg_prec": 79.96,
+    "giorni_7gg": 6
    },
    "fc_riposo": {
-    "media_7gg": 40.86,
-    "media_28gg_prec": 41.39,
+    "media_7gg": 41.43,
+    "media_28gg_prec": 41.36,
     "giorni_7gg": 7
    },
    "spo2": {
-    "media_7gg": 94.86,
-    "media_28gg_prec": 94.21,
+    "media_7gg": 95.0,
+    "media_28gg_prec": 94.39,
     "giorni_7gg": 7
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 30
+   "BALANCED": 26
   }
  },
  "ultime_attivita": [
@@ -4307,24 +4247,24 @@
    "L'attività più frequente è corsa: 1862 uscite su 2449.",
    "Negli ultimi 90 giorni il giorno più attivo è il martedì: 13 uscite su 73.",
    "In 12 delle ultime 12 settimane hai fatto almeno 3 uscite.",
-   "Rispetto agli stessi 30 giorni del 2025: 18,9 ore contro 19,0, −0%."
+   "Rispetto agli stessi 30 giorni del 2025: 18,6 ore contro 19,0, −2%."
   ],
   "recupero": [
    "Rispetto alle 4 settimane prima: meglio sonno; peggio punteggio del sonno, HRV e stress; stabile battito a riposo.",
    "Carico basso, sotto l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 7 agosto.",
-   "Dopo i giorni più pesanti (da 110 minuti in su) l'HRV della notte è in media 68 ms, contro 82 negli altri giorni.",
+   "Dopo i giorni più pesanti (da 109 minuti in su) l'HRV della notte è in media 68 ms, contro 82 negli altri giorni.",
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],
   "proiezioni": [
-   "Al ritmo degli ultimi 30 giorni (−0,5 kg a settimana) arrivi a 82 kg in circa 6 settimane, verso metà dicembre.",
+   "Al ritmo degli ultimi 30 giorni (−0,4 kg a settimana) arrivi a 82 kg in circa 8 settimane, verso fine dicembre.",
    "Settimana in corso: 14,6 km. Per la tua media (28,7 km) ne mancano 14,1 entro domenica.",
-   "Ottobre: 124,9 km finora, al ritmo attuale circa 133 a fine mese (settembre: 84)."
+   "Ottobre: 124,9 km finora, al ritmo attuale circa 129 a fine mese (settembre: 84)."
   ]
  },
- "nota_footer": "Il dislivello manca in 155 attività su 2449. Il passo di corsa si basa su 14 uscite negli ultimi 30 giorni e su 4 negli ultimi 7: da leggere con cautela.",
+ "nota_footer": "Il dislivello manca in 155 attività su 2449. Il passo di corsa si basa su 14 uscite negli ultimi 30 giorni e su 3 negli ultimi 7: da leggere con cautela.",
  "avvertenze_kpi": [
   "Il dislivello manca in 155 attività su 2449: le variazioni percentuali del dislivello e i totali possono essere sottostimati.",
-  "Il passo di corsa si basa su 14 uscite negli ultimi 30 giorni e su 4 negli ultimi 7: da leggere con cautela.",
+  "Il passo di corsa si basa su 14 uscite negli ultimi 30 giorni e su 3 negli ultimi 7: da leggere con cautela.",
   "Le variazioni percentuali sono null quando il periodo precedente vale zero."
  ],
  "lacune": [

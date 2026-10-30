@@ -74,7 +74,7 @@ button,select,input{font:inherit; color:inherit}
   background:linear-gradient(var(--chrome-fade),transparent); opacity:0; transition:opacity .2s ease}
 .top.scrolled::after{opacity:1}
 .topbar{display:flex; align-items:center; gap:12px 28px; padding-top:12px; padding-bottom:12px; flex-wrap:wrap}
-.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; margin-right:auto}
+.brand{display:flex; align-items:center; gap:12px; min-width:0; flex:1 1 0; text-decoration:none; color:inherit; margin-right:auto}
 .brand svg{flex:none}
 .brand b{display:block; font-family:var(--display); font-weight:800; font-size:1.375rem; line-height:1.05; letter-spacing:-0.03em}
 .brand small{display:block; font-size:.75rem; color:var(--label-2); margin-top:2px}
@@ -82,6 +82,24 @@ button,select,input{font:inherit; color:inherit}
   -webkit-tap-highlight-color:transparent; transition:transform .1s ease-out}
 .themebtn:active{transform:scale(.92)}
 .themebtn svg{width:20px; height:20px}
+/* Tasto aggiorna: avvia il workflow su GitHub */
+.topbtns{order:3; flex:none; display:flex; gap:8px}
+.refreshbtn.busy svg{animation:giro 1s linear infinite}
+.refreshbtn.ok{color:var(--good)} .refreshbtn.err{color:var(--bad)}
+@keyframes giro{to{transform:rotate(360deg)}}
+.sheet{border:0; border-radius:var(--radius); background:var(--surface); color:var(--label); padding:24px; width:min(440px, calc(100vw - 32px)); box-shadow:0 20px 60px var(--shadow)}
+.sheet::backdrop{background:rgba(0,0,0,.5)}
+.sheet h2{font-family:var(--display); font-weight:800; font-size:1.375rem; letter-spacing:-0.02em; margin:0 0 8px}
+.sheet p{margin:0 0 12px; color:var(--label-2); font-size:.9375rem; line-height:1.45}
+.sheet ol{margin:0 0 14px; padding-left:20px; color:var(--label-2); font-size:.9375rem; line-height:1.5}
+.sheet a{color:var(--label)}
+.sheet input{width:100%; box-sizing:border-box; font:inherit; font-size:16px; padding:12px 14px; border-radius:12px; border:1px solid var(--sep); background:var(--surface-2); color:var(--label)}
+.sheet .err-msg{color:var(--bad); font-size:.875rem; margin:8px 0 0; min-height:1em}
+.sheet .row{display:flex; gap:8px; justify-content:flex-end; margin-top:16px; flex-wrap:wrap}
+.sheet button{font:inherit; font-weight:600; border:0; border-radius:999px; padding:10px 18px; cursor:pointer; background:var(--surface-3); color:var(--label)}
+.sheet button.primary{background:var(--lime); color:var(--on-accent)}
+.sheet .link{background:transparent; padding:10px 4px; color:var(--label-2); font-weight:500; margin-right:auto}
+@media (prefers-reduced-motion: reduce){ .refreshbtn.busy svg{animation:none} }
 .nav{order:2; display:flex; gap:2px; background:var(--surface); border-radius:999px; padding:4px; overflow-x:auto; scrollbar-width:none; max-width:100%}
 .nav::-webkit-scrollbar{display:none}
 .nav a{flex:none; text-decoration:none; color:var(--label); font-size:.875rem; font-weight:500; padding:8px 15px; border-radius:999px;
@@ -340,9 +358,31 @@ footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom
       <a href="#recupero">Recupero</a>
       <a href="#note">Note</a>
     </nav>
+    <div class="topbtns">
+    <button type="button" class="themebtn refreshbtn" id="refreshBtn" aria-label="Aggiorna i dati da Garmin" title="Aggiorna i dati da Garmin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg></button>
     <button type="button" class="themebtn" id="themeBtn"></button>
+    </div>
   </div>
 </header>
+<dialog class="sheet" id="refreshSheet" aria-labelledby="refreshTitle">
+  <form method="dialog" id="refreshForm">
+    <h2 id="refreshTitle">Aggiorna adesso</h2>
+    <p>Il tasto avvia l'aggiornamento su GitHub. Serve una chiave GitHub, una volta sola per dispositivo. Resta salvata solo in questo browser.</p>
+    <ol>
+      <li>Apri <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">nuovo token fine-grained</a>.</li>
+      <li>Repository access: solo <b>connect</b>.</li>
+      <li>Permessi: <b>Actions</b> in lettura e scrittura. Nient'altro.</li>
+    </ol>
+    <input id="refreshToken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" aria-label="Chiave GitHub">
+    <p class="err-msg" id="refreshErr" role="alert"></p>
+    <div class="row">
+      <a class="link" id="refreshActions" href="https://github.com/michelesarzana/connect/actions/workflows/update.yml" target="_blank" rel="noopener">Apri GitHub Actions</a>
+      <button type="button" id="refreshForget" hidden>Rimuovi chiave</button>
+      <button value="cancel" formnovalidate>Annulla</button>
+      <button value="ok" class="primary" id="refreshSave">Salva e aggiorna</button>
+    </div>
+  </form>
+</dialog>
 
 <main class="wrap">
   <div class="notice" id="notice" role="note"><span class="ic" aria-hidden="true">!</span><div id="noticeTxt"></div></div>
@@ -604,6 +644,56 @@ const TRACCE=fetch('data/tracce.json',{cache:'no-cache'}).then(r=>r.ok?r.json():
   btn.addEventListener('click',()=>{mode={auto:'light',light:'dark',dark:'auto'}[mode];apply()});
   mq.addEventListener('change',()=>{if(mode==='auto')apply()});
   apply();
+})();
+
+/* Aggiorna adesso: avvia il workflow con la chiave salvata in questo browser */
+(function(){
+  const REPO='michelesarzana/connect', WF='update.yml', API=`https://api.github.com/repos/${REPO}/actions/workflows/${WF}`;
+  const KEY='mft-gh-token', btn=$('#refreshBtn'), dlg=$('#refreshSheet'), inp=$('#refreshToken'), err=$('#refreshErr'), forget=$('#refreshForget'), upd=$('#upd');
+  let updTxt='';
+  const getTok=()=>{try{return localStorage.getItem(KEY)}catch(_){return null}};
+  const setTok=v=>{try{v?localStorage.setItem(KEY,v):localStorage.removeItem(KEY)}catch(_){}};
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  let busy=false;
+  function stato(txt,cls){upd.textContent=txt;btn.classList.remove('busy','ok','err');if(cls)btn.classList.add(cls)}
+  function apri(msg){err.textContent=msg||'';inp.value='';forget.hidden=!getTok();dlg.showModal();setTimeout(()=>inp.focus(),50)}
+  const gh=(url,opt={})=>fetch(url,{...opt,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+getTok(),'X-GitHub-Api-Version':'2022-11-28',...(opt.headers||{})}});
+  async function avvia(){
+    if(busy)return;
+    if(!getTok())return apri();
+    updTxt=upd.textContent;busy=true;stato('Avvio aggiornamento…','busy');
+    const t0=Date.now()-60000;
+    try{
+      const r=await gh(API+'/dispatches',{method:'POST',body:JSON.stringify({ref:'main'})});
+      if(r.status===401||r.status===403||r.status===404){setTok(null);busy=false;stato(updTxt);return apri('Chiave non valida o senza il permesso Actions. Inseriscine una nuova.')}
+      if(!r.ok)throw new Error('avvio '+r.status);
+      /* Cerca l'esecuzione appena partita e ne segue lo stato */
+      let run=null;
+      for(let i=0;i<120;i++){
+        await sleep(i<3?4000:10000);
+        const j=await (await gh(API+'/runs?event=workflow_dispatch&per_page=5')).json();
+        run=(j.workflow_runs||[]).find(x=>Date.parse(x.created_at)>=t0)||run;
+        if(!run){stato('In coda su GitHub…','busy');continue}
+        if(run.status!=='completed'){stato(run.status==='in_progress'?'Scarico i dati da Garmin…':'In coda su GitHub…','busy');continue}
+        break;
+      }
+      if(!run||run.status!=='completed')throw new Error('tempo scaduto');
+      if(run.conclusion!=='success'){stato('Aggiornamento non riuscito. Tocca per riprovare.','err');busy=false;console.warn(run.html_url);return}
+      /* Il workflow ha finito: aspetta che GitHub Pages pubblichi i nuovi dati */
+      stato('Pubblico la dashboard…','busy');
+      const prima=(D.generato_il||'')+' '+(D.generato_alle||'');
+      for(let i=0;i<24;i++){
+        await sleep(10000);
+        try{const m=await (await fetch('data/metrics.json?t='+Date.now(),{cache:'no-store'})).json();
+          if((m.generato_il||'')+' '+(m.generato_alle||'')!==prima){stato('Fatto. Ricarico…','ok');await sleep(600);location.reload();return}}catch(_){}
+      }
+      stato('Aggiornato su GitHub. Ricarica tra un minuto.','ok');busy=false;
+    }catch(e){console.warn(e);stato('Aggiornamento non riuscito. Tocca per riprovare.','err');busy=false}
+  }
+  btn.addEventListener('click',avvia);
+  btn.addEventListener('contextmenu',e=>{e.preventDefault();apri()});
+  forget.addEventListener('click',()=>{setTok(null);forget.hidden=true;err.textContent='Chiave rimossa da questo browser.'});
+  dlg.addEventListener('close',()=>{const v=inp.value.trim();if(dlg.returnValue==='ok'&&v){setTok(v);avvia()}});
 })();
 
 /* Header e navigazione */

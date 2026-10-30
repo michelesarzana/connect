@@ -37,6 +37,14 @@ Il workflow `.github/workflows/update.yml` si avvia:
 - a mano dalla scheda Actions (`workflow_dispatch`);
 - a ogni push su `main` che modifica `scripts/` o il workflow stesso.
 
+- dal tasto aggiorna in alto nella dashboard (vedi sotto).
+
+### Tasto aggiorna
+
+Il tasto con la freccia circolare avvia il workflow tramite l'API di GitHub, segue l'esecuzione e ricarica la pagina quando GitHub Pages ha pubblicato i nuovi dati (di solito 3-5 minuti).
+
+La prima volta chiede una chiave GitHub: un token fine-grained limitato al solo repository `connect`, con il solo permesso Actions in lettura e scrittura. La chiave resta nel `localStorage` di quel browser e non finisce mai nel repository. Si inserisce una volta per dispositivo. Tasto destro (o pressione lunga) sul pulsante riapre il pannello per cambiarla o rimuoverla. Se la chiave scade o viene revocata, il pannello si riapre da solo.
+
 Dopo aver rigenerato la dashboard, fa commit e push solo di `docs/index.html` e `docs/data`, e solo se qualcosa è cambiato.
 
 ## Chiave Garmin

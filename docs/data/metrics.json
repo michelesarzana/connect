@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-10-30",
- "generato_alle": "19:37",
+ "generato_alle": "23:58",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2830,8 +2830,8 @@
     },
     {
      "data": "2026-10-30",
-     "valore": 37.0,
-     "media_7gg": 25.57
+     "valore": 28.0,
+     "media_7gg": 24.29
     }
    ],
    "stress": [
@@ -2982,8 +2982,8 @@
     },
     {
      "data": "2026-10-30",
-     "valore": 26.0,
-     "media_7gg": 27.71
+     "valore": 27.0,
+     "media_7gg": 27.86
     }
    ],
    "passi": [
@@ -3134,8 +3134,8 @@
     },
     {
      "data": "2026-10-30",
-     "valore": 19146.0,
-     "media_7gg": 15077.0
+     "valore": 20553.0,
+     "media_7gg": 15278.0
     }
    ],
    "peso_kg": [
@@ -4002,7 +4002,7 @@
     "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 27.71,
+    "media_7gg": 27.86,
     "media_28gg_prec": 25.54,
     "giorni_7gg": 7
    },
@@ -4012,7 +4012,7 @@
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 15077.0,
+    "media_7gg": 15278.0,
     "media_28gg_prec": 14793.68,
     "giorni_7gg": 7
    },

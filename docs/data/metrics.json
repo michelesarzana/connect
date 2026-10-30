@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-10-30",
- "generato_alle": "09:19",
+ "generato_alle": "09:28",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2318,34 +2318,49 @@
      "media_7gg": 77.67
     },
     {
+     "data": "2026-10-16",
+     "valore": 84.0,
+     "media_7gg": 77.5
+    },
+    {
+     "data": "2026-10-17",
+     "valore": 80.0,
+     "media_7gg": 75.33
+    },
+    {
+     "data": "2026-10-18",
+     "valore": 78.0,
+     "media_7gg": 83.67
+    },
+    {
      "data": "2026-10-19",
      "valore": 81.0,
-     "media_7gg": 86.33
+     "media_7gg": 83.5
     },
     {
      "data": "2026-10-20",
      "valore": 81.0,
-     "media_7gg": 83.0
+     "media_7gg": 81.83
     },
     {
      "data": "2026-10-21",
      "valore": 87.0,
-     "media_7gg": 84.0
+     "media_7gg": 82.57
     },
     {
      "data": "2026-10-22",
      "valore": 85.0,
-     "media_7gg": 83.5
+     "media_7gg": 82.29
     },
     {
      "data": "2026-10-23",
      "valore": 88.0,
-     "media_7gg": 84.4
+     "media_7gg": 82.86
     },
     {
      "data": "2026-10-24",
      "valore": 89.0,
-     "media_7gg": 85.17
+     "media_7gg": 84.14
     },
     {
      "data": "2026-10-25",
@@ -3998,7 +4013,7 @@
    },
    "hrv": {
     "media_7gg": 75.86,
-    "media_28gg_prec": 79.71,
+    "media_28gg_prec": 79.81,
     "giorni_7gg": 7
    },
    "stress": {
@@ -4033,11 +4048,12 @@
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 27
+   "BALANCED": 30
   }
  },
  "ultime_attivita": [
   {
+   "id": "24900977265",
    "data": "2026-10-30 06:35",
    "tipo": "running",
    "nome": "Milano Corsa",
@@ -4047,6 +4063,7 @@
    "fc_media": 148.0
   },
   {
+   "id": "24896143524",
    "data": "2026-10-29 18:34",
    "tipo": "hiit",
    "nome": "Kett + Plank + Push",
@@ -4056,6 +4073,7 @@
    "fc_media": 113.0
   },
   {
+   "id": "24877644295",
    "data": "2026-10-28 06:55",
    "tipo": "trail_running",
    "nome": "Neviglie Trail Running",
@@ -4065,6 +4083,7 @@
    "fc_media": 146.0
   },
   {
+   "id": "24853275524",
    "data": "2026-10-26 06:04",
    "tipo": "running",
    "nome": "Milano Corsa",
@@ -4074,6 +4093,7 @@
    "fc_media": 140.0
   },
   {
+   "id": "24843368880",
    "data": "2026-10-25 08:54",
    "tipo": "running",
    "nome": "Verona Corsa",
@@ -4083,6 +4103,7 @@
    "fc_media": 146.0
   },
   {
+   "id": "24826481707",
    "data": "2026-10-23 16:46",
    "tipo": "running",
    "nome": "Milano Corsa",
@@ -4092,6 +4113,7 @@
    "fc_media": 144.0
   },
   {
+   "id": "24810275920",
    "data": "2026-10-22 06:32",
    "tipo": "running",
    "nome": "Milan Running",
@@ -4101,6 +4123,7 @@
    "fc_media": 144.0
   },
   {
+   "id": "24786446064",
    "data": "2026-10-20 06:20",
    "tipo": "running",
    "nome": "Milan Running",
@@ -4110,6 +4133,7 @@
    "fc_media": 143.0
   },
   {
+   "id": "24762989926",
    "data": "2026-10-18 05:47",
    "tipo": "walking",
    "nome": "Markaz Qena Walking",
@@ -4119,6 +4143,7 @@
    "fc_media": 62.0
   },
   {
+   "id": "24745770219",
    "data": "2026-10-16 16:45",
    "tipo": "running",
    "nome": "Markaz Aswan Running",
@@ -4307,7 +4332,8 @@
   "proiezioni": [
    "Al ritmo degli ultimi 30 giorni (−0,6 kg a settimana) arrivi a 82 kg in circa 4 settimane, verso fine novembre.",
    "Settimana in corso: 24,9 km. Per la tua media (28,7 km) ne mancano 3,8 entro domenica.",
-   "Ottobre: 135,2 km finora, al ritmo attuale circa 140 a fine mese (settembre: 84)."
+   "Ottobre: 135,2 km finora, al ritmo attuale circa 140 a fine mese (settembre: 84).",
+   "100 Miglia del Monviso: mancano 259 giorni, fase base. Questa settimana l'indicazione è 29 km e 300 m di dislivello."
   ]
  },
  "nota_footer": "Il dislivello manca in 155 attività su 2450. Il passo di corsa si basa su 15 uscite negli ultimi 30 giorni e su 4 negli ultimi 7: da leggere con cautela.",
@@ -4320,5 +4346,553 @@
   "Dislivello mancante in 155 attività su 2450",
   "Passo disponibile solo per corsa e trail running",
   "L'ultimo giorno di benessere è parziale (passi, stress e Body Battery)"
- ]
+ ],
+ "salita": {
+  "d30": 977.0,
+  "d30_prec": 1144.0,
+  "m_per_km_30": 6.0,
+  "m_per_km_30_prec": 14.0,
+  "anno": 17225.0,
+  "anno_prec_stessa_data": 10677.0,
+  "anno_corrente": 2026,
+  "record_uscita": {
+   "m": 5941.0,
+   "data": "2023-06-23",
+   "km": 121.1,
+   "tipo": "trail_running",
+   "id": "11416996045"
+  },
+  "record_settimana": {
+   "m": 6077.0,
+   "dal": "2022-08-08"
+  },
+  "record_mese": {
+   "m": 17175.0,
+   "mese": "2022-08"
+  },
+  "mesi": [
+   {
+    "mese": "2025-11",
+    "m": 2202.0
+   },
+   {
+    "mese": "2025-12",
+    "m": 2222.0
+   },
+   {
+    "mese": "2026-01",
+    "m": 491.0
+   },
+   {
+    "mese": "2026-02",
+    "m": 940.0
+   },
+   {
+    "mese": "2026-03",
+    "m": 864.0
+   },
+   {
+    "mese": "2026-04",
+    "m": 737.0
+   },
+   {
+    "mese": "2026-05",
+    "m": 0.0
+   },
+   {
+    "mese": "2026-06",
+    "m": 1106.0
+   },
+   {
+    "mese": "2026-07",
+    "m": 1936.0
+   },
+   {
+    "mese": "2026-08",
+    "m": 9030.0
+   },
+   {
+    "mese": "2026-09",
+    "m": 1144.0
+   },
+   {
+    "mese": "2026-10",
+    "m": 977.0
+   }
+  ],
+  "lunga_8sett": {
+   "km": 12.0,
+   "m": 645.0,
+   "ore": 3.5,
+   "data": "2026-09-19"
+  }
+ },
+ "prontezza": {
+  "disponibile": true,
+  "livello": "spingi",
+  "frase": "Segnali buoni: è un giorno adatto a qualità o volume.",
+  "punteggio": 3,
+  "fattori": [
+   {
+    "nome": "HRV",
+    "valore": "91 ms",
+    "rif": "media 7 notti 75",
+    "punti": 1
+   },
+   {
+    "nome": "Sonno",
+    "valore": "7,3 h",
+    "rif": "media 28 notti 7,2",
+    "punti": 1
+   },
+   {
+    "nome": "Battito a riposo",
+    "valore": "41 bpm",
+    "rif": "media 7 giorni 41",
+    "punti": 0
+   },
+   {
+    "nome": "Body Battery",
+    "valore": "100",
+    "rif": "media 7 giorni 86",
+    "punti": 1
+   },
+   {
+    "nome": "Carico",
+    "valore": "0,80",
+    "rif": "zona abituale 0,8-1,3",
+    "punti": 0
+   }
+  ],
+  "nota": "Lettura orientativa da HRV, sonno, battito a riposo, Body Battery e carico. Contano anche le sensazioni."
+ },
+ "gara": {
+  "disponibile": true,
+  "nome": "100 Miglia del Monviso",
+  "luogo": "Saluzzo",
+  "data": "2027-07-16",
+  "data_stimata": true,
+  "km": 160,
+  "dislivello_m": 9000,
+  "giorni": 259,
+  "settimane": 37,
+  "fase": "base",
+  "preparazione": [
+   {
+    "nome": "Garda Trentino Trail 100K",
+    "luogo": "Arco",
+    "data": "2027-05-15",
+    "data_stimata": true,
+    "km": 100,
+    "dislivello_m": null,
+    "nota": "In alternativa la Loch Trail Cup",
+    "sett": "2027-05-10"
+   }
+  ],
+  "picco": {
+   "km": 100,
+   "dislivello_m": 5000
+  },
+  "piano": [
+   {
+    "settimana": "2026-08-31",
+    "km": 18.6,
+    "dislivello_m": 51.0
+   },
+   {
+    "settimana": "2026-09-07",
+    "km": 18.3,
+    "dislivello_m": 162.0
+   },
+   {
+    "settimana": "2026-09-14",
+    "km": 21.9,
+    "dislivello_m": 853.0
+   },
+   {
+    "settimana": "2026-09-21",
+    "km": 18.6,
+    "dislivello_m": 69.0
+   },
+   {
+    "settimana": "2026-09-28",
+    "km": 21.6,
+    "dislivello_m": 45.0
+   },
+   {
+    "settimana": "2026-10-05",
+    "km": 31.4,
+    "dislivello_m": 120.0
+   },
+   {
+    "settimana": "2026-10-12",
+    "km": 28.1,
+    "dislivello_m": 337.0
+   },
+   {
+    "settimana": "2026-10-19",
+    "km": 36.2,
+    "dislivello_m": 174.0
+   },
+   {
+    "settimana": "2026-10-26",
+    "km": 24.9,
+    "dislivello_m": 310.0,
+    "km_obiettivo": 29,
+    "dislivello_obiettivo": 300,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2026-11-02",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 31,
+    "dislivello_obiettivo": 450,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2026-11-09",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 33,
+    "dislivello_obiettivo": 600,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2026-11-16",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 36,
+    "dislivello_obiettivo": 700,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2026-11-23",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 26,
+    "dislivello_obiettivo": 600,
+    "tipo": "scarico"
+   },
+   {
+    "settimana": "2026-11-30",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 40,
+    "dislivello_obiettivo": 1000,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2026-12-07",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 42,
+    "dislivello_obiettivo": 1150,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2026-12-14",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 44,
+    "dislivello_obiettivo": 1250,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2026-12-21",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 32,
+    "dislivello_obiettivo": 1000,
+    "tipo": "scarico"
+   },
+   {
+    "settimana": "2026-12-28",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 48,
+    "dislivello_obiettivo": 1550,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-01-04",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 50,
+    "dislivello_obiettivo": 1700,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-01-11",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 52,
+    "dislivello_obiettivo": 1800,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-01-18",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 38,
+    "dislivello_obiettivo": 1350,
+    "tipo": "scarico"
+   },
+   {
+    "settimana": "2027-01-25",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 56,
+    "dislivello_obiettivo": 2100,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-02-01",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 58,
+    "dislivello_obiettivo": 2250,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-02-08",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 61,
+    "dislivello_obiettivo": 2350,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-02-15",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 44,
+    "dislivello_obiettivo": 1750,
+    "tipo": "scarico"
+   },
+   {
+    "settimana": "2027-02-22",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 65,
+    "dislivello_obiettivo": 2650,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-03-01",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 67,
+    "dislivello_obiettivo": 2800,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-03-08",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 69,
+    "dislivello_obiettivo": 2950,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-03-15",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 50,
+    "dislivello_obiettivo": 2150,
+    "tipo": "scarico"
+   },
+   {
+    "settimana": "2027-03-22",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 73,
+    "dislivello_obiettivo": 3200,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-03-29",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 75,
+    "dislivello_obiettivo": 3350,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-04-05",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 77,
+    "dislivello_obiettivo": 3500,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-04-12",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 55,
+    "dislivello_obiettivo": 2550,
+    "tipo": "scarico"
+   },
+   {
+    "settimana": "2027-04-19",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 81,
+    "dislivello_obiettivo": 3750,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-04-26",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 83,
+    "dislivello_obiettivo": 3900,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-05-03",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 85,
+    "dislivello_obiettivo": 4050,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-05-10",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 61,
+    "dislivello_obiettivo": 2900,
+    "tipo": "gara di preparazione"
+   },
+   {
+    "settimana": "2027-05-17",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 45,
+    "dislivello_obiettivo": 2150,
+    "tipo": "recupero"
+   },
+   {
+    "settimana": "2027-05-24",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 92,
+    "dislivello_obiettivo": 4450,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-05-31",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 94,
+    "dislivello_obiettivo": 4600,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-06-07",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 67,
+    "dislivello_obiettivo": 3300,
+    "tipo": "scarico"
+   },
+   {
+    "settimana": "2027-06-14",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 98,
+    "dislivello_obiettivo": 4850,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-06-21",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 100,
+    "dislivello_obiettivo": 5000,
+    "tipo": "carico"
+   },
+   {
+    "settimana": "2027-06-28",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 80,
+    "dislivello_obiettivo": 4000,
+    "tipo": "scarico finale"
+   },
+   {
+    "settimana": "2027-07-05",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 60,
+    "dislivello_obiettivo": 3000,
+    "tipo": "scarico finale"
+   },
+   {
+    "settimana": "2027-07-12",
+    "km": null,
+    "dislivello_m": null,
+    "km_obiettivo": 35,
+    "dislivello_obiettivo": 1750,
+    "tipo": "gara"
+   }
+  ],
+  "settimana_corrente": {
+   "settimana": "2026-10-26",
+   "km": 24.9,
+   "dislivello_m": 310.0,
+   "km_obiettivo": 29,
+   "dislivello_obiettivo": 300,
+   "tipo": "carico"
+  },
+  "base_4sett": {
+   "km": 29.3,
+   "dislivello_m": 300.0
+  },
+  "nota": "Gara obiettivo e piano indicativo. Le date stimate vanno confermate quando escono i calendari 2027.",
+  "avvertenza": "Piano indicativo: una rampa lineare dalla media delle ultime 4 settimane al picco, con una settimana di scarico ogni 4 e 3 settimane di scarico finale. Non sostituisce un allenatore."
+ },
+ "scarpe": {
+  "disponibile": true,
+  "fonte": "Strava, copia manuale",
+  "aggiornato": "2026-10-30",
+  "scarpe": [
+   {
+    "nome": "Nike ZoomX Invincible Run 3",
+    "modello": "Nike ZoomX Invincible Run 3",
+    "km": 735.6,
+    "limite_km": 800,
+    "attiva": true,
+    "dal": null,
+    "pct": 92.0,
+    "stato": "quasi"
+   },
+   {
+    "nome": "HOKA Mafate 5",
+    "modello": "HOKA Mafate 5",
+    "km": 200.4,
+    "limite_km": 800,
+    "attiva": true,
+    "dal": null,
+    "pct": 25.0,
+    "stato": "ok"
+   },
+   {
+    "nome": "Adidas Hyperboost",
+    "modello": "Adidas Hyperboost",
+    "km": 49.7,
+    "limite_km": 800,
+    "attiva": true,
+    "dal": null,
+    "pct": 6.0,
+    "stato": "ok"
+   }
+  ]
+ },
+ "chiave": {
+  "scadenza": null,
+  "giorni": null
+ }
 }

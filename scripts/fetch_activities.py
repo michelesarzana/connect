@@ -105,6 +105,7 @@ for a in acts:
     if 'running' in t and dist and dur and dist > 0:
         pace = round((dur / 60.0) / (dist / 1000.0), 2)
     rows.append({
+        'id': a.get('activityId') or '',
         'data': (a.get('startTimeLocal') or '')[:19],
         'tipo_attivita': t,
         'nome': a.get('activityName') or '',
@@ -121,12 +122,12 @@ for x in righe:
     if x[0] in ids_nuovi:
         continue
     pace = round(x[4] / x[3], 2) if ('running' in x[2] and x[3] and x[4]) else ''
-    rows.append({'data': x[1].replace('T', ' ') + ':00', 'tipo_attivita': x[2], 'nome': '',
+    rows.append({'id': x[0], 'data': x[1].replace('T', ' ') + ':00', 'tipo_attivita': x[2], 'nome': '',
                  'durata_min': '' if x[4] is None else x[4], 'distanza_km': '' if x[3] is None else x[3],
                  'dislivello_pos_m': '' if x[5] is None else x[5], 'passo_medio_min_km': pace,
                  'fc_media': '' if x[6] is None else x[6], 'fc_max': '', 'calorie': '', 'training_effect_aerobico': ''})
 rows.sort(key=lambda x: x['data'])
-cols = ['data', 'tipo_attivita', 'nome', 'durata_min', 'distanza_km', 'dislivello_pos_m', 'passo_medio_min_km',
+cols = ['id', 'data', 'tipo_attivita', 'nome', 'durata_min', 'distanza_km', 'dislivello_pos_m', 'passo_medio_min_km',
         'fc_media', 'fc_max', 'calorie', 'training_effect_aerobico']
 with open(os.path.join(DATA, 'activities.csv'), 'w', newline='') as f:
     w = csv.DictWriter(f, fieldnames=cols)

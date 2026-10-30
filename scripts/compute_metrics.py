@@ -183,7 +183,8 @@ if not wellness["disponibile"]:
 # (5) ultime 10 attivita'
 last10 = []
 for _, x in act.sort_values("data", ascending=False).head(10).iterrows():
-    last10.append({"data": x["data"].strftime("%Y-%m-%d %H:%M"), "tipo": x["tipo_attivita"], "nome": x["nome"],
+    last10.append({"id": (str(int(x["id"])) if "id" in x and pd.notna(x["id"]) else None),
+                   "data": x["data"].strftime("%Y-%m-%d %H:%M"), "tipo": x["tipo_attivita"], "nome": x["nome"],
                    "distanza_km": r(x["distanza_km"], 2), "durata_min": r(x["durata_min"]),
                    "dislivello_m": r(x["dislivello_pos_m"], 0), "fc_media": r(x.get("fc_media"), 0)})
 
@@ -397,6 +398,184 @@ if anchor.day >= 5:
     pm0 = (m0 - pd.Timedelta(days=1)).replace(day=1)
     prec = act[(act["day"] >= pm0) & (act["day"] < m0)]["distanza_km"].sum()
     oss["proiezioni"].append(f"{MESI_L[anchor.month - 1].capitalize()}: {it(mtd)} km finora, al ritmo attuale circa {mtd / anchor.day * gm:.0f} a fine mese ({MESI_L[pm0.month - 1]}: {prec:.0f}).")
+# (7) salita: il dislivello come metrica principale per il trail
+TRAIL = ["trail_running", "ultra_run", "hiking", "mountaineering", "running"]
+salita = {}
+# solo attivita a piedi: lo sci da discesa e la bici gonfierebbero il dislivello
+piedi = act[act["tipo_attivita"].isin(TRAIL + ["walking", "treadmill_running"])]
+past_p = piedi[piedi["day"] <= anchor]
+if len(past_p):
+    pd_ = past_p[past_p["dislivello_pos_m"].notna()]
+    def dsum(df):
+        return float(df[df["tipo_attivita"].isin(TRAIL + ["walking", "treadmill_running"])]["dislivello_pos_m"].fillna(0).sum())
+    c30, p30 = window(act, anchor, 30), window(act, anchor - pd.Timedelta(days=30), 30)
+    def dpk(df):
+        x = df[df["tipo_attivita"].isin(TRAIL) & (df["distanza_km"] > 0) & df["dislivello_pos_m"].notna()]
+        return (x["dislivello_pos_m"].sum() / x["distanza_km"].sum()) if len(x) and x["distanza_km"].sum() > 0 else None
+    salita["d30"] = r(dsum(c30), 0); salita["d30_prec"] = r(dsum(p30), 0)
+    salita["m_per_km_30"] = r(dpk(c30), 0); salita["m_per_km_30_prec"] = r(dpk(p30), 0)
+    y0 = pd.Timestamp(anchor.year, 1, 1); ly0 = pd.Timestamp(anchor.year - 1, 1, 1); lya = anchor - pd.DateOffset(years=1)
+    salita["anno"] = r(dsum(act[(act["day"] >= y0) & (act["day"] <= anchor)]), 0)
+    salita["anno_prec_stessa_data"] = r(dsum(act[(act["day"] >= ly0) & (act["day"] <= lya)]), 0)
+    salita["anno_corrente"] = int(anchor.year)
+    if len(pd_):
+        bu = pd_.loc[pd_["dislivello_pos_m"].idxmax()]
+        salita["record_uscita"] = {"m": r(bu["dislivello_pos_m"], 0), "data": str(bu["day"].date()), "km": r(bu["distanza_km"], 1),
+                                   "tipo": bu["tipo_attivita"], "id": (str(int(bu["id"])) if "id" in bu and pd.notna(bu["id"]) else None)}
+        sw = pd_.assign(s=pd_["day"] - pd.to_timedelta(pd_["day"].dt.weekday, unit="D")).groupby("s")["dislivello_pos_m"].sum()
+        salita["record_settimana"] = {"m": r(sw.max(), 0), "dal": str(sw.idxmax().date())}
+        sm = pd_.assign(s=pd_["day"].dt.to_period("M")).groupby("s")["dislivello_pos_m"].sum()
+        salita["record_mese"] = {"m": r(sm.max(), 0), "mese": str(sm.idxmax())}
+    mesi = pd.period_range(anchor.to_period("M") - 11, anchor.to_period("M"), freq="M")
+    pm = past_p.assign(s=past_p["day"].dt.to_period("M")).groupby("s")["dislivello_pos_m"].sum()
+    salita["mesi"] = [{"mese": str(m), "m": r(pm.get(m, 0), 0)} for m in mesi]
+    # uscita con piu' dislivello e piu' lunga nelle ultime 8 settimane: utile per la preparazione
+    u8 = window(act, anchor, 56)
+    u8 = u8[u8["tipo_attivita"].isin(TRAIL)]
+    if len(u8):
+        lg = u8.loc[u8["distanza_km"].fillna(0).idxmax()]
+        salita["lunga_8sett"] = {"km": r(lg["distanza_km"], 1), "m": r(lg["dislivello_pos_m"], 0), "ore": r(lg["durata_min"] / 60, 1), "data": str(lg["day"].date())}
+
+# (8) prontezza di oggi: HRV, sonno, battito a riposo, Body Battery e carico
+prontezza = {"disponibile": False}
+if len(wel) and wellness["disponibile"]:
+    wv = wel[wel["data"] <= anchor].set_index("data")
+    def num(c):
+        return pd.to_numeric(wv[c], errors="coerce") if c in wv.columns else pd.Series(dtype=float)
+    fatt = []
+    def last_and_base(s, n=7):
+        s = s.dropna()
+        if len(s) < 4 or (anchor - s.index[-1]).days > 1:
+            return None, None
+        return float(s.iloc[-1]), float(s.iloc[-n - 1:-1].mean())
+    l, b = last_and_base(num("hrv_notte_ms"))
+    if l is not None:
+        q = l / b if b else 1
+        p = -1 if q < 0.9 else (1 if q > 1.05 else 0)
+        st = str(wv["hrv_stato"].dropna().iloc[-1]).upper() if "hrv_stato" in wv.columns and wv["hrv_stato"].notna().any() else ""
+        if st in ("UNBALANCED", "LOW", "POOR"):
+            p = min(p, -1)
+        fatt.append({"nome": "HRV", "valore": f"{l:.0f} ms", "rif": f"media 7 notti {b:.0f}", "punti": p})
+    l, b = last_and_base(num("sonno_ore"), 28)
+    if l is not None:
+        p = -1 if (l < 6 or l < b * 0.85) else (1 if (l >= 7 and l >= b) else 0)
+        fatt.append({"nome": "Sonno", "valore": f"{it(l)} h", "rif": f"media 28 notti {it(b)}", "punti": p})
+    l, b = last_and_base(num("fc_riposo"))
+    if l is not None:
+        p = -1 if l - b >= 3 else (1 if l - b <= -2 else 0)
+        fatt.append({"nome": "Battito a riposo", "valore": f"{l:.0f} bpm", "rif": f"media 7 giorni {b:.0f}", "punti": p})
+    l, b = last_and_base(num("body_battery_max"))
+    if l is not None:
+        p = -1 if l < 45 else (1 if l >= 75 else 0)
+        fatt.append({"nome": "Body Battery", "valore": f"{l:.0f}", "rif": f"media 7 giorni {b:.0f}", "punti": p})
+    if cur_ratio is not None:
+        p = -2 if cur_ratio > 1.5 else (-1 if cur_ratio > 1.3 else (1 if cur_ratio < 0.8 else 0))
+        fatt.append({"nome": "Carico", "valore": it(cur_ratio, 2), "rif": "zona abituale 0,8-1,3", "punti": p})
+    if len(fatt) >= 3:
+        tot = sum(f["punti"] for f in fatt)
+        neg = sum(1 for f in fatt if f["punti"] < 0)
+        if tot <= -2 or any(f["punti"] <= -2 for f in fatt) or neg >= 3:
+            liv, frase = "scarica", "Giornata da scarico: facile, corta o riposo."
+        elif tot >= 2 and neg == 0:
+            liv, frase = "spingi", "Segnali buoni: è un giorno adatto a qualità o volume."
+        else:
+            liv, frase = "normale", "Giornata normale: allenamento come da programma."
+        prontezza = {"disponibile": True, "livello": liv, "frase": frase, "punteggio": tot, "fattori": fatt,
+                     "nota": "Lettura orientativa da HRV, sonno, battito a riposo, Body Battery e carico. Contano anche le sensazioni."}
+
+# (9) gara obiettivo e piano settimanale indicativo
+gara = {"disponibile": False}
+try:
+    G_ = json.load(open(os.path.join(ROOT, "scripts", "gare.json"), encoding="utf-8"))
+except Exception:
+    G_ = None
+if G_ and G_.get("principale"):
+    gp = G_["principale"]; gd = pd.Timestamp(gp["data"])
+    if gd >= today:
+        lun0 = today - pd.Timedelta(days=today.weekday())
+        lung = gd - pd.Timedelta(days=gd.weekday())
+        nsett = int((lung - lun0).days // 7)
+        taper = int(G_.get("settimane_scarico_finale", 3)); ogni = int(G_.get("ogni_quante_settimane_scarico", 4))
+        pk_ = G_.get("picco_settimanale", {})
+        def actual(w):
+            sub = act[(act["day"] >= w) & (act["day"] < w + pd.Timedelta(days=7))]
+            return r(sub["distanza_km"].sum()), r(sub["dislivello_pos_m"].sum(), 0)
+        ult4 = [actual(lun0 - pd.Timedelta(weeks=i)) for i in range(1, 5)]
+        base_km = max(10.0, sum(x[0] or 0 for x in ult4) / 4); base_dp = max(300.0, sum(x[1] or 0 for x in ult4) / 4)
+        prep = [dict(x, sett=str((pd.Timestamp(x["data"]) - pd.Timedelta(days=pd.Timestamp(x["data"]).weekday())).date()))
+                for x in G_.get("preparazione", []) if pd.Timestamp(x["data"]) >= today]
+        prep_sett = {x["sett"] for x in prep}
+        npk = max(1, nsett - taper)
+        piano = []
+        for i in range(-8, nsett + 1):
+            w = lun0 + pd.Timedelta(weeks=i)
+            km_, dp_ = actual(w) if w <= anchor else (None, None)
+            row = {"settimana": str(w.date()), "km": km_, "dislivello_m": dp_}
+            if i >= 0:
+                if i == nsett:
+                    f, tipo = 0.35, "gara"
+                elif i > npk:
+                    f, tipo = max(0.4, 0.8 - 0.2 * (i - npk - 1)), "scarico finale"
+                else:
+                    f = min(1.0, i / npk) if npk else 1.0
+                    tipo = "carico"
+                    if i > 0 and i % ogni == 0 and i < npk:
+                        tipo = "scarico"
+                pkm = base_km + (pk_.get("km", base_km) - base_km) * (f if tipo in ("carico", "scarico") else 1)
+                pdp = base_dp + (pk_.get("dislivello_m", base_dp) - base_dp) * (f if tipo in ("carico", "scarico") else 1)
+                if tipo == "scarico":
+                    pkm, pdp = pkm * 0.7, pdp * 0.7
+                elif tipo in ("scarico finale", "gara"):
+                    pkm, pdp = pk_.get("km", pkm) * f, pk_.get("dislivello_m", pdp) * f
+                if row["settimana"] in prep_sett:
+                    tipo = "gara di preparazione"
+                prev_ = piano[-1] if piano else None
+                if prev_ and prev_.get("tipo") == "gara di preparazione":
+                    pkm, pdp, tipo = pkm * 0.5, pdp * 0.5, "recupero"
+                row.update({"km_obiettivo": round(pkm), "dislivello_obiettivo": int(round(pdp / 50) * 50), "tipo": tipo})
+            piano.append(row)
+        sett = (gd - today).days / 7
+        fase = "base" if sett > 24 else ("costruzione" if sett > 8 else ("specifica" if sett > taper else "scarico"))
+        cur = next((p for p in piano if p["settimana"] == str(lun0.date())), None)
+        gara = {"disponibile": True, "nome": gp["nome"], "luogo": gp.get("luogo"), "data": gp["data"],
+                "data_stimata": bool(gp.get("data_stimata")), "km": gp.get("km"), "dislivello_m": gp.get("dislivello_m"),
+                "giorni": int((gd - today).days), "settimane": nsett, "fase": fase,
+                "preparazione": prep, "picco": pk_, "piano": piano, "settimana_corrente": cur,
+                "base_4sett": {"km": r(base_km), "dislivello_m": r(base_dp, 0)},
+                "nota": G_.get("nota") or "",
+                "avvertenza": "Piano indicativo: una rampa lineare dalla media delle ultime 4 settimane al picco, con una settimana di scarico ogni 4 e 3 settimane di scarico finale. Non sostituisce un allenatore."}
+
+# (10) scarpe
+scarpe = {"disponibile": False}
+try:
+    sj = json.load(open(os.path.join(OUT_DIR, "scarpe.json"), encoding="utf-8"))
+    att = [s for s in sj.get("scarpe", []) if s.get("attiva")]
+    if att:
+        for s in att:
+            s["pct"] = r(min(200, s["km"] / s["limite_km"] * 100), 0) if s.get("limite_km") else None
+            s["stato"] = "da cambiare" if s["pct"] is not None and s["pct"] >= 100 else ("quasi" if s["pct"] is not None and s["pct"] >= 85 else "ok")
+        scarpe = {"disponibile": True, "fonte": sj.get("fonte"), "aggiornato": sj.get("aggiornato"), "scarpe": att}
+except Exception:
+    pass
+
+# (11) scadenza della chiave Garmin (variabile di repository GARMIN_KEY_SCADENZA, AAAA-MM-GG)
+chiave = {"scadenza": None, "giorni": None}
+_sc = os.environ.get("GARMIN_KEY_SCADENZA", "").strip()
+if _sc:
+    try:
+        chiave = {"scadenza": _sc, "giorni": int((pd.Timestamp(_sc) - today).days)}
+    except Exception:
+        pass
+
+# osservazioni aggiuntive
+if gara.get("disponibile") and gara.get("settimana_corrente"):
+    c_ = gara["settimana_corrente"]
+    _dpo = f"{c_['dislivello_obiettivo']:,}".replace(",", ".")
+    oss["proiezioni"].append(f"{gara['nome']}: mancano {gara['giorni']} giorni, fase {gara['fase']}. Questa settimana l'indicazione è {c_['km_obiettivo']} km e {_dpo} m di dislivello.")
+if salita.get("record_uscita") and pd.Timestamp(salita["record_uscita"]["data"]) >= inizio30:
+    _rm = f"{salita['record_uscita']['m']:,.0f}".replace(",", ".")
+    oss["record"].append(f"Nuovo record di salita in una uscita: {_rm} m {art('il', salita['record_uscita']['data'])}.")
+
 obs = oss
 
 n_act = len(act)
@@ -441,6 +620,11 @@ out = {
                        avv_pace,
                        "Le variazioni percentuali sono null quando il periodo precedente vale zero."],
     "lacune": lacune,
+    "salita": salita,
+    "prontezza": prontezza,
+    "gara": gara,
+    "scarpe": scarpe,
+    "chiave": chiave,
 }
 json.dump(out, open(os.path.join(OUT_DIR, "metrics.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(json.dumps({k: out[k] for k in ["data_riferimento", "dati_aggiornati", "osservazioni", "peso"]}, ensure_ascii=False, indent=1)[:4000])

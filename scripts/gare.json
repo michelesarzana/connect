@@ -1,0 +1,25 @@
+{
+ "nota": "Gara obiettivo e piano indicativo. Le date stimate vanno confermate quando escono i calendari 2027.",
+ "principale": {
+  "nome": "100 Miglia del Monviso",
+  "luogo": "Saluzzo",
+  "data": "2027-07-16",
+  "data_stimata": true,
+  "km": 160,
+  "dislivello_m": 9000
+ },
+ "preparazione": [
+  {
+   "nome": "Garda Trentino Trail 100K",
+   "luogo": "Arco",
+   "data": "2027-05-15",
+   "data_stimata": true,
+   "km": 100,
+   "dislivello_m": null,
+   "nota": "In alternativa la Loch Trail Cup"
+  }
+ ],
+ "picco_settimanale": {"km": 100, "dislivello_m": 5000},
+ "settimane_scarico_finale": 3,
+ "ogni_quante_settimane_scarico": 4
+}

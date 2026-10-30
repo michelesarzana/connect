@@ -7,6 +7,12 @@
 <meta name="theme-color" content="#000000">
 <script>try{const t=localStorage.getItem('mft-tema');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(_){}</script>
 <title>My Fitness Tracker</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Fitness">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='13' fill='%23141416'/%3E%3Ccircle cx='24' cy='24' r='17' fill='none' stroke='%23c8f53b' stroke-width='4' stroke-linecap='round' stroke-dasharray='90 107' transform='rotate(-90 24 24)'/%3E%3Ccircle cx='24' cy='24' r='11' fill='none' stroke='%23ff4f8b' stroke-width='4' stroke-linecap='round' stroke-dasharray='50 70' transform='rotate(-90 24 24)'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,7 +80,7 @@ button,select,input{font:inherit; color:inherit}
   background:linear-gradient(var(--chrome-fade),transparent); opacity:0; transition:opacity .2s ease}
 .top.scrolled::after{opacity:1}
 .topbar{display:flex; align-items:center; gap:12px 28px; padding-top:12px; padding-bottom:12px; flex-wrap:wrap}
-.brand{display:flex; align-items:center; gap:12px; min-width:0; flex:1 1 0; text-decoration:none; color:inherit; margin-right:auto}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; margin-right:auto}
 .brand svg{flex:none}
 .brand b{display:block; font-family:var(--display); font-weight:800; font-size:1.375rem; line-height:1.05; letter-spacing:-0.03em}
 .brand small{display:block; font-size:.75rem; color:var(--label-2); margin-top:2px}
@@ -82,24 +88,6 @@ button,select,input{font:inherit; color:inherit}
   -webkit-tap-highlight-color:transparent; transition:transform .1s ease-out}
 .themebtn:active{transform:scale(.92)}
 .themebtn svg{width:20px; height:20px}
-/* Tasto aggiorna: avvia il workflow su GitHub */
-.topbtns{order:3; flex:none; display:flex; gap:8px}
-.refreshbtn.busy svg{animation:giro 1s linear infinite}
-.refreshbtn.ok{color:var(--good)} .refreshbtn.err{color:var(--bad)}
-@keyframes giro{to{transform:rotate(360deg)}}
-.sheet{border:0; border-radius:var(--radius); background:var(--surface); color:var(--label); padding:24px; width:min(440px, calc(100vw - 32px)); box-shadow:0 20px 60px var(--shadow)}
-.sheet::backdrop{background:rgba(0,0,0,.5)}
-.sheet h2{font-family:var(--display); font-weight:800; font-size:1.375rem; letter-spacing:-0.02em; margin:0 0 8px}
-.sheet p{margin:0 0 12px; color:var(--label-2); font-size:.9375rem; line-height:1.45}
-.sheet ol{margin:0 0 14px; padding-left:20px; color:var(--label-2); font-size:.9375rem; line-height:1.5}
-.sheet a{color:var(--label)}
-.sheet input{width:100%; box-sizing:border-box; font:inherit; font-size:16px; padding:12px 14px; border-radius:12px; border:1px solid var(--sep); background:var(--surface-2); color:var(--label)}
-.sheet .err-msg{color:var(--bad); font-size:.875rem; margin:8px 0 0; min-height:1em}
-.sheet .row{display:flex; gap:8px; justify-content:flex-end; margin-top:16px; flex-wrap:wrap}
-.sheet button{font:inherit; font-weight:600; border:0; border-radius:999px; padding:10px 18px; cursor:pointer; background:var(--surface-3); color:var(--label)}
-.sheet button.primary{background:var(--lime); color:var(--on-accent)}
-.sheet .link{background:transparent; padding:10px 4px; color:var(--label-2); font-weight:500; margin-right:auto}
-@media (prefers-reduced-motion: reduce){ .refreshbtn.busy svg{animation:none} }
 .nav{order:2; display:flex; gap:2px; background:var(--surface); border-radius:999px; padding:4px; overflow-x:auto; scrollbar-width:none; max-width:100%}
 .nav::-webkit-scrollbar{display:none}
 .nav a{flex:none; text-decoration:none; color:var(--label); font-size:.875rem; font-weight:500; padding:8px 15px; border-radius:999px;
@@ -336,6 +324,100 @@ footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom
 }
 @media (prefers-reduced-motion: reduce){ *{transition:none !important} }
 @media (prefers-reduced-transparency: reduce){ .top{background:var(--bg); -webkit-backdrop-filter:none; backdrop-filter:none} }
+
+/* Avviso chiave Garmin */
+.notice.key{background:var(--bad-soft)} .notice.key .ic{background:var(--bad); color:#fff}
+.notice.key.soft{background:var(--warn-soft)} .notice.key.soft .ic{background:var(--warn); color:#000}
+
+/* Prontezza */
+.ready{display:flex; align-items:baseline; gap:12px; margin:6px 0 4px}
+.ready b{font-family:var(--display); font-weight:800; font-size:3rem; line-height:1; letter-spacing:-0.04em}
+.ready.spingi b{color:var(--good)} .ready.normale b{color:var(--cyan)} .ready.scarica b{color:var(--bad)}
+.ready span{font-size:.875rem; color:var(--label-2)}
+.rbar{display:flex; gap:4px; margin:14px 0 18px}
+.rbar i{flex:1; height:8px; border-radius:4px; background:var(--surface-3)}
+.ready.spingi ~ .rbar i.on{background:var(--good)} .ready.normale ~ .rbar i.on{background:var(--cyan)} .ready.scarica ~ .rbar i.on{background:var(--bad)}
+.factors{list-style:none; margin:0; padding:0; display:flex; flex-direction:column}
+.factors li{display:grid; grid-template-columns:12px 1fr auto; grid-template-rows:auto auto; column-gap:12px; align-items:center; padding:10px 0; border-top:1px solid var(--sep)}
+.factors li:first-child{border-top:0}
+.factors i{grid-row:span 2; width:10px; height:10px; border-radius:50%; background:var(--label-2)}
+.factors i.up{background:var(--good)} .factors i.down{background:var(--bad)} .factors i.eq{background:transparent; box-shadow:inset 0 0 0 2px var(--label-2)}
+.factors .fn{font-weight:500}
+.factors b{font-family:var(--display); font-weight:700; text-align:right}
+.factors small{grid-column:2 / 4; font-size:.8125rem; color:var(--label-2)}
+
+/* Salita */
+.sl-top{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:4px 0 18px}
+.sl-top div{background:var(--surface-2); border-radius:16px; padding:12px 14px; min-width:0}
+.sl-top span{display:block; font-size:.8125rem; color:var(--label-2)}
+.sl-top b{display:block; font-family:var(--display); font-weight:700; font-size:1.75rem; line-height:1.15; letter-spacing:-0.03em; white-space:nowrap}
+.sl-top b small{font-size:.8125rem; color:var(--label-2); font-weight:600; letter-spacing:0}
+.sl-top em{font-style:normal; font-size:.75rem; color:var(--label-2)}
+.linkish{border:0; background:none; padding:0; font:inherit; color:inherit; text-align:left; cursor:pointer; text-decoration:underline; text-decoration-color:var(--surface-3); text-underline-offset:3px}
+
+/* Gara */
+.race-top{display:flex; align-items:flex-end; gap:12px 28px; flex-wrap:wrap; margin:18px 0 6px}
+.count b{display:block; font-family:var(--display); font-weight:800; font-size:4rem; line-height:.9; letter-spacing:-0.05em; color:var(--lime)}
+.count span{font-size:.8125rem; color:var(--label-2)}
+.count.s b{font-size:2.25rem; color:var(--label)}
+.phase{display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:999px; background:var(--surface-2); font-size:.875rem; margin-bottom:6px}
+.phase b{text-transform:capitalize}
+.wkp{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 24px; margin:18px 0 20px}
+.wkp .nm{display:flex; justify-content:space-between; font-size:.8125rem; color:var(--label-2); margin-bottom:6px}
+.wkp .nm b{color:var(--label); font-weight:600}
+.wkp .tr{height:10px; border-radius:5px; background:var(--surface-3); overflow:hidden}
+.wkp .tr i{display:block; height:100%; border-radius:5px; background:var(--lime); width:0; transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.prep{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
+.prep li{display:flex; gap:10px; align-items:baseline; font-size:.9375rem}
+.prep li::before{content:""; flex:none; width:8px; height:8px; border-radius:50%; background:var(--amber); transform:translateY(-1px)}
+.prep small{color:var(--label-2)}
+.gl{display:flex; gap:16px; flex-wrap:wrap; font-size:.8125rem; color:var(--label-2); margin:8px 0 0}
+.gl span{display:inline-flex; align-items:center; gap:7px}
+.gl i{width:12px; height:12px; border-radius:3px; display:block}
+
+/* Scarpe */
+.shoes{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px}
+.shoes li{background:var(--surface-2); border-radius:16px; padding:14px; min-width:0}
+.shoes .nm{font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.shoes .v{font-family:var(--display); font-weight:700; font-size:1.75rem; letter-spacing:-0.03em; margin:4px 0 8px}
+.shoes .v small{font-size:.8125rem; color:var(--label-2); font-weight:600; letter-spacing:0}
+.shoes .tr{height:8px; border-radius:4px; background:var(--surface-3); overflow:hidden}
+.shoes .tr i{display:block; height:100%; background:var(--good); border-radius:4px}
+.shoes li.quasi .tr i{background:var(--warn)} .shoes li.da-cambiare .tr i{background:var(--bad)}
+.shoes .st{font-size:.8125rem; color:var(--label-2); margin-top:8px}
+.shoes li.quasi .st b{color:var(--warn)} .shoes li.da-cambiare .st b{color:var(--bad)}
+
+/* Dettaglio attivita */
+button.arow{width:100%; border:0; background:transparent; font:inherit; text-align:left; cursor:pointer}
+button.arow:hover{background:var(--surface-2)}
+button.arow:active{transform:scale(.985); background:var(--surface-2)}
+.sheet{border:0; border-radius:var(--radius); background:var(--surface); color:var(--label); padding:0; width:min(720px, calc(100vw - 24px)); max-height:calc(100dvh - 24px); box-shadow:0 20px 60px var(--shadow)}
+.sheet::backdrop{background:rgba(0,0,0,.55)}
+.sheet[open]{animation:sheetIn .28s cubic-bezier(.2,.9,.25,1)}
+@keyframes sheetIn{from{opacity:0; transform:translateY(24px) scale(.98)}}
+.as-in{padding:22px 24px 24px; display:flex; flex-direction:column; gap:16px}
+.as-head{display:flex; justify-content:space-between; gap:12px; align-items:flex-start}
+.as-head h2{font-family:var(--display); font-weight:800; font-size:1.5rem; letter-spacing:-0.025em; line-height:1.15}
+.as-x{flex:none; width:36px; height:36px; border-radius:50%; border:0; background:var(--surface-2); color:var(--label); font-size:1.25rem; line-height:1; cursor:pointer}
+.as-stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:8px}
+.as-stats div{background:var(--surface-2); border-radius:14px; padding:10px 12px}
+.as-stats span{display:block; font-size:.75rem; color:var(--label-2)}
+.as-stats b{font-family:var(--display); font-weight:700; font-size:1.25rem}
+.as-map{height:260px; border-radius:16px; overflow:hidden; background:var(--map-bg)}
+.as-map[hidden]{display:none}
+.as-link{align-self:flex-start; color:var(--label); font-size:.875rem; font-weight:600}
+@media (prefers-reduced-motion: reduce){ .sheet[open]{animation:none} .wkp .tr i{transition:none} }
+@media (max-width:620px){
+  .sl-top{grid-template-columns:1fr 1fr} .sl-top div:last-child{grid-column:span 2}
+  .count b{font-size:3.25rem}
+  .wkp{grid-template-columns:1fr}
+  .shoes{grid-template-columns:1fr}
+  .sheet{width:100vw; max-width:100vw; max-height:92dvh; margin:auto 0 0; border-radius:24px 24px 0 0}
+  .as-in{padding:18px 16px calc(20px + env(safe-area-inset-bottom))}
+  .as-map{height:220px}
+}
+
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
 </style>
 </head>
 <body>
@@ -352,37 +434,17 @@ footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom
     </a>
     <nav class="nav" aria-label="Sezioni">
       <a href="#panoramica">Panoramica</a>
+      <a href="#oggi">Oggi</a>
+      <a href="#gara">Gara</a>
       <a href="#attivita">Attività</a>
       <a href="#mappa">Mappa</a>
       <a href="#peso">Peso</a>
       <a href="#recupero">Recupero</a>
       <a href="#note">Note</a>
     </nav>
-    <div class="topbtns">
-    <button type="button" class="themebtn refreshbtn" id="refreshBtn" aria-label="Aggiorna i dati da Garmin" title="Aggiorna i dati da Garmin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg></button>
     <button type="button" class="themebtn" id="themeBtn"></button>
-    </div>
   </div>
 </header>
-<dialog class="sheet" id="refreshSheet" aria-labelledby="refreshTitle">
-  <form method="dialog" id="refreshForm">
-    <h2 id="refreshTitle">Aggiorna adesso</h2>
-    <p>Il tasto avvia l'aggiornamento su GitHub. Serve una chiave GitHub, una volta sola per dispositivo. Resta salvata solo in questo browser.</p>
-    <ol>
-      <li>Apri <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">nuovo token fine-grained</a>.</li>
-      <li>Repository access: solo <b>connect</b>.</li>
-      <li>Permessi: <b>Actions</b> in lettura e scrittura. Nient'altro.</li>
-    </ol>
-    <input id="refreshToken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" aria-label="Chiave GitHub">
-    <p class="err-msg" id="refreshErr" role="alert"></p>
-    <div class="row">
-      <a class="link" id="refreshActions" href="https://github.com/michelesarzana/connect/actions/workflows/update.yml" target="_blank" rel="noopener">Apri GitHub Actions</a>
-      <button type="button" id="refreshForget" hidden>Rimuovi chiave</button>
-      <button value="cancel" formnovalidate>Annulla</button>
-      <button value="ok" class="primary" id="refreshSave">Salva e aggiorna</button>
-    </div>
-  </form>
-</dialog>
 
 <main class="wrap">
   <div class="notice" id="notice" role="note"><span class="ic" aria-hidden="true">!</span><div id="noticeTxt"></div></div>
@@ -420,6 +482,13 @@ footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom
       </div>
     </div>
   </section>
+
+  <section class="cols" id="oggi" aria-label="Oggi">
+    <div class="card c5" id="readyCard" aria-labelledby="rdT"></div>
+    <div class="card c7" id="salitaCard" aria-labelledby="slT"></div>
+  </section>
+
+  <section class="card" id="gara" aria-labelledby="grT"></section>
 
   <div class="cols">
     <section class="card c7" id="attivita" aria-labelledby="hmT">
@@ -497,6 +566,8 @@ footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom
       <p class="lead" id="actLead"></p>
       <ul class="alist" id="alist"></ul>
     </section>
+
+    <section class="card c12" id="scarpe" aria-labelledby="shT"></section>
   </div>
 
   <section id="recupero" aria-labelledby="recT" style="display:flex; flex-direction:column; gap:var(--gap)">
@@ -519,6 +590,15 @@ footer{color:var(--label-2); font-size:.8125rem; line-height:1.5; padding-bottom
 
   <footer id="foot"></footer>
 </main>
+<dialog class="sheet" id="actSheet" aria-labelledby="asTitle">
+  <div class="as-in">
+    <div class="as-head"><div><p class="eyebrow" id="asType" style="margin:0 0 2px"></p><h2 id="asTitle"></h2></div><button type="button" class="as-x" aria-label="Chiudi">&times;</button></div>
+    <div class="as-stats" id="asStats"></div>
+    <div class="as-map" id="asMap" hidden></div>
+    <div id="asProf"></div>
+    <a class="as-link" id="asLink" target="_blank" rel="noopener">Apri su Garmin Connect</a>
+  </div>
+</dialog>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -644,56 +724,6 @@ const TRACCE=fetch('data/tracce.json',{cache:'no-cache'}).then(r=>r.ok?r.json():
   btn.addEventListener('click',()=>{mode={auto:'light',light:'dark',dark:'auto'}[mode];apply()});
   mq.addEventListener('change',()=>{if(mode==='auto')apply()});
   apply();
-})();
-
-/* Aggiorna adesso: avvia il workflow con la chiave salvata in questo browser */
-(function(){
-  const REPO='michelesarzana/connect', WF='update.yml', API=`https://api.github.com/repos/${REPO}/actions/workflows/${WF}`;
-  const KEY='mft-gh-token', btn=$('#refreshBtn'), dlg=$('#refreshSheet'), inp=$('#refreshToken'), err=$('#refreshErr'), forget=$('#refreshForget'), upd=$('#upd');
-  let updTxt='';
-  const getTok=()=>{try{return localStorage.getItem(KEY)}catch(_){return null}};
-  const setTok=v=>{try{v?localStorage.setItem(KEY,v):localStorage.removeItem(KEY)}catch(_){}};
-  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-  let busy=false;
-  function stato(txt,cls){upd.textContent=txt;btn.classList.remove('busy','ok','err');if(cls)btn.classList.add(cls)}
-  function apri(msg){err.textContent=msg||'';inp.value='';forget.hidden=!getTok();dlg.showModal();setTimeout(()=>inp.focus(),50)}
-  const gh=(url,opt={})=>fetch(url,{...opt,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+getTok(),'X-GitHub-Api-Version':'2022-11-28',...(opt.headers||{})}});
-  async function avvia(){
-    if(busy)return;
-    if(!getTok())return apri();
-    updTxt=upd.textContent;busy=true;stato('Avvio aggiornamento…','busy');
-    const t0=Date.now()-60000;
-    try{
-      const r=await gh(API+'/dispatches',{method:'POST',body:JSON.stringify({ref:'main'})});
-      if(r.status===401||r.status===403||r.status===404){setTok(null);busy=false;stato(updTxt);return apri('Chiave non valida o senza il permesso Actions. Inseriscine una nuova.')}
-      if(!r.ok)throw new Error('avvio '+r.status);
-      /* Cerca l'esecuzione appena partita e ne segue lo stato */
-      let run=null;
-      for(let i=0;i<120;i++){
-        await sleep(i<3?4000:10000);
-        const j=await (await gh(API+'/runs?event=workflow_dispatch&per_page=5')).json();
-        run=(j.workflow_runs||[]).find(x=>Date.parse(x.created_at)>=t0)||run;
-        if(!run){stato('In coda su GitHub…','busy');continue}
-        if(run.status!=='completed'){stato(run.status==='in_progress'?'Scarico i dati da Garmin…':'In coda su GitHub…','busy');continue}
-        break;
-      }
-      if(!run||run.status!=='completed')throw new Error('tempo scaduto');
-      if(run.conclusion!=='success'){stato('Aggiornamento non riuscito. Tocca per riprovare.','err');busy=false;console.warn(run.html_url);return}
-      /* Il workflow ha finito: aspetta che GitHub Pages pubblichi i nuovi dati */
-      stato('Pubblico la dashboard…','busy');
-      const prima=(D.generato_il||'')+' '+(D.generato_alle||'');
-      for(let i=0;i<24;i++){
-        await sleep(10000);
-        try{const m=await (await fetch('data/metrics.json?t='+Date.now(),{cache:'no-store'})).json();
-          if((m.generato_il||'')+' '+(m.generato_alle||'')!==prima){stato('Fatto. Ricarico…','ok');await sleep(600);location.reload();return}}catch(_){}
-      }
-      stato('Aggiornato su GitHub. Ricarica tra un minuto.','ok');busy=false;
-    }catch(e){console.warn(e);stato('Aggiornamento non riuscito. Tocca per riprovare.','err');busy=false}
-  }
-  btn.addEventListener('click',avvia);
-  btn.addEventListener('contextmenu',e=>{e.preventDefault();apri()});
-  forget.addEventListener('click',()=>{setTok(null);forget.hidden=true;err.textContent='Chiave rimossa da questo browser.'});
-  dlg.addEventListener('close',()=>{const v=inp.value.trim();if(dlg.returnValue==='ok'&&v){setTok(v);avvia()}});
 })();
 
 /* Header e navigazione */
@@ -1087,6 +1117,192 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
   responsive(box,W=>{build(W);draw(cur,false);if(first){first=false;if(!RM.matches){G.items.forEach(it=>it.sp.jump(0));draw(cur,true)}}});
 })();
 
+/* Dettaglio attivita: mappa, profilo altimetrico e battito */
+const openAct=(function(){
+  const dlg=$('#actSheet'), byId={};for(const r of ACT)byId[String(r[0])]=r;
+  const nomi={};for(const a of (D.ultime_attivita||[]))if(a.id)nomi[a.id]=a.nome;
+  let map=null, line=null, PROF=null;
+  const prof=()=>PROF||(PROF=fetch('data/profili.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null));
+  dlg.querySelector('.as-x').addEventListener('click',()=>dlg.close());
+  dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+  function profilo(box,pts){
+    box.innerHTML='';if(!pts||pts.length<3){box.innerHTML='<p class="eyebrow" style="margin:0">Profilo altimetrico non ancora disponibile per questa attività.</p>';return}
+    const hasHr=pts.some(p=>p[2]);
+    const head=document.createElement('div');head.className='eyebrow';head.style.marginBottom='6px';
+    const salita=pts.reduce((s,p,i)=>i&&p[1]>pts[i-1][1]?s+p[1]-pts[i-1][1]:s,0);
+    head.textContent=`Profilo altimetrico${hasHr?' e battito':''}. Quota tra ${nf(Math.min(...pts.map(p=>p[1])))} e ${nf(Math.max(...pts.map(p=>p[1])))} m.`;
+    const ch=document.createElement('div');ch.className='chart';box.append(head,ch);
+    const ro=readout(ch);
+    responsive(ch,W=>{
+      ch.querySelector('svg')?.remove();
+      const H=170,L=40,R=hasHr?34:8,T=12,B=22,iw=W-L-R,ih=H-T-B;
+      const kmx=pts[pts.length-1][0]||1, qs=pts.map(p=>p[1]), q0=Math.min(...qs), q1=Math.max(...qs), span=Math.max(50,q1-q0);
+      const lo=Math.floor((q0-span*.1)/50)*50, hi=Math.ceil((q1+span*.05)/50)*50;
+      const hr=pts.map(p=>p[2]).filter(Boolean), h0=hr.length?Math.min(...hr)-5:0, h1=hr.length?Math.max(...hr)+5:1;
+      const x=k=>L+k/kmx*iw, y=q=>T+ih-(q-lo)/(hi-lo)*ih, yh=h=>T+ih-(h-h0)/(h1-h0)*ih;
+      const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,height:H,role:'img','aria-label':`Profilo altimetrico su ${nf(kmx,1)} km, quota da ${nf(q0)} a ${nf(q1)} m. Usa le frecce per scorrere.`});
+      const st=Math.max(50,Math.ceil((hi-lo)/3/50)*50);
+      for(let v=lo;v<=hi;v+=st){svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:'var(--grid)'}));svg.appendChild(el('text',{x:L-6,y:y(v)+4,'text-anchor':'end'},nf(v)))}
+      const d=pts.map((p,i)=>(i?'L':'M')+x(p[0]).toFixed(1)+' '+y(p[1]).toFixed(1)).join('');
+      svg.appendChild(el('path',{d:d+`L${x(kmx)} ${T+ih}L${L} ${T+ih}Z`,fill:'var(--lime)',opacity:.18}));
+      svg.appendChild(el('path',{d,fill:'none',stroke:'var(--lime)','stroke-width':2,'stroke-linejoin':'round'}));
+      if(hasHr){const hp=pts.filter(p=>p[2]);svg.appendChild(el('path',{d:hp.map((p,i)=>(i?'L':'M')+x(p[0]).toFixed(1)+' '+yh(p[2]).toFixed(1)).join(''),fill:'none',stroke:'var(--pink)','stroke-width':1.4,opacity:.85}));
+        [h0+5,h1-5].forEach(v=>svg.appendChild(el('text',{x:W-R+6,y:yh(v)+4,style:'fill:var(--pink)'},nf(v))))}
+      const nL=Math.max(2,Math.min(6,Math.floor(iw/60)));
+      for(let j=0;j<nL;j++){const k=kmx*j/(nL-1);svg.appendChild(el('text',{x:x(k),y:H-4,'text-anchor':j===0?'start':(j===nL-1?'end':'middle')},nf(k,k<10&&kmx<10?1:0)+(j===nL-1?' km':'')))}
+      const rule=el('line',{class:'mark',y1:T,y2:T+ih,stroke:'var(--label-2)'}),dot=el('circle',{class:'mark',r:4,fill:'var(--lime)',stroke:'var(--surface)','stroke-width':2});
+      svg.append(rule,dot);ch.prepend(svg);
+      scrub(svg,pts.length,i=>x(pts[i][0]),i=>{const p=pts[i],px=x(p[0]);rule.setAttribute('x1',px);rule.setAttribute('x2',px);dot.setAttribute('cx',px);dot.setAttribute('cy',y(p[1]));
+        ro.show(px,T,`<b>${nf(p[1])} m</b><span>km ${nf(p[0],1)}${p[2]?` · ${p[2]} bpm`:''}</span>`,0)},()=>ro.hide());
+    });
+    const f=document.createElement('p');f.className='eyebrow';f.style.margin='8px 0 0';
+    f.textContent=`Dislivello positivo dal profilo: circa ${nf(Math.round(salita/10)*10)} m.${hasHr?' In rosa il battito, scala a destra.':''}`;box.appendChild(f);
+  }
+  return function(id){
+    id=String(id);const r=byId[id];if(!r)return;
+    const [,data,tipo,km,min,dp,fc]=r, nome=nomi[id]||TIPI[tipo]||tipo.replace(/_/g,' ');
+    $('#asType').textContent=`${TIPI[tipo]||tipo.replace(/_/g,' ')} · ${fmtL(data)}, ${data.slice(11,16)}`;
+    $('#asTitle').textContent=nome;
+    const corsa=/running/.test(tipo)&&km>0&&min>0, p=corsa?min/km:0;
+    const S=[['Distanza',km>0?`${nf(km,km<10?2:1)} km`:null],['Durata',min!=null?fmtDur(min):null],['Dislivello',dp?`${nf(dp)} m`:null],
+      ['FC media',fc?`${fc} bpm`:null],['Passo',corsa?`${Math.floor(p)}:${String(Math.round(p%1*60)).padStart(2,'0')} /km`:null]].filter(s=>s[1]);
+    $('#asStats').innerHTML=S.map(([n,v])=>`<div><span>${n}</span><b>${v}</b></div>`).join('');
+    $('#asLink').href=`https://connect.garmin.com/modern/activity/${encodeURIComponent(id)}`;
+    const mbox=$('#asMap'), pbox=$('#asProf');
+    mbox.hidden=true;pbox.innerHTML='<p class="eyebrow" style="margin:0">Carico il profilo…</p>';
+    dlg.showModal();
+    TRACCE.then(j=>{const s=j&&j.tracce&&j.tracce[id];if(!s||!window.L)return;const pts=decodePL(s);if(pts.length<2)return;
+      mbox.hidden=false;
+      if(!map){map=L.map(mbox,{zoomControl:false,attributionControl:true,scrollWheelZoom:false,fadeAnimation:!RM.matches,zoomAnimation:!RM.matches});
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,className:'osm-dark',attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map)}
+      if(line)line.remove();
+      const col=getComputedStyle(document.documentElement).getPropertyValue('--pink').trim()||'#ff4f8b';
+      line=L.layerGroup([L.polyline(pts,{color:col,weight:3.5,opacity:.95}),L.circleMarker(pts[0],{radius:5,color:col,fillColor:col,fillOpacity:1}),
+        L.circleMarker(pts[pts.length-1],{radius:5,color:col,fillColor:'#fff',fillOpacity:1})]).addTo(map);
+      requestAnimationFrame(()=>{map.invalidateSize();map.fitBounds(L.latLngBounds(pts),{padding:[18,18]})})});
+    prof().then(j=>profilo(pbox,j&&j.profili&&j.profili[id]));
+  };
+})();
+
+/* Avviso: chiave Garmin in scadenza */
+(function(){
+  const k=D.chiave||{};if(k.giorni==null||k.giorni>21)return;
+  const n=document.createElement('div');n.className='notice key'+(k.giorni>7?' soft':'');n.setAttribute('role','note');
+  n.innerHTML=`<span class="ic" aria-hidden="true">!</span><div><strong>${k.giorni<0?'La chiave Garmin è scaduta':k.giorni===0?'La chiave Garmin scade oggi':`La chiave Garmin scade tra ${k.giorni} ${k.giorni===1?'giorno':'giorni'}`}</strong>, il ${fmtD(k.scadenza)}. Genera una nuova chiave dal profilo Garmin, aggiorna il segreto GARMIN_PERSONAL_KEY e la variabile GARMIN_KEY_SCADENZA su GitHub.</div>`;
+  $('main').prepend(n);
+})();
+
+/* Prontezza di oggi */
+(function(){
+  const P=D.prontezza||{}, c=$('#readyCard');
+  if(!P.disponibile){c.innerHTML='<h2 id="rdT">Prontezza di oggi</h2><p class="empty">Servono HRV, sonno e carico delle ultime notti.</p>';return}
+  const LAB={spingi:'Spingi',normale:'Normale',scarica:'Scarica'}, pos={scarica:0,normale:1,spingi:2}[P.livello];
+  const verso=p=>p>0?['up','a favore']:p<0?['down','contro']:['eq','neutro'];
+  c.innerHTML=`<h2 id="rdT">Prontezza di oggi</h2>
+    <div class="ready ${P.livello}"><b>${LAB[P.livello]}</b></div>
+    <div class="rbar" role="img" aria-label="Livello ${LAB[P.livello]} su tre: scarica, normale, spingi">${[0,1,2].map(i=>`<i class="${i<=pos?'on':''}"></i>`).join('')}</div>
+    <p class="lead" style="margin-top:0">${esc(P.frase)}</p>
+    <ul class="factors">${P.fattori.map(f=>{const [cl,sr]=verso(f.punti);return `<li><i class="${cl}" aria-hidden="true"></i><span class="fn">${esc(f.nome)}<span class="sr"> (${sr})</span></span><b>${esc(f.valore)}</b><small>${esc(f.rif)}</small></li>`}).join('')}</ul>
+    <p class="eyebrow" style="margin:12px 0 0">${esc(P.nota)}</p>`;
+})();
+
+/* Salita */
+(function(){
+  const S=D.salita||{}, c=$('#salitaCard');
+  if(!S.mesi){c.innerHTML='<h2 id="slT">Salita</h2><p class="empty">Nessun dislivello registrato.</p>';return}
+  const dlt=(a,b)=>b?`${a>=b?'+':'−'}${nf(Math.abs((a-b)/b*100))}% sui 30 precedenti`:'';
+  const ru=S.record_uscita, rs=S.record_settimana, rm=S.record_mese, lg=S.lunga_8sett;
+  const mese=m=>{const [y,mm]=m.split('-');return `${MESI_L[+mm-1]} ${y}`};
+  c.innerHTML=`<div class="head"><div><h2 id="slT">Salita</h2><p class="lead" style="margin-bottom:0">Dislivello positivo nelle attività a piedi</p></div></div>
+    <div class="sl-top" style="margin-top:16px">
+      <div><span>Ultimi 30 giorni</span><b>${nf(S.d30)} <small>m</small></b><em>${dlt(S.d30,S.d30_prec)}</em></div>
+      <div><span>Metri per km</span><b>${S.m_per_km_30!=null?nf(S.m_per_km_30):'n.d.'} <small>m/km</small></b><em>${S.m_per_km_30_prec!=null?`prima ${nf(S.m_per_km_30_prec)}`:''}</em></div>
+      <div><span>Dal 1° gennaio</span><b>${nf(S.anno)} <small>m</small></b><em>${S.anno_prec_stessa_data?`${nf(S.anno_prec_stessa_data)} alla stessa data del ${S.anno_corrente-1}`:''}</em></div>
+    </div>
+    <div class="eyebrow" style="margin-bottom:6px">Dislivello al mese, ultimi 12 mesi</div>
+    <div class="chart" id="slChart"></div>
+    <div class="stats">
+      ${ru?`<div><b>${nf(ru.m)} m</b>${ru.id?`<button type="button" class="linkish" data-act="${ru.id}">uscita record, ${fmtD(ru.data)}</button>`:`uscita record, ${fmtD(ru.data)}`}</div>`:''}
+      ${rs?`<div><b>${nf(rs.m)} m</b>settimana record, dal ${fmtD(rs.dal)}</div>`:''}
+      ${rm?`<div><b>${nf(rm.m)} m</b>mese record, ${mese(rm.mese)}</div>`:''}
+    </div>
+    ${lg?`<p class="eyebrow" style="margin:12px 0 0">Uscita più lunga nelle ultime 8 settimane: ${nf(lg.km,1)} km e ${nf(lg.m)} m di dislivello in ${nf(lg.ore,1)} ore, il ${fmtS(lg.data)}.</p>`:''}`;
+  c.querySelectorAll('[data-act]').forEach(b=>b.addEventListener('click',()=>openAct(b.dataset.act)));
+  const M=S.mesi, box=$('#slChart'), ro=readout(box);
+  responsive(box,W=>{
+    box.querySelector('svg')?.remove();
+    const H=150,L=40,R=4,T=14,B=22,iw=W-L-R,ih=H-T-B,bw=iw/M.length, mx=Math.max(...M.map(m=>m.m),100);
+    const st=mx>6000?2000:mx>3000?1000:mx>1500?500:250, top=Math.ceil(mx/st)*st, y=v=>T+ih-v/top*ih;
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,height:H,role:'img','aria-label':`Dislivello al mese da ${mese(M[0].mese)} a ${mese(M[M.length-1].mese)}. Usa le frecce per scorrere.`});
+    for(let v=0;v<=top;v+=st){svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:'var(--grid)'}));svg.appendChild(el('text',{x:L-6,y:y(v)+4,'text-anchor':'end'},nf(v)))}
+    const bars=M.map((m,i)=>{const h=m.m?Math.max(2,m.m/top*ih):0, b=el('rect',{class:'bar',x:L+i*bw+bw*.2,y:T+ih-h,width:bw*.6,height:h,rx:Math.min(3,bw*.2),fill:i===M.length-1?'var(--pink)':'var(--lime)'});svg.appendChild(b);
+      if(i%(bw<34?2:1)===(M.length-1)%(bw<34?2:1))svg.appendChild(el('text',{x:L+i*bw+bw/2,y:H-5,'text-anchor':'middle'},MESI[+m.mese.slice(5)-1]));return b});
+    box.prepend(svg);
+    scrub(svg,M.length,i=>L+i*bw+bw/2,i=>{bars.forEach((b,j)=>b.classList.toggle('on',j===i));ro.show(L+i*bw+bw/2,0,`<b>${nf(M[i].m)} m</b><span>${mese(M[i].mese)}</span>`,0)},
+      ()=>{ro.hide();bars.forEach(b=>b.classList.remove('on'))});
+  });
+})();
+
+/* Gara obiettivo e piano indicativo */
+(function(){
+  const G=D.gara||{}, c=$('#gara');
+  if(!G.disponibile){c.remove();document.querySelector('.nav a[href="#gara"]')?.remove();return}
+  const P=G.piano, cw=G.settimana_corrente, prep=G.preparazione||[];
+  const pct=(a,b)=>b?Math.min(100,Math.round((a||0)/b*100)):0;
+  c.innerHTML=`<div class="head"><div><p class="eyebrow" style="margin:0 0 2px">Gara obiettivo</p><h2 id="grT">${esc(G.nome)}</h2>
+      <p class="lead" style="margin-bottom:0">${esc(G.luogo||'')}, ${fmtL(G.data)}${G.data_stimata?' (data stimata)':''}${G.km?` · ${nf(G.km)} km`:''}${G.dislivello_m?`, ${nf(G.dislivello_m)} m D+`:''}</p></div>
+      <div class="seg small" id="segGara" role="group" aria-label="Metrica del piano"><span class="thumb" aria-hidden="true"></span>
+        <button type="button" data-v="km" aria-pressed="true">Km</button><button type="button" data-v="dp" aria-pressed="false">D+</button></div></div>
+    <div class="race-top"><div class="count"><b>${G.giorni}</b><span>giorni</span></div><div class="count s"><b>${G.settimane}</b><span>settimane</span></div>
+      <span class="phase">Fase <b>${esc(G.fase)}</b></span></div>
+    ${cw?`<div class="wkp" aria-label="Settimana in corso rispetto all'indicazione">
+      <div><div class="nm"><span>Km questa settimana</span><span><b>${nf(cw.km||0,1)}</b> di ${nf(cw.km_obiettivo)}</span></div><div class="tr"><i data-w="${pct(cw.km,cw.km_obiettivo)}"></i></div></div>
+      <div><div class="nm"><span>Dislivello questa settimana</span><span><b>${nf(cw.dislivello_m||0)}</b> di ${nf(cw.dislivello_obiettivo)} m</span></div><div class="tr"><i data-w="${pct(cw.dislivello_m,cw.dislivello_obiettivo)}"></i></div></div></div>`:''}
+    <div class="chart" id="garaChart"></div>
+    <div class="gl"><span><i style="background:var(--lime)"></i>Fatto</span><span><i style="background:var(--surface-3)"></i>Indicazione</span><span><i style="background:var(--amber);border-radius:50%"></i>Gara</span></div>
+    ${prep.length?`<ul class="prep">${prep.map(x=>`<li><span><b>${esc(x.nome)}</b>, ${fmtL(x.data)}${x.data_stimata?' (stimata)':''} <small>${x.km?`${nf(x.km)} km`:''}${x.nota?` · ${esc(x.nota)}`:''}</small></span></li>`).join('')}</ul>`:''}
+    <p class="eyebrow" style="margin:12px 0 0">${esc(G.avvertenza)} Picco previsto ${nf(G.picco.km)} km e ${nf(G.picco.dislivello_m)} m a settimana. Si cambia in scripts/gare.json.</p>`;
+  requestAnimationFrame(()=>c.querySelectorAll('.wkp i').forEach(i=>i.style.width=i.dataset.w+'%'));
+  const box=$('#garaChart'), ro=readout(box), TIPO={carico:'carico',scarico:'settimana di scarico','scarico finale':'scarico finale',gara:'settimana della gara','gara di preparazione':'gara di preparazione',recupero:'recupero'};
+  let cur='km', G_=null;
+  const key=m=>m==='km'?['km','km_obiettivo','km',0]:['dislivello_m','dislivello_obiettivo','m',0];
+  function draw(W){
+    box.querySelector('svg')?.remove();
+    const [a,t,u]=key(cur), H=W<480?210:240,L=42,R=6,T=26,B=22,iw=W-L-R,ih=H-T-B,bw=iw/P.length;
+    const mx=Math.max(...P.map(p=>Math.max(p[a]||0,p[t]||0)),1), st=cur==='km'?(mx>80?20:10):(mx>4000?1000:mx>2000?500:250), top=Math.ceil(mx/st)*st, y=v=>T+ih-v/top*ih;
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,height:H,role:'img','aria-label':`Piano settimanale verso ${G.nome}: ${cur==='km'?'chilometri':'dislivello'} fatti e indicati per ${P.length} settimane. Usa le frecce per scorrere.`});
+    for(let v=0;v<=top;v+=st){svg.appendChild(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:'var(--grid)'}));svg.appendChild(el('text',{x:L-6,y:y(v)+4,'text-anchor':'end'},nf(v)))}
+    const nowI=cw?P.findIndex(p=>p.settimana===cw.settimana):-1;
+    if(nowI>=0)svg.appendChild(el('line',{x1:L+nowI*bw,x2:L+nowI*bw,y1:T-6,y2:T+ih,stroke:'var(--label-2)','stroke-dasharray':'3 3'}));
+    const bars=P.map((p,i)=>{const g=el('g',{class:'bar'}),x0=L+i*bw+bw*.14,w=Math.max(1.5,bw*.72);
+      if(p[t]!=null)g.appendChild(el('rect',{x:x0,y:y(p[t]),width:w,height:T+ih-y(p[t]),rx:Math.min(2.5,w/3),fill:'var(--surface-3)'}));
+      if(p[a])g.appendChild(el('rect',{x:x0+(p[t]!=null?w*.2:0),y:y(p[a]),width:p[t]!=null?w*.6:w,height:T+ih-y(p[a]),rx:Math.min(2.5,w/3),fill:i===nowI?'var(--pink)':'var(--lime)'}));
+      if(p.tipo==='gara'||p.tipo==='gara di preparazione'){g.appendChild(el('circle',{cx:x0+w/2,cy:T-12,r:4.5,fill:'var(--amber)'}))}
+      svg.appendChild(g);return g});
+    let lastM=-1;P.forEach((p,i)=>{const m=+p.settimana.slice(5,7);if(m!==lastM&&+p.settimana.slice(8)<=7){lastM=m;if(i*bw>22&&(W-R)-(L+i*bw)>16)svg.appendChild(el('text',{x:L+i*bw+bw/2,y:H-5,'text-anchor':'middle'},bw<9&&m%2?'':MESI[m-1]))}});
+    box.prepend(svg);
+    scrub(svg,P.length,i=>L+i*bw+bw/2,i=>{const p=P[i];bars.forEach((b,j)=>b.classList.toggle('on',j===i));
+      ro.show(L+i*bw+bw/2,0,`<b>${p[a]!=null?`${nf(p[a],cur==='km'?1:0)} ${u}`:'—'}${p[t]!=null?` <span style="display:inline;color:var(--label-2)">/ ${nf(p[t])} ${u}</span>`:''}</b><span>Sett. dal ${fmtS(p.settimana)}${p.tipo?` · ${TIPO[p.tipo]||p.tipo}`:''}</span>`,0)},
+      ()=>{ro.hide();bars.forEach(b=>b.classList.remove('on'))});
+    G_=W;
+  }
+  segmented($('#segGara'),v=>{cur=v;if(G_)draw(G_)});
+  responsive(box,draw);
+})();
+
+/* Scarpe */
+(function(){
+  const S=D.scarpe||{}, c=$('#scarpe');
+  if(!S.disponibile){c.remove();return}
+  const ST={ok:'In forma','quasi':'Quasi da cambiare','da cambiare':'Da cambiare'};
+  c.innerHTML=`<h2 id="shT">Scarpe</h2><p class="lead">Km percorsi rispetto alla soglia di sostituzione</p>
+    <ul class="shoes">${S.scarpe.map(s=>`<li class="${s.stato.replace(' ','-')}"><div class="nm">${esc(s.nome)}</div>
+      <div class="v">${nf(s.km)} <small>/ ${nf(s.limite_km)} km</small></div>
+      <div class="tr" role="img" aria-label="${nf(s.pct)}% della soglia"><i style="width:${Math.min(100,s.pct||0)}%"></i></div>
+      <div class="st"><b>${ST[s.stato]||s.stato}</b> · ${s.km<s.limite_km?`restano ${nf(s.limite_km-s.km)} km`:`oltre di ${nf(s.km-s.limite_km)} km`}</div></li>`).join('')}</ul>
+    <p class="eyebrow" style="margin:12px 0 0">Fonte: ${esc(S.fonte||'')}, ${fmtD(S.aggiornato)}. Soglia indicativa di ${nf(S.scarpe[0].limite_km)} km.</p>`;
+})();
+
 /* Ultime attivita */
 (function(){
   const A=(D.ultime_attivita||[]).slice(0,6), ul=$('#alist');
@@ -1099,7 +1315,8 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
     const inner=`<span class="th" aria-hidden="true"><span>${esc(tipo.slice(0,1))}</span></span>
       <span class="t">${esc(a.nome||tipo)}</span><span class="k">${a.distanza_km>0?`${nf(a.distanza_km,1)} <small>km</small>`:fmtDur(a.durata_min)}</span>
       <span class="d">${esc(tipo)} · ${fmtS(a.data)}, ${ora}</span><span class="m">${a.distanza_km>0?fmtDur(a.durata_min):''}${a.fc_media!=null?`${a.distanza_km>0?' · ':''}${nf(a.fc_media)} bpm`:''}</span>`;
-    li.innerHTML=id?`<a class="arow" href="https://connect.garmin.com/modern/activity/${encodeURIComponent(id)}" target="_blank" rel="noopener" aria-label="${esc(a.nome||tipo)}, ${fmtS(a.data)}: apri su Garmin Connect">${inner}</a>`:`<div class="arow">${inner}</div>`;
+    li.innerHTML=id?`<button type="button" class="arow" aria-label="${esc(a.nome||tipo)}, ${fmtS(a.data)}: apri il dettaglio">${inner}</button>`:`<div class="arow">${inner}</div>`;
+    if(id)li.firstElementChild.addEventListener('click',()=>openAct(id));
     ul.appendChild(li);thumbs.push({id,el:li.querySelector('.th')})});
   /* Mini mappa: la forma del percorso, senza fondo cartografico */
   TRACCE.then(j=>{const tr=(j&&j.tracce)||{};
@@ -1211,7 +1428,9 @@ if(D.dati_aggiornati){$('#notice').remove()}else{
     a.innerHTML=`<h3>${t}</h3><ul>${xs.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;box.appendChild(a)});
 })();
 
-$('#foot').innerHTML=`Dati Garmin Connect, aggiornati al ${fmtD(ANCHOR)}. Dati descrittivi: le soglie sono indicative e non sono un parere medico.<br>${esc(D.nota_footer||'')}`;
+if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+const KEYTXT=D.chiave&&D.chiave.scadenza?` Chiave Garmin valida fino al ${fmtD(D.chiave.scadenza)}.`:'';
+$('#foot').innerHTML=`Dati Garmin Connect, aggiornati al ${fmtD(ANCHOR)}. Dati descrittivi: le soglie sono indicative e non sono un parere medico.${KEYTXT}<br>${esc(D.nota_footer||'')}`;
 </script>
 </body>
 </html>

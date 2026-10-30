@@ -24,6 +24,7 @@ jobs:
     env:
       TZ: Europe/Rome
       GARMIN_PERSONAL_KEY: ${{ secrets.GARMIN_PERSONAL_KEY }}
+      GARMIN_KEY_SCADENZA: ${{ vars.GARMIN_KEY_SCADENZA }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,6 +44,16 @@ jobs:
         continue-on-error: true
         timeout-minutes: 15
         run: python scripts/fetch_tracks.py
+
+      - name: Scarica profili altimetrici
+        continue-on-error: true
+        timeout-minutes: 10
+        run: python scripts/fetch_profiles.py
+
+      - name: Scarica scarpe
+        continue-on-error: true
+        timeout-minutes: 5
+        run: python scripts/fetch_gear.py
 
       - name: Scarica benessere
         run: python scripts/fetch_wellness.py

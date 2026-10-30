@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-10-30",
- "generato_alle": "10:02",
+ "generato_alle": "13:53",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2313,49 +2313,39 @@
      "media_7gg": 80.29
     },
     {
-     "data": "2026-10-16",
-     "valore": 84.0,
-     "media_7gg": 75.6
-    },
-    {
-     "data": "2026-10-17",
-     "valore": 80.0,
-     "media_7gg": 73.0
-    },
-    {
-     "data": "2026-10-18",
-     "valore": 78.0,
-     "media_7gg": 83.0
+     "data": "2026-10-15",
+     "valore": 87.0,
+     "media_7gg": 77.67
     },
     {
      "data": "2026-10-19",
      "valore": 81.0,
-     "media_7gg": 82.8
+     "media_7gg": 86.33
     },
     {
      "data": "2026-10-20",
      "valore": 81.0,
-     "media_7gg": 80.8
+     "media_7gg": 83.0
     },
     {
      "data": "2026-10-21",
      "valore": 87.0,
-     "media_7gg": 81.83
+     "media_7gg": 84.0
     },
     {
      "data": "2026-10-22",
      "valore": 85.0,
-     "media_7gg": 82.29
+     "media_7gg": 83.5
     },
     {
      "data": "2026-10-23",
      "valore": 88.0,
-     "media_7gg": 82.86
+     "media_7gg": 84.4
     },
     {
      "data": "2026-10-24",
      "valore": 89.0,
-     "media_7gg": 84.14
+     "media_7gg": 85.17
     },
     {
      "data": "2026-10-25",
@@ -4008,7 +3998,7 @@
    },
    "hrv": {
     "media_7gg": 75.86,
-    "media_28gg_prec": 79.54,
+    "media_28gg_prec": 79.71,
     "giorni_7gg": 7
    },
    "stress": {
@@ -4043,7 +4033,7 @@
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 29
+   "BALANCED": 27
   }
  },
  "ultime_attivita": [
@@ -4321,7 +4311,7 @@
   "recupero": [
    "Rispetto alle 4 settimane prima: meglio sonno; peggio HRV e stress; stabili punteggio del sonno e battito a riposo.",
    "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 7 agosto.",
-   "Dopo i giorni più pesanti (da 109 minuti in su) l'HRV della notte è in media 67 ms, contro 82 negli altri giorni.",
+   "Dopo i giorni più pesanti (da 109 minuti in su) l'HRV della notte è in media 68 ms, contro 82 negli altri giorni.",
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],
   "proiezioni": [

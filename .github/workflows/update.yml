@@ -50,11 +50,6 @@ jobs:
         timeout-minutes: 10
         run: python scripts/fetch_profiles.py
 
-      - name: Scarica scarpe
-        continue-on-error: true
-        timeout-minutes: 5
-        run: python scripts/fetch_gear.py
-
       - name: Scarica benessere
         run: python scripts/fetch_wellness.py
 

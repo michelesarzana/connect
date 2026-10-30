@@ -13,8 +13,6 @@ Sito: https://michelesarzana.github.io/connect/
 - Volume settimanale, ultime attività, recupero (sonno, HRV, battito, stress, Body Battery, SpO2) e carico acuto e cronico.
 - Prontezza di oggi: spingi, normale o scarica, da HRV, sonno, battito a riposo, Body Battery e carico.
 - Salita: dislivello degli ultimi 30 giorni, metri per km, totale dell'anno, dislivello al mese e record.
-- Gara obiettivo: conto alla rovescia, fase e piano settimanale indicativo di km e dislivello, con la settimana in corso rispetto all'indicazione.
-- Scarpe: km di ogni paio attivo rispetto alla soglia di sostituzione.
 - Dettaglio attività: toccando un'uscita si aprono mappa, profilo altimetrico e battito.
 - Cosa notare: record e serie, abitudini, recupero e carico, proiezioni.
 - Si installa come app dal browser del telefono (Aggiungi a schermata Home).
@@ -23,17 +21,14 @@ Sono dati descrittivi. Non sono un parere medico o di allenamento.
 
 Il target di peso si cambia in `scripts/compute_metrics.py` (`PESO_TARGET_KG`).
 
-Gara obiettivo, gare di preparazione e picco settimanale si cambiano in `scripts/gare.json`. Le date 2027 sono stimate finché non escono i calendari ufficiali.
-
 ## Come funziona
 
 1. `scripts/fetch_activities.py` tiene l'archivio di tutte le attività in `docs/data/attivita.json`. Al primo giro scarica tutto lo storico, poi solo le ultime settimane e le unisce.
 2. `scripts/fetch_tracks.py` scarica le tracce GPS in `docs/data/tracce.json`, semplificate a circa 10 m, al massimo 500 per giro: lo storico si completa in qualche ora. Se qualcosa va storto non blocca l'aggiornamento.
 3. `scripts/fetch_wellness.py` scarica sonno, FC a riposo, SpO2, HRV, stress, Body Battery e passi degli ultimi 90 giorni, e il peso degli ultimi 6 anni.
-4. `scripts/compute_metrics.py` calcola KPI, serie settimanali, carico, prontezza, salita, piano gara e osservazioni e scrive `docs/data/metrics.json`.
+4. `scripts/compute_metrics.py` calcola KPI, serie settimanali, carico, prontezza, salita e osservazioni e scrive `docs/data/metrics.json`.
 5. `scripts/fetch_profiles.py` scarica profilo altimetrico e battito delle ultime 60 attività con GPS in `docs/data/profili.json`. Se qualcosa va storto non blocca l'aggiornamento.
-6. `scripts/fetch_gear.py` prova a leggere le scarpe da Garmin e scrive `docs/data/scarpe.json`. Se Garmin non espone l'attrezzatura con la Personal API, resta l'elenco iniziale copiato da Strava.
-7. `scripts/build_dashboard.py` inserisce metriche e archivio nel modello `scripts/template.html` e genera `docs/index.html`.
+6. `scripts/build_dashboard.py` inserisce metriche e archivio nel modello `scripts/template.html` e genera `docs/index.html`.
 
 I file grezzi (CSV e JSON scaricati) finiscono nella cartella `data/`, che non viene versionata.
 

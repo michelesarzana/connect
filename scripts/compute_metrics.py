@@ -483,81 +483,6 @@ if len(wel) and wellness["disponibile"]:
         prontezza = {"disponibile": True, "livello": liv, "frase": frase, "punteggio": tot, "fattori": fatt,
                      "nota": "Lettura orientativa da HRV, sonno, battito a riposo, Body Battery e carico. Contano anche le sensazioni."}
 
-# (9) gara obiettivo e piano settimanale indicativo
-gara = {"disponibile": False}
-try:
-    G_ = json.load(open(os.path.join(ROOT, "scripts", "gare.json"), encoding="utf-8"))
-except Exception:
-    G_ = None
-if G_ and G_.get("principale"):
-    gp = G_["principale"]; gd = pd.Timestamp(gp["data"])
-    if gd >= today:
-        lun0 = today - pd.Timedelta(days=today.weekday())
-        lung = gd - pd.Timedelta(days=gd.weekday())
-        nsett = int((lung - lun0).days // 7)
-        taper = int(G_.get("settimane_scarico_finale", 3)); ogni = int(G_.get("ogni_quante_settimane_scarico", 4))
-        pk_ = G_.get("picco_settimanale", {})
-        def actual(w):
-            sub = act[(act["day"] >= w) & (act["day"] < w + pd.Timedelta(days=7))]
-            return r(sub["distanza_km"].sum()), r(sub["dislivello_pos_m"].sum(), 0)
-        ult4 = [actual(lun0 - pd.Timedelta(weeks=i)) for i in range(1, 5)]
-        base_km = max(10.0, sum(x[0] or 0 for x in ult4) / 4); base_dp = max(300.0, sum(x[1] or 0 for x in ult4) / 4)
-        prep = [dict(x, sett=str((pd.Timestamp(x["data"]) - pd.Timedelta(days=pd.Timestamp(x["data"]).weekday())).date()))
-                for x in G_.get("preparazione", []) if pd.Timestamp(x["data"]) >= today]
-        prep_sett = {x["sett"] for x in prep}
-        npk = max(1, nsett - taper)
-        piano = []
-        for i in range(-8, nsett + 1):
-            w = lun0 + pd.Timedelta(weeks=i)
-            km_, dp_ = actual(w) if w <= anchor else (None, None)
-            row = {"settimana": str(w.date()), "km": km_, "dislivello_m": dp_}
-            if i >= 0:
-                if i == nsett:
-                    f, tipo = 0.35, "gara"
-                elif i > npk:
-                    f, tipo = max(0.4, 0.8 - 0.2 * (i - npk - 1)), "scarico finale"
-                else:
-                    f = min(1.0, i / npk) if npk else 1.0
-                    tipo = "carico"
-                    if i > 0 and i % ogni == 0 and i < npk:
-                        tipo = "scarico"
-                pkm = base_km + (pk_.get("km", base_km) - base_km) * (f if tipo in ("carico", "scarico") else 1)
-                pdp = base_dp + (pk_.get("dislivello_m", base_dp) - base_dp) * (f if tipo in ("carico", "scarico") else 1)
-                if tipo == "scarico":
-                    pkm, pdp = pkm * 0.7, pdp * 0.7
-                elif tipo in ("scarico finale", "gara"):
-                    pkm, pdp = pk_.get("km", pkm) * f, pk_.get("dislivello_m", pdp) * f
-                if row["settimana"] in prep_sett:
-                    tipo = "gara di preparazione"
-                prev_ = piano[-1] if piano else None
-                if prev_ and prev_.get("tipo") == "gara di preparazione":
-                    pkm, pdp, tipo = pkm * 0.5, pdp * 0.5, "recupero"
-                row.update({"km_obiettivo": round(pkm), "dislivello_obiettivo": int(round(pdp / 50) * 50), "tipo": tipo})
-            piano.append(row)
-        sett = (gd - today).days / 7
-        fase = "base" if sett > 24 else ("costruzione" if sett > 8 else ("specifica" if sett > taper else "scarico"))
-        cur = next((p for p in piano if p["settimana"] == str(lun0.date())), None)
-        gara = {"disponibile": True, "nome": gp["nome"], "luogo": gp.get("luogo"), "data": gp["data"],
-                "data_stimata": bool(gp.get("data_stimata")), "km": gp.get("km"), "dislivello_m": gp.get("dislivello_m"),
-                "giorni": int((gd - today).days), "settimane": nsett, "fase": fase,
-                "preparazione": prep, "picco": pk_, "piano": piano, "settimana_corrente": cur,
-                "base_4sett": {"km": r(base_km), "dislivello_m": r(base_dp, 0)},
-                "nota": G_.get("nota") or "",
-                "avvertenza": "Piano indicativo: una rampa lineare dalla media delle ultime 4 settimane al picco, con una settimana di scarico ogni 4 e 3 settimane di scarico finale. Non sostituisce un allenatore."}
-
-# (10) scarpe
-scarpe = {"disponibile": False}
-try:
-    sj = json.load(open(os.path.join(OUT_DIR, "scarpe.json"), encoding="utf-8"))
-    att = [s for s in sj.get("scarpe", []) if s.get("attiva")]
-    if att:
-        for s in att:
-            s["pct"] = r(min(200, s["km"] / s["limite_km"] * 100), 0) if s.get("limite_km") else None
-            s["stato"] = "da cambiare" if s["pct"] is not None and s["pct"] >= 100 else ("quasi" if s["pct"] is not None and s["pct"] >= 85 else "ok")
-        scarpe = {"disponibile": True, "fonte": sj.get("fonte"), "aggiornato": sj.get("aggiornato"), "scarpe": att}
-except Exception:
-    pass
-
 # (11) scadenza della chiave Garmin (variabile di repository GARMIN_KEY_SCADENZA, AAAA-MM-GG)
 chiave = {"scadenza": None, "giorni": None}
 _sc = os.environ.get("GARMIN_KEY_SCADENZA", "").strip()
@@ -568,10 +493,6 @@ if _sc:
         pass
 
 # osservazioni aggiuntive
-if gara.get("disponibile") and gara.get("settimana_corrente"):
-    c_ = gara["settimana_corrente"]
-    _dpo = f"{c_['dislivello_obiettivo']:,}".replace(",", ".")
-    oss["proiezioni"].append(f"{gara['nome']}: mancano {gara['giorni']} giorni, fase {gara['fase']}. Questa settimana l'indicazione è {c_['km_obiettivo']} km e {_dpo} m di dislivello.")
 if salita.get("record_uscita") and pd.Timestamp(salita["record_uscita"]["data"]) >= inizio30:
     _rm = f"{salita['record_uscita']['m']:,.0f}".replace(",", ".")
     oss["record"].append(f"Nuovo record di salita in una uscita: {_rm} m {art('il', salita['record_uscita']['data'])}.")
@@ -622,8 +543,6 @@ out = {
     "lacune": lacune,
     "salita": salita,
     "prontezza": prontezza,
-    "gara": gara,
-    "scarpe": scarpe,
     "chiave": chiave,
 }
 json.dump(out, open(os.path.join(OUT_DIR, "metrics.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)

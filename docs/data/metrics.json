@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-01",
- "generato_alle": "19:56",
+ "generato_alle": "23:49",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2986,8 +2986,8 @@
     },
     {
      "data": "2026-11-01",
-     "valore": 14.0,
-     "media_7gg": 25.86
+     "valore": 19.0,
+     "media_7gg": 26.57
     }
    ],
    "passi": [
@@ -3138,8 +3138,8 @@
     },
     {
      "data": "2026-11-01",
-     "valore": 12334.0,
-     "media_7gg": 14427.57
+     "valore": 13092.0,
+     "media_7gg": 14535.86
     }
    ],
    "peso_kg": [
@@ -3357,8 +3357,8 @@
     },
     {
      "data": "2026-11-01",
-     "valore": 92.0,
-     "media_7gg": 94.29
+     "valore": 93.0,
+     "media_7gg": 94.43
     }
    ],
    "sonno_profondo_min": [
@@ -4006,7 +4006,7 @@
     "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 25.86,
+    "media_7gg": 26.57,
     "media_28gg_prec": 24.0,
     "giorni_7gg": 7
    },
@@ -4016,7 +4016,7 @@
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 14427.57,
+    "media_7gg": 14535.86,
     "media_28gg_prec": 14479.79,
     "giorni_7gg": 7
    },
@@ -4031,7 +4031,7 @@
     "giorni_7gg": 7
    },
    "spo2": {
-    "media_7gg": 94.29,
+    "media_7gg": 94.43,
     "media_28gg_prec": 94.5,
     "giorni_7gg": 7
    }

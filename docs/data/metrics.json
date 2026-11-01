@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-01",
- "generato_alle": "14:21",
+ "generato_alle": "19:56",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2312,34 +2312,34 @@
      "media_7gg": 77.67
     },
     {
-     "data": "2026-10-19",
-     "valore": 81.0,
-     "media_7gg": 86.33
+     "data": "2026-10-16",
+     "valore": 84.0,
+     "media_7gg": 77.5
     },
     {
-     "data": "2026-10-20",
-     "valore": 81.0,
-     "media_7gg": 83.0
+     "data": "2026-10-17",
+     "valore": 80.0,
+     "media_7gg": 75.33
     },
     {
      "data": "2026-10-21",
      "valore": 87.0,
-     "media_7gg": 84.0
+     "media_7gg": 84.5
     },
     {
      "data": "2026-10-22",
      "valore": 85.0,
-     "media_7gg": 83.5
+     "media_7gg": 84.0
     },
     {
      "data": "2026-10-23",
      "valore": 88.0,
-     "media_7gg": 84.4
+     "media_7gg": 85.0
     },
     {
      "data": "2026-10-24",
      "valore": 89.0,
-     "media_7gg": 85.17
+     "media_7gg": 87.25
     },
     {
      "data": "2026-10-25",
@@ -2349,7 +2349,7 @@
     {
      "data": "2026-10-26",
      "valore": 87.0,
-     "media_7gg": 81.86
+     "media_7gg": 82.0
     },
     {
      "data": "2026-10-27",
@@ -4002,7 +4002,7 @@
    },
    "hrv": {
     "media_7gg": 79.14,
-    "media_28gg_prec": 81.88,
+    "media_28gg_prec": 81.96,
     "giorni_7gg": 7
    },
    "stress": {
@@ -4315,7 +4315,7 @@
   "recupero": [
    "Rispetto alle 4 settimane prima: peggio HRV e stress; stabili sonno, punteggio del sonno e battito a riposo.",
    "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 3,03 il 7 agosto.",
-   "Dopo i giorni più pesanti (da 107 minuti in su) l'HRV della notte è in media 69 ms, contro 83 negli altri giorni.",
+   "Dopo i giorni più pesanti (da 107 minuti in su) l'HRV della notte è in media 68 ms, contro 83 negli altri giorni.",
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],
   "proiezioni": [

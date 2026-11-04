@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-04",
- "generato_alle": "00:59",
+ "generato_alle": "07:18",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -1135,13 +1135,17 @@
    {
     "data": "2026-11-03",
     "kg": 84.5
+   },
+   {
+    "data": "2026-11-04",
+    "kg": 84.9
    }
   ],
-  "attuale": 84.5,
-  "data_attuale": "2026-11-03",
-  "trend_kg_sett": -0.54,
-  "settimane_al_target": 4.6,
-  "data_stimata": "2026-12-06"
+  "attuale": 84.9,
+  "data_attuale": "2026-11-04",
+  "trend_kg_sett": -0.56,
+  "settimane_al_target": 5.2,
+  "data_stimata": "2026-12-10"
  },
  "data_riferimento": "2026-11-04",
  "ultima_attivita": "2026-11-03",
@@ -2959,8 +2963,8 @@
     },
     {
      "data": "2026-11-03",
-     "valore": 23.0,
-     "media_7gg": 25.29
+     "valore": 22.0,
+     "media_7gg": 25.14
     }
    ],
    "passi": [
@@ -3106,8 +3110,8 @@
     },
     {
      "data": "2026-11-03",
-     "valore": 17891.0,
-     "media_7gg": 14026.14
+     "valore": 17942.0,
+     "media_7gg": 14033.43
     }
    ],
    "peso_kg": [
@@ -3180,6 +3184,11 @@
      "data": "2026-11-03",
      "valore": 84.5,
      "media_7gg": 85.26
+    },
+    {
+     "data": "2026-11-04",
+     "valore": 84.9,
+     "media_7gg": 85.2
     }
    ],
    "spo2": [
@@ -3954,7 +3963,7 @@
     "giorni_7gg": 6
    },
    "stress": {
-    "media_7gg": 20.83,
+    "media_7gg": 20.67,
     "media_28gg_prec": 24.86,
     "giorni_7gg": 6
    },
@@ -3964,7 +3973,7 @@
     "giorni_7gg": 6
    },
    "passi": {
-    "media_7gg": 13255.83,
+    "media_7gg": 13264.33,
     "media_28gg_prec": 14766.39,
     "giorni_7gg": 6
    },
@@ -4267,7 +4276,7 @@
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],
   "proiezioni": [
-   "Al ritmo degli ultimi 30 giorni (−0,5 kg a settimana) arrivi a 82 kg in circa 5 settimane, verso inizio dicembre.",
+   "Al ritmo degli ultimi 30 giorni (−0,6 kg a settimana) arrivi a 82 kg in circa 5 settimane, verso inizio dicembre.",
    "Settimana in corso: 11,2 km. Per la tua media (29,4 km) ne mancano 18,2 entro domenica."
   ]
  },

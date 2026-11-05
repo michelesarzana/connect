@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-05",
- "generato_alle": "10:39",
+ "generato_alle": "11:53",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2328,19 +2328,24 @@
      "media_7gg": 83.5
     },
     {
-     "data": "2026-10-23",
-     "valore": 88.0,
-     "media_7gg": 81.75
+     "data": "2026-10-20",
+     "valore": 81.0,
+     "media_7gg": 81.83
+    },
+    {
+     "data": "2026-10-21",
+     "valore": 87.0,
+     "media_7gg": 82.57
     },
     {
      "data": "2026-10-24",
      "valore": 89.0,
-     "media_7gg": 84.0
+     "media_7gg": 83.2
     },
     {
      "data": "2026-10-25",
      "valore": 56.0,
-     "media_7gg": 78.5
+     "media_7gg": 78.8
     },
     {
      "data": "2026-10-26",
@@ -2350,17 +2355,17 @@
     {
      "data": "2026-10-27",
      "valore": 89.0,
-     "media_7gg": 81.8
+     "media_7gg": 81.6
     },
     {
      "data": "2026-10-28",
      "valore": 31.0,
-     "media_7gg": 73.33
+     "media_7gg": 70.4
     },
     {
      "data": "2026-10-29",
      "valore": 88.0,
-     "media_7gg": 75.43
+     "media_7gg": 73.33
     },
     {
      "data": "2026-10-30",
@@ -4033,7 +4038,7 @@
    },
    "hrv": {
     "media_7gg": 87.71,
-    "media_28gg_prec": 78.54,
+    "media_28gg_prec": 78.6,
     "giorni_7gg": 7
    },
    "stress": {
@@ -4068,7 +4073,7 @@
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 27
+   "BALANCED": 28
   }
  },
  "ultime_attivita": [

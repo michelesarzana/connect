@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-05",
- "generato_alle": "11:53",
+ "generato_alle": "19:45",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2338,44 +2338,34 @@
      "media_7gg": 82.57
     },
     {
-     "data": "2026-10-24",
-     "valore": 89.0,
-     "media_7gg": 83.2
-    },
-    {
-     "data": "2026-10-25",
-     "valore": 56.0,
-     "media_7gg": 78.8
-    },
-    {
      "data": "2026-10-26",
      "valore": 87.0,
-     "media_7gg": 80.0
+     "media_7gg": 85.0
     },
     {
      "data": "2026-10-27",
      "valore": 89.0,
-     "media_7gg": 81.6
+     "media_7gg": 87.67
     },
     {
      "data": "2026-10-28",
      "valore": 31.0,
-     "media_7gg": 70.4
+     "media_7gg": 69.0
     },
     {
      "data": "2026-10-29",
      "valore": 88.0,
-     "media_7gg": 73.33
+     "media_7gg": 73.75
     },
     {
      "data": "2026-10-30",
      "valore": 91.0,
-     "media_7gg": 75.86
+     "media_7gg": 77.2
     },
     {
      "data": "2026-10-31",
      "valore": 88.0,
-     "media_7gg": 75.71
+     "media_7gg": 79.0
     },
     {
      "data": "2026-11-01",
@@ -2855,8 +2845,8 @@
     },
     {
      "data": "2026-11-05",
-     "valore": 45.0,
-     "media_7gg": 35.0
+     "valore": 30.0,
+     "media_7gg": 32.86
     }
    ],
    "stress": [
@@ -3007,8 +2997,8 @@
     },
     {
      "data": "2026-11-05",
-     "valore": 11.0,
-     "media_7gg": 19.43
+     "valore": 30.0,
+     "media_7gg": 22.14
     }
    ],
    "passi": [
@@ -3159,8 +3149,8 @@
     },
     {
      "data": "2026-11-05",
-     "valore": 9620.0,
-     "media_7gg": 12779.29
+     "valore": 17179.0,
+     "media_7gg": 13859.14
     }
    ],
    "peso_kg": [
@@ -4038,11 +4028,11 @@
    },
    "hrv": {
     "media_7gg": 87.71,
-    "media_28gg_prec": 78.6,
+    "media_28gg_prec": 79.13,
     "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 19.43,
+    "media_7gg": 22.14,
     "media_28gg_prec": 24.46,
     "giorni_7gg": 7
    },
@@ -4052,7 +4042,7 @@
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 12779.29,
+    "media_7gg": 13859.14,
     "media_28gg_prec": 14585.54,
     "giorni_7gg": 7
    },
@@ -4073,7 +4063,7 @@
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 28
+   "BALANCED": 26
   }
  },
  "ultime_attivita": [

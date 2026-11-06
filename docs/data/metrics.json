@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-06",
- "generato_alle": "07:48",
+ "generato_alle": "16:02",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2338,49 +2338,34 @@
      "media_7gg": 82.29
     },
     {
-     "data": "2026-10-23",
-     "valore": 88.0,
-     "media_7gg": 82.86
-    },
-    {
-     "data": "2026-10-24",
-     "valore": 89.0,
-     "media_7gg": 84.14
-    },
-    {
-     "data": "2026-10-25",
-     "valore": 56.0,
-     "media_7gg": 81.0
-    },
-    {
      "data": "2026-10-26",
      "valore": 87.0,
-     "media_7gg": 81.86
+     "media_7gg": 85.0
     },
     {
      "data": "2026-10-27",
      "valore": 89.0,
-     "media_7gg": 83.0
+     "media_7gg": 87.0
     },
     {
      "data": "2026-10-28",
      "valore": 31.0,
-     "media_7gg": 75.0
+     "media_7gg": 73.0
     },
     {
      "data": "2026-10-29",
      "valore": 88.0,
-     "media_7gg": 75.43
+     "media_7gg": 73.75
     },
     {
      "data": "2026-10-30",
      "valore": 91.0,
-     "media_7gg": 75.86
+     "media_7gg": 77.2
     },
     {
      "data": "2026-10-31",
      "valore": 88.0,
-     "media_7gg": 75.71
+     "media_7gg": 79.0
     },
     {
      "data": "2026-11-01",
@@ -3017,8 +3002,8 @@
     },
     {
      "data": "2026-11-06",
-     "valore": 53.0,
-     "media_7gg": 27.14
+     "valore": 47.0,
+     "media_7gg": 26.29
     }
    ],
    "passi": [
@@ -3169,8 +3154,8 @@
     },
     {
      "data": "2026-11-06",
-     "valore": 1981.0,
-     "media_7gg": 11585.43
+     "valore": 4295.0,
+     "media_7gg": 11916.0
     }
    ],
    "peso_kg": [
@@ -4048,11 +4033,11 @@
    },
    "hrv": {
     "media_7gg": 79.57,
-    "media_28gg_prec": 79.33,
+    "media_28gg_prec": 79.54,
     "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 27.14,
+    "media_7gg": 26.29,
     "media_28gg_prec": 24.43,
     "giorni_7gg": 7
    },
@@ -4062,7 +4047,7 @@
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 11585.43,
+    "media_7gg": 11916.0,
     "media_28gg_prec": 14599.21,
     "giorni_7gg": 7
    },
@@ -4083,7 +4068,7 @@
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 30
+   "BALANCED": 27
   }
  },
  "ultime_attivita": [

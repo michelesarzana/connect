@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-10",
- "generato_alle": "10:47",
+ "generato_alle": "18:50",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2332,44 +2332,44 @@
      "media_7gg": 84.14
     },
     {
-     "data": "2026-10-28",
-     "valore": 31.0,
-     "media_7gg": 73.25
+     "data": "2026-10-25",
+     "valore": 56.0,
+     "media_7gg": 81.0
     },
     {
-     "data": "2026-10-29",
-     "valore": 88.0,
-     "media_7gg": 74.0
+     "data": "2026-10-26",
+     "valore": 87.0,
+     "media_7gg": 81.86
     },
     {
      "data": "2026-10-30",
      "valore": 91.0,
-     "media_7gg": 74.75
+     "media_7gg": 80.75
     },
     {
      "data": "2026-10-31",
      "valore": 88.0,
-     "media_7gg": 74.5
+     "media_7gg": 80.5
     },
     {
      "data": "2026-11-01",
      "valore": 80.0,
-     "media_7gg": 75.6
+     "media_7gg": 86.5
     },
     {
      "data": "2026-11-02",
      "valore": 92.0,
-     "media_7gg": 78.33
+     "media_7gg": 87.75
     },
     {
      "data": "2026-11-03",
      "valore": 90.0,
-     "media_7gg": 80.0
+     "media_7gg": 88.2
     },
     {
      "data": "2026-11-04",
      "valore": 85.0,
-     "media_7gg": 87.71
+     "media_7gg": 87.67
     },
     {
      "data": "2026-11-05",
@@ -3006,8 +3006,8 @@
     },
     {
      "data": "2026-11-10",
-     "valore": 8.0,
-     "media_7gg": 29.43
+     "valore": 15.0,
+     "media_7gg": 30.43
     }
    ],
    "passi": [
@@ -3158,8 +3158,8 @@
     },
     {
      "data": "2026-11-10",
-     "valore": 8385.0,
-     "media_7gg": 17534.86
+     "valore": 13419.0,
+     "media_7gg": 18254.0
     }
    ],
    "peso_kg": [
@@ -4027,11 +4027,11 @@
    },
    "hrv": {
     "media_7gg": 77.29,
-    "media_28gg_prec": 81.75,
+    "media_28gg_prec": 82.75,
     "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 29.43,
+    "media_7gg": 30.43,
     "media_28gg_prec": 23.29,
     "giorni_7gg": 7
    },
@@ -4041,7 +4041,7 @@
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 17534.86,
+    "media_7gg": 18254.0,
     "media_28gg_prec": 14041.71,
     "giorni_7gg": 7
    },

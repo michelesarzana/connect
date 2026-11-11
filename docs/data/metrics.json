@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-11",
- "generato_alle": "00:18",
+ "generato_alle": "07:14",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2532,6 +2532,11 @@
      "data": "2026-11-10",
      "valore": 39.0,
      "media_7gg": 41.57
+    },
+    {
+     "data": "2026-11-11",
+     "valore": 41.0,
+     "media_7gg": 41.86
     }
    ],
    "body_battery_max": [
@@ -2679,6 +2684,11 @@
      "data": "2026-11-10",
      "valore": 100.0,
      "media_7gg": 77.43
+    },
+    {
+     "data": "2026-11-11",
+     "valore": 53.0,
+     "media_7gg": 70.71
     }
    ],
    "body_battery_min": [
@@ -2826,6 +2836,11 @@
      "data": "2026-11-10",
      "valore": 20.0,
      "media_7gg": 16.71
+    },
+    {
+     "data": "2026-11-11",
+     "valore": 22.0,
+     "media_7gg": 14.86
     }
    ],
    "stress": [
@@ -2973,6 +2988,11 @@
      "data": "2026-11-10",
      "valore": 31.0,
      "media_7gg": 32.71
+    },
+    {
+     "data": "2026-11-11",
+     "valore": 13.0,
+     "media_7gg": 31.71
     }
    ],
    "passi": [
@@ -3339,6 +3359,11 @@
      "data": "2026-11-10",
      "valore": 94.0,
      "media_7gg": 93.71
+    },
+    {
+     "data": "2026-11-11",
+     "valore": 95.0,
+     "media_7gg": 94.0
     }
    ],
    "sonno_profondo_min": [
@@ -3966,14 +3991,14 @@
     "giorni_7gg": 6
    },
    "stress": {
-    "media_7gg": 34.83,
+    "media_7gg": 31.71,
     "media_28gg_prec": 23.18,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "body_battery_max": {
-    "media_7gg": 73.67,
+    "media_7gg": 70.71,
     "media_28gg_prec": 91.75,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "passi": {
     "media_7gg": 21180.67,
@@ -3986,14 +4011,14 @@
     "giorni_7gg": 6
    },
    "fc_riposo": {
-    "media_7gg": 42.0,
+    "media_7gg": 41.86,
     "media_28gg_prec": 40.39,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "spo2": {
-    "media_7gg": 93.83,
+    "media_7gg": 94.0,
     "media_28gg_prec": 94.36,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    }
   },
   "hrv_stato_30gg": {
@@ -4379,7 +4404,7 @@
   "disponibile": true,
   "livello": "spingi",
   "frase": "Segnali buoni: è un giorno adatto a qualità o volume.",
-  "punteggio": 4,
+  "punteggio": 2,
   "fattori": [
    {
     "nome": "HRV",
@@ -4395,15 +4420,15 @@
    },
    {
     "nome": "Battito a riposo",
-    "valore": "39 bpm",
-    "rif": "media 7 giorni 41",
-    "punti": 1
+    "valore": "41 bpm",
+    "rif": "media 7 giorni 42",
+    "punti": 0
    },
    {
     "nome": "Body Battery",
-    "valore": "100",
+    "valore": "53",
     "rif": "media 7 giorni 77",
-    "punti": 1
+    "punti": 0
    },
    {
     "nome": "Carico",

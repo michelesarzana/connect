@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-13",
- "generato_alle": "01:21",
+ "generato_alle": "08:56",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2129,6 +2129,11 @@
      "data": "2026-11-12",
      "valore": 6.18,
      "media_7gg": 6.91
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 7.0,
+     "media_7gg": 7.28
     }
    ],
    "sonno_punteggio": [
@@ -2276,6 +2281,11 @@
      "data": "2026-11-12",
      "valore": 81.0,
      "media_7gg": 69.43
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 78.0,
+     "media_7gg": 75.57
     }
    ],
    "hrv": [
@@ -2355,39 +2365,34 @@
      "media_7gg": 75.43
     },
     {
-     "data": "2026-11-02",
-     "valore": 92.0,
-     "media_7gg": 75.0
-    },
-    {
      "data": "2026-11-03",
      "valore": 90.0,
-     "media_7gg": 75.25
+     "media_7gg": 69.67
     },
     {
      "data": "2026-11-04",
      "valore": 85.0,
-     "media_7gg": 88.75
+     "media_7gg": 87.67
     },
     {
      "data": "2026-11-05",
      "valore": 88.0,
-     "media_7gg": 88.75
+     "media_7gg": 87.67
     },
     {
      "data": "2026-11-06",
      "valore": 34.0,
-     "media_7gg": 77.8
+     "media_7gg": 74.25
     },
     {
      "data": "2026-11-07",
      "valore": 88.0,
-     "media_7gg": 79.5
+     "media_7gg": 77.0
     },
     {
      "data": "2026-11-08",
      "valore": 62.0,
-     "media_7gg": 77.0
+     "media_7gg": 74.5
     },
     {
      "data": "2026-11-09",
@@ -2408,6 +2413,11 @@
      "data": "2026-11-12",
      "valore": 90.0,
      "media_7gg": 77.57
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 83.0,
+     "media_7gg": 84.57
     }
    ],
    "fc_riposo": [
@@ -2555,6 +2565,11 @@
      "data": "2026-11-12",
      "valore": 41.0,
      "media_7gg": 41.57
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 42.0,
+     "media_7gg": 41.29
     }
    ],
    "body_battery_max": [
@@ -2702,6 +2717,11 @@
      "data": "2026-11-12",
      "valore": 95.0,
      "media_7gg": 75.0
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 81.0,
+     "media_7gg": 82.86
     }
    ],
    "body_battery_min": [
@@ -2849,6 +2869,11 @@
      "data": "2026-11-12",
      "valore": 15.0,
      "media_7gg": 15.71
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 14.0,
+     "media_7gg": 17.0
     }
    ],
    "stress": [
@@ -2996,6 +3021,11 @@
      "data": "2026-11-12",
      "valore": 33.0,
      "media_7gg": 32.86
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 16.0,
+     "media_7gg": 28.71
     }
    ],
    "passi": [
@@ -3143,6 +3173,11 @@
      "data": "2026-11-12",
      "valore": 18824.0,
      "media_7gg": 19435.43
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 363.0,
+     "media_7gg": 16300.86
     }
    ],
    "peso_kg": [
@@ -3372,6 +3407,11 @@
      "data": "2026-11-12",
      "valore": 95.0,
      "media_7gg": 94.0
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 95.0,
+     "media_7gg": 94.0
     }
    ],
    "sonno_profondo_min": [
@@ -3519,6 +3559,11 @@
      "data": "2026-11-12",
      "valore": 94.0,
      "media_7gg": 76.86
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 45.0,
+     "media_7gg": 74.0
     }
    ],
    "sonno_rem_min": [
@@ -3666,6 +3711,11 @@
      "data": "2026-11-12",
      "valore": 73.0,
      "media_7gg": 75.86
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 93.0,
+     "media_7gg": 89.14
     }
    ],
    "sonno_leggero_min": [
@@ -3813,6 +3863,11 @@
      "data": "2026-11-12",
      "valore": 204.0,
      "media_7gg": 262.14
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 282.0,
+     "media_7gg": 274.0
     }
    ],
    "sonno_sveglio_min": [
@@ -3960,6 +4015,11 @@
      "data": "2026-11-12",
      "valore": 5.0,
      "media_7gg": 22.57
+    },
+    {
+     "data": "2026-11-13",
+     "valore": 29.0,
+     "media_7gg": 26.14
     }
    ]
   },
@@ -3992,61 +4052,61 @@
    "L'ultimo giorno è parziale: passi, stress e Body Battery sono quelli accumulati finora. Il sonno è quello della notte appena conclusa."
   ],
   "fasi_sonno": {
-   "data": "2026-11-12",
+   "data": "2026-11-13",
    "ultima_notte_min": {
-    "profondo": 94.0,
-    "rem": 73.0,
-    "leggero": 204.0,
-    "sveglio": 5.0
+    "profondo": 45.0,
+    "rem": 93.0,
+    "leggero": 282.0,
+    "sveglio": 29.0
    },
    "media_7gg_min": {
-    "profondo": 79.0,
-    "rem": 88.0,
-    "leggero": 273.0,
+    "profondo": 74.0,
+    "rem": 89.0,
+    "leggero": 274.0,
     "sveglio": 26.0
    },
-   "giorni_7gg": 6
+   "giorni_7gg": 7
   },
   "sintesi": {
    "sonno_ore": {
-    "media_7gg": 7.33,
+    "media_7gg": 7.28,
     "media_28gg_prec": 7.0,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "hrv": {
-    "media_7gg": 84.83,
-    "media_28gg_prec": 78.08,
-    "giorni_7gg": 6
+    "media_7gg": 84.57,
+    "media_28gg_prec": 77.48,
+    "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 30.83,
+    "media_7gg": 28.71,
     "media_28gg_prec": 24.71,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "body_battery_max": {
-    "media_7gg": 83.17,
+    "media_7gg": 82.86,
     "media_28gg_prec": 89.11,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 18957.17,
+    "media_7gg": 16300.86,
     "media_28gg_prec": 14329.61,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "sonno_punteggio": {
-    "media_7gg": 75.17,
+    "media_7gg": 75.57,
     "media_28gg_prec": 80.04,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "fc_riposo": {
-    "media_7gg": 41.17,
+    "media_7gg": 41.29,
     "media_28gg_prec": 40.61,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "spo2": {
-    "media_7gg": 93.83,
+    "media_7gg": 94.0,
     "media_28gg_prec": 94.39,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    }
   },
   "hrv_stato_30gg": {
@@ -4436,26 +4496,26 @@
   "fattori": [
    {
     "nome": "HRV",
-    "valore": "90 ms",
-    "rif": "media 7 notti 77",
+    "valore": "83 ms",
+    "rif": "media 7 notti 78",
     "punti": 1
    },
    {
     "nome": "Sonno",
-    "valore": "6,2 h",
-    "rif": "media 28 notti 7,1",
+    "valore": "7,0 h",
+    "rif": "media 28 notti 7,2",
     "punti": 0
    },
    {
     "nome": "Battito a riposo",
-    "valore": "41 bpm",
+    "valore": "42 bpm",
     "rif": "media 7 giorni 42",
     "punti": 0
    },
    {
     "nome": "Body Battery",
-    "valore": "95",
-    "rif": "media 7 giorni 76",
+    "valore": "81",
+    "rif": "media 7 giorni 75",
     "punti": 1
    },
    {

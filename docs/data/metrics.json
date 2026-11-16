@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-16",
- "generato_alle": "03:04",
+ "generato_alle": "10:39",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2141,6 +2141,11 @@
      "data": "2026-11-15",
      "valore": 8.18,
      "media_7gg": 7.41
+    },
+    {
+     "data": "2026-11-16",
+     "valore": 7.3,
+     "media_7gg": 7.15
     }
    ],
    "sonno_punteggio": [
@@ -2288,6 +2293,11 @@
      "data": "2026-11-15",
      "valore": 71.0,
      "media_7gg": 81.14
+    },
+    {
+     "data": "2026-11-16",
+     "valore": 83.0,
+     "media_7gg": 81.0
     }
    ],
    "hrv": [
@@ -2420,6 +2430,11 @@
      "data": "2026-11-15",
      "valore": 74.0,
      "media_7gg": 85.29
+    },
+    {
+     "data": "2026-11-16",
+     "valore": 80.0,
+     "media_7gg": 84.43
     }
    ],
    "fc_riposo": [
@@ -2570,8 +2585,8 @@
     },
     {
      "data": "2026-11-16",
-     "valore": 45.0,
-     "media_7gg": 41.14
+     "valore": 42.0,
+     "media_7gg": 40.71
     }
    ],
    "body_battery_max": [
@@ -2722,8 +2737,8 @@
     },
     {
      "data": "2026-11-16",
-     "valore": 24.0,
-     "media_7gg": 81.0
+     "valore": 80.0,
+     "media_7gg": 89.0
     }
    ],
    "body_battery_min": [
@@ -3026,8 +3041,8 @@
     },
     {
      "data": "2026-11-16",
-     "valore": 26.0,
-     "media_7gg": 28.14
+     "valore": 17.0,
+     "media_7gg": 26.86
     }
    ],
    "passi": [
@@ -3175,6 +3190,11 @@
      "data": "2026-11-15",
      "valore": 21862.0,
      "media_7gg": 16091.86
+    },
+    {
+     "data": "2026-11-16",
+     "valore": 22.0,
+     "media_7gg": 14396.86
     }
    ],
    "peso_kg": [
@@ -3422,8 +3442,8 @@
     },
     {
      "data": "2026-11-16",
-     "valore": 95.0,
-     "media_7gg": 94.86
+     "valore": 94.0,
+     "media_7gg": 94.71
     }
    ],
    "sonno_profondo_min": [
@@ -3571,6 +3591,11 @@
      "data": "2026-11-15",
      "valore": 55.0,
      "media_7gg": 68.14
+    },
+    {
+     "data": "2026-11-16",
+     "valore": 74.0,
+     "media_7gg": 71.86
     }
    ],
    "sonno_rem_min": [
@@ -3718,6 +3743,11 @@
      "data": "2026-11-15",
      "valore": 67.0,
      "media_7gg": 96.29
+    },
+    {
+     "data": "2026-11-16",
+     "valore": 87.0,
+     "media_7gg": 92.29
     }
    ],
    "sonno_leggero_min": [
@@ -3865,6 +3895,11 @@
      "data": "2026-11-15",
      "valore": 369.0,
      "media_7gg": 280.14
+    },
+    {
+     "data": "2026-11-16",
+     "valore": 277.0,
+     "media_7gg": 265.0
     }
    ],
    "sonno_sveglio_min": [
@@ -4012,6 +4047,11 @@
      "data": "2026-11-15",
      "valore": 61.0,
      "media_7gg": 15.43
+    },
+    {
+     "data": "2026-11-16",
+     "valore": 3.0,
+     "media_7gg": 15.86
     }
    ]
   },
@@ -4044,65 +4084,65 @@
    "L'ultimo giorno è parziale: passi, stress e Body Battery sono quelli accumulati finora. Il sonno è quello della notte appena conclusa."
   ],
   "fasi_sonno": {
-   "data": "2026-11-15",
+   "data": "2026-11-16",
    "ultima_notte_min": {
-    "profondo": 55.0,
-    "rem": 67.0,
-    "leggero": 369.0,
-    "sveglio": 61.0
+    "profondo": 74.0,
+    "rem": 87.0,
+    "leggero": 277.0,
+    "sveglio": 3.0
    },
    "media_7gg_min": {
     "profondo": 72.0,
-    "rem": 93.0,
-    "leggero": 263.0,
-    "sveglio": 18.0
+    "rem": 92.0,
+    "leggero": 265.0,
+    "sveglio": 16.0
    },
-   "giorni_7gg": 6
+   "giorni_7gg": 7
   },
   "sintesi": {
    "sonno_ore": {
-    "media_7gg": 7.12,
+    "media_7gg": 7.15,
     "media_28gg_prec": 7.17,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "hrv": {
-    "media_7gg": 85.17,
+    "media_7gg": 84.43,
     "media_28gg_prec": 79.12,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 28.14,
+    "media_7gg": 26.86,
     "media_28gg_prec": 25.07,
     "giorni_7gg": 7
    },
    "body_battery_max": {
-    "media_7gg": 81.0,
+    "media_7gg": 89.0,
     "media_28gg_prec": 89.11,
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 16792.67,
+    "media_7gg": 14396.86,
     "media_28gg_prec": 15018.25,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "sonno_punteggio": {
-    "media_7gg": 80.67,
+    "media_7gg": 81.0,
     "media_28gg_prec": 80.11,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "fc_riposo": {
-    "media_7gg": 41.14,
+    "media_7gg": 40.71,
     "media_28gg_prec": 40.68,
     "giorni_7gg": 7
    },
    "spo2": {
-    "media_7gg": 94.86,
+    "media_7gg": 94.71,
     "media_28gg_prec": 94.29,
     "giorni_7gg": 7
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 26
+   "BALANCED": 27
   }
  },
  "ultime_attivita": [
@@ -4381,7 +4421,6 @@
    "Rispetto alle 4 settimane prima: meglio HRV; peggio stress; stabili sonno, punteggio del sonno e battito a riposo.",
    "Carico ottimale, in linea con l'abituale. Il picco degli ultimi 90 giorni è stato 1,88 il 18 ottobre.",
    "Dopo i giorni più pesanti (da 75 minuti in su) l'HRV della notte è in media 73 ms, contro 83 negli altri giorni.",
-   "HRV di stanotte 74 ms, sotto la media della settimana (84): vale la pena ascoltare come stai.",
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],
   "proiezioni": [
@@ -4483,33 +4522,33 @@
  },
  "prontezza": {
   "disponibile": true,
-  "livello": "scarica",
-  "frase": "Giornata da scarico: facile, corta o riposo.",
-  "punteggio": -2,
+  "livello": "spingi",
+  "frase": "Segnali buoni: è un giorno adatto a qualità o volume.",
+  "punteggio": 2,
   "fattori": [
    {
     "nome": "HRV",
-    "valore": "74 ms",
-    "rif": "media 7 notti 84",
-    "punti": -1
+    "valore": "80 ms",
+    "rif": "media 7 notti 85",
+    "punti": 0
    },
    {
     "nome": "Sonno",
-    "valore": "8,2 h",
-    "rif": "media 28 notti 7,2",
+    "valore": "7,3 h",
+    "rif": "media 28 notti 7,3",
     "punti": 1
    },
    {
     "nome": "Battito a riposo",
-    "valore": "45 bpm",
+    "valore": "42 bpm",
     "rif": "media 7 giorni 41",
-    "punti": -1
+    "punti": 0
    },
    {
     "nome": "Body Battery",
-    "valore": "24",
+    "valore": "80",
     "rif": "media 7 giorni 89",
-    "punti": -1
+    "punti": 1
    },
    {
     "nome": "Carico",

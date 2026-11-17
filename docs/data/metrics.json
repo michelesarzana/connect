@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-17",
- "generato_alle": "14:23",
+ "generato_alle": "23:21",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -1167,13 +1167,17 @@
    {
     "data": "2026-11-15",
     "kg": 83.7
+   },
+   {
+    "data": "2026-11-17",
+    "kg": 83.4
    }
   ],
-  "attuale": 83.7,
-  "data_attuale": "2026-11-15",
-  "trend_kg_sett": -0.97,
-  "settimane_al_target": 1.8,
-  "data_stimata": "2026-11-29"
+  "attuale": 83.4,
+  "data_attuale": "2026-11-17",
+  "trend_kg_sett": -0.94,
+  "settimane_al_target": 1.5,
+  "data_stimata": "2026-11-27"
  },
  "data_riferimento": "2026-11-17",
  "ultima_attivita": "2026-11-17",
@@ -2367,44 +2371,44 @@
      "media_7gg": 75.71
     },
     {
-     "data": "2026-11-04",
-     "valore": 85.0,
-     "media_7gg": 88.0
+     "data": "2026-11-01",
+     "valore": 80.0,
+     "media_7gg": 79.14
     },
     {
-     "data": "2026-11-05",
-     "valore": 88.0,
-     "media_7gg": 88.0
+     "data": "2026-11-02",
+     "valore": 92.0,
+     "media_7gg": 79.86
     },
     {
      "data": "2026-11-06",
      "valore": 34.0,
-     "media_7gg": 73.75
+     "media_7gg": 73.5
     },
     {
      "data": "2026-11-07",
      "valore": 88.0,
-     "media_7gg": 73.75
+     "media_7gg": 73.5
     },
     {
      "data": "2026-11-08",
      "valore": 62.0,
-     "media_7gg": 71.4
+     "media_7gg": 69.0
     },
     {
      "data": "2026-11-09",
      "valore": 86.0,
-     "media_7gg": 73.83
+     "media_7gg": 67.5
     },
     {
      "data": "2026-11-10",
      "valore": 98.0,
-     "media_7gg": 77.29
+     "media_7gg": 73.6
     },
     {
      "data": "2026-11-11",
      "valore": 85.0,
-     "media_7gg": 77.29
+     "media_7gg": 75.5
     },
     {
      "data": "2026-11-12",
@@ -2889,8 +2893,8 @@
     },
     {
      "data": "2026-11-17",
-     "valore": 29.0,
-     "media_7gg": 20.71
+     "valore": 17.0,
+     "media_7gg": 19.0
     }
    ],
    "stress": [
@@ -3041,8 +3045,8 @@
     },
     {
      "data": "2026-11-17",
-     "valore": 22.0,
-     "media_7gg": 26.71
+     "valore": 33.0,
+     "media_7gg": 28.29
     }
    ],
    "passi": [
@@ -3193,8 +3197,8 @@
     },
     {
      "data": "2026-11-17",
-     "valore": 11411.0,
-     "media_7gg": 14038.71
+     "valore": 18546.0,
+     "media_7gg": 15058.0
     }
    ],
    "peso_kg": [
@@ -3292,6 +3296,11 @@
      "data": "2026-11-15",
      "valore": 83.7,
      "media_7gg": 83.52
+    },
+    {
+     "data": "2026-11-17",
+     "valore": 83.4,
+     "media_7gg": 83.35
     }
    ],
    "spo2": [
@@ -4107,11 +4116,11 @@
    },
    "hrv": {
     "media_7gg": 82.29,
-    "media_28gg_prec": 79.62,
+    "media_28gg_prec": 79.58,
     "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 26.71,
+    "media_7gg": 28.29,
     "media_28gg_prec": 25.61,
     "giorni_7gg": 7
    },
@@ -4121,7 +4130,7 @@
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 14038.71,
+    "media_7gg": 15058.0,
     "media_28gg_prec": 15383.32,
     "giorni_7gg": 7
    },
@@ -4424,7 +4433,7 @@
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],
   "proiezioni": [
-   "Al ritmo degli ultimi 30 giorni (−1,0 kg a settimana) arrivi a 82 kg in circa 2 settimane, verso fine novembre.",
+   "Al ritmo degli ultimi 30 giorni (−0,9 kg a settimana) arrivi a 82 kg in circa 2 settimane, verso fine novembre.",
    "Settimana in corso: 9,7 km. Per la tua media (29,0 km) ne mancano 19,3 entro domenica.",
    "Novembre: 88,2 km finora, al ritmo attuale circa 156 a fine mese (ottobre: 135)."
   ]

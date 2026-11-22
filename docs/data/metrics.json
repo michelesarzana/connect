@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-22",
- "generato_alle": "00:14",
+ "generato_alle": "04:11",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -2587,6 +2587,11 @@
      "data": "2026-11-21",
      "valore": 45.0,
      "media_7gg": 41.71
+    },
+    {
+     "data": "2026-11-22",
+     "valore": 46.0,
+     "media_7gg": 42.43
     }
    ],
    "body_battery_max": [
@@ -2734,6 +2739,11 @@
      "data": "2026-11-21",
      "valore": 41.0,
      "media_7gg": 84.14
+    },
+    {
+     "data": "2026-11-22",
+     "valore": 18.0,
+     "media_7gg": 74.43
     }
    ],
    "body_battery_min": [
@@ -2879,8 +2889,13 @@
     },
     {
      "data": "2026-11-21",
-     "valore": 21.0,
-     "media_7gg": 23.14
+     "valore": 13.0,
+     "media_7gg": 22.0
+    },
+    {
+     "data": "2026-11-22",
+     "valore": 13.0,
+     "media_7gg": 21.0
     }
    ],
    "stress": [
@@ -3026,8 +3041,13 @@
     },
     {
      "data": "2026-11-21",
-     "valore": 39.0,
-     "media_7gg": 28.14
+     "valore": 40.0,
+     "media_7gg": 28.29
+    },
+    {
+     "data": "2026-11-22",
+     "valore": 22.0,
+     "media_7gg": 27.29
     }
    ],
    "passi": [
@@ -3173,8 +3193,8 @@
     },
     {
      "data": "2026-11-21",
-     "valore": 6039.0,
-     "media_7gg": 12074.29
+     "valore": 6965.0,
+     "media_7gg": 12206.57
     }
    ],
    "peso_kg": [
@@ -3424,6 +3444,11 @@
      "data": "2026-11-21",
      "valore": 95.0,
      "media_7gg": 94.29
+    },
+    {
+     "data": "2026-11-22",
+     "valore": 97.0,
+     "media_7gg": 94.57
     }
    ],
    "sonno_profondo_min": [
@@ -4071,17 +4096,17 @@
     "giorni_7gg": 6
    },
    "stress": {
-    "media_7gg": 28.0,
+    "media_7gg": 27.29,
     "media_28gg_prec": 26.68,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "body_battery_max": {
-    "media_7gg": 83.83,
+    "media_7gg": 74.43,
     "media_28gg_prec": 88.61,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 10443.0,
+    "media_7gg": 10597.33,
     "media_28gg_prec": 15505.32,
     "giorni_7gg": 6
    },
@@ -4091,14 +4116,14 @@
     "giorni_7gg": 6
    },
    "fc_riposo": {
-    "media_7gg": 41.83,
+    "media_7gg": 42.43,
     "media_28gg_prec": 40.82,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "spo2": {
-    "media_7gg": 94.17,
+    "media_7gg": 94.57,
     "media_28gg_prec": 94.5,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    }
   },
   "hrv_stato_30gg": {
@@ -4501,14 +4526,14 @@
    },
    {
     "nome": "Battito a riposo",
-    "valore": "45 bpm",
-    "rif": "media 7 giorni 41",
+    "valore": "46 bpm",
+    "rif": "media 7 giorni 42",
     "punti": -1
    },
    {
     "nome": "Body Battery",
-    "valore": "41",
-    "rif": "media 7 giorni 92",
+    "valore": "18",
+    "rif": "media 7 giorni 84",
     "punti": -1
    },
    {

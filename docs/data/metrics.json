@@ -1,6 +1,6 @@
 {
  "generato_il": "2026-11-23",
- "generato_alle": "01:51",
+ "generato_alle": "10:01",
  "peso": {
   "target": 82.0,
   "serie": [
@@ -1191,13 +1191,17 @@
    {
     "data": "2026-11-22",
     "kg": 81.8
+   },
+   {
+    "data": "2026-11-23",
+    "kg": 82.7
    }
   ],
-  "attuale": 81.8,
-  "data_attuale": "2026-11-22",
-  "trend_kg_sett": -1.05,
-  "settimane_al_target": null,
-  "data_stimata": null
+  "attuale": 82.7,
+  "data_attuale": "2026-11-23",
+  "trend_kg_sett": -1.02,
+  "settimane_al_target": 0.7,
+  "data_stimata": "2026-11-28"
  },
  "data_riferimento": "2026-11-23",
  "ultima_attivita": "2026-11-21",
@@ -2165,6 +2169,11 @@
      "data": "2026-11-22",
      "valore": 9.48,
      "media_7gg": 7.56
+    },
+    {
+     "data": "2026-11-23",
+     "valore": 9.1,
+     "media_7gg": 7.81
     }
    ],
    "sonno_punteggio": [
@@ -2312,6 +2321,11 @@
      "data": "2026-11-22",
      "valore": 86.0,
      "media_7gg": 80.14
+    },
+    {
+     "data": "2026-11-23",
+     "valore": 88.0,
+     "media_7gg": 80.86
     }
    ],
    "hrv": [
@@ -2444,6 +2458,11 @@
      "data": "2026-11-22",
      "valore": 84.0,
      "media_7gg": 80.29
+    },
+    {
+     "data": "2026-11-23",
+     "valore": 82.0,
+     "media_7gg": 80.57
     }
    ],
    "fc_riposo": [
@@ -2594,8 +2613,8 @@
     },
     {
      "data": "2026-11-23",
-     "valore": 46.0,
-     "media_7gg": 42.14
+     "valore": 40.0,
+     "media_7gg": 41.29
     }
    ],
    "body_battery_max": [
@@ -2746,8 +2765,8 @@
     },
     {
      "data": "2026-11-23",
-     "valore": 42.0,
-     "media_7gg": 80.0
+     "valore": 97.0,
+     "media_7gg": 87.86
     }
    ],
    "body_battery_min": [
@@ -3050,8 +3069,8 @@
     },
     {
      "data": "2026-11-23",
-     "valore": 19.0,
-     "media_7gg": 28.14
+     "valore": 12.0,
+     "media_7gg": 27.14
     }
    ],
    "passi": [
@@ -3199,6 +3218,11 @@
      "data": "2026-11-22",
      "valore": 4094.0,
      "media_7gg": 9668.29
+    },
+    {
+     "data": "2026-11-23",
+     "valore": 171.0,
+     "media_7gg": 8350.0
     }
    ],
    "peso_kg": [
@@ -3306,6 +3330,11 @@
      "data": "2026-11-22",
      "valore": 81.8,
      "media_7gg": 82.5
+    },
+    {
+     "data": "2026-11-23",
+     "valore": 82.7,
+     "media_7gg": 82.53
     }
    ],
    "spo2": [
@@ -3456,8 +3485,8 @@
     },
     {
      "data": "2026-11-23",
-     "valore": 98.0,
-     "media_7gg": 94.86
+     "valore": 96.0,
+     "media_7gg": 94.57
     }
    ],
    "sonno_profondo_min": [
@@ -3605,6 +3634,11 @@
      "data": "2026-11-22",
      "valore": 62.0,
      "media_7gg": 66.14
+    },
+    {
+     "data": "2026-11-23",
+     "valore": 40.0,
+     "media_7gg": 61.29
     }
    ],
    "sonno_rem_min": [
@@ -3752,6 +3786,11 @@
      "data": "2026-11-22",
      "valore": 113.0,
      "media_7gg": 89.43
+    },
+    {
+     "data": "2026-11-23",
+     "valore": 126.0,
+     "media_7gg": 95.0
     }
    ],
    "sonno_leggero_min": [
@@ -3899,6 +3938,11 @@
      "data": "2026-11-22",
      "valore": 394.0,
      "media_7gg": 297.86
+    },
+    {
+     "data": "2026-11-23",
+     "valore": 380.0,
+     "media_7gg": 312.57
     }
    ],
    "sonno_sveglio_min": [
@@ -4046,6 +4090,11 @@
      "data": "2026-11-22",
      "valore": 28.0,
      "media_7gg": 9.29
+    },
+    {
+     "data": "2026-11-23",
+     "valore": 0.0,
+     "media_7gg": 8.86
     }
    ]
   },
@@ -4078,65 +4127,65 @@
    "L'ultimo giorno è parziale: passi, stress e Body Battery sono quelli accumulati finora. Il sonno è quello della notte appena conclusa."
   ],
   "fasi_sonno": {
-   "data": "2026-11-22",
+   "data": "2026-11-23",
    "ultima_notte_min": {
-    "profondo": 62.0,
-    "rem": 113.0,
-    "leggero": 394.0,
-    "sveglio": 28.0
+    "profondo": 40.0,
+    "rem": 126.0,
+    "leggero": 380.0,
+    "sveglio": 0
    },
    "media_7gg_min": {
-    "profondo": 65.0,
-    "rem": 90.0,
-    "leggero": 301.0,
-    "sveglio": 10.0
+    "profondo": 61.0,
+    "rem": 95.0,
+    "leggero": 313.0,
+    "sveglio": 9.0
    },
-   "giorni_7gg": 6
+   "giorni_7gg": 7
   },
   "sintesi": {
    "sonno_ore": {
-    "media_7gg": 7.6,
+    "media_7gg": 7.81,
     "media_28gg_prec": 7.24,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "hrv": {
-    "media_7gg": 80.33,
+    "media_7gg": 80.57,
     "media_28gg_prec": 79.48,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "stress": {
-    "media_7gg": 28.14,
+    "media_7gg": 27.14,
     "media_28gg_prec": 26.75,
     "giorni_7gg": 7
    },
    "body_battery_max": {
-    "media_7gg": 80.0,
+    "media_7gg": 87.86,
     "media_28gg_prec": 88.0,
     "giorni_7gg": 7
    },
    "passi": {
-    "media_7gg": 9713.17,
+    "media_7gg": 8350.0,
     "media_28gg_prec": 15614.43,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "sonno_punteggio": {
-    "media_7gg": 79.67,
+    "media_7gg": 80.86,
     "media_28gg_prec": 80.21,
-    "giorni_7gg": 6
+    "giorni_7gg": 7
    },
    "fc_riposo": {
-    "media_7gg": 42.14,
+    "media_7gg": 41.29,
     "media_28gg_prec": 40.82,
     "giorni_7gg": 7
    },
    "spo2": {
-    "media_7gg": 94.86,
+    "media_7gg": 94.57,
     "media_28gg_prec": 94.54,
     "giorni_7gg": 7
    }
   },
   "hrv_stato_30gg": {
-   "BALANCED": 26
+   "BALANCED": 27
   }
  },
  "ultime_attivita": [
@@ -4412,13 +4461,13 @@
    "Rispetto agli stessi 30 giorni del 2025: 13,6 ore contro 19,0, −28%."
   ],
   "recupero": [
-   "Rispetto alle 4 settimane prima: meglio sonno; peggio battito a riposo e stress; stabili punteggio del sonno e HRV.",
+   "Rispetto alle 4 settimane prima: meglio sonno; stabili punteggio del sonno, battito a riposo, HRV e stress.",
    "Carico basso, sotto l'abituale. Il picco degli ultimi 90 giorni è stato 1,88 il 18 ottobre.",
    "Dopo i giorni più pesanti (da 75 minuti in su) l'HRV della notte è in media 74 ms, contro 83 negli altri giorni.",
    "Per il menisco contano più fisioterapista e sensazioni di questi numeri."
   ],
   "proiezioni": [
-   "Peso 81,8 kg: target di 82 kg raggiunto.",
+   "Al ritmo degli ultimi 30 giorni (−1,0 kg a settimana) arrivi a 82 kg in circa 1 settimane, verso fine novembre.",
    "Settimana in corso: 0,0 km. Per la tua media (28,7 km) ne mancano 28,7 entro domenica.",
    "Novembre: 88,2 km finora, al ritmo attuale circa 115 a fine mese (ottobre: 135)."
   ]
@@ -4516,33 +4565,33 @@
  },
  "prontezza": {
   "disponibile": true,
-  "livello": "normale",
-  "frase": "Giornata normale: allenamento come da programma.",
-  "punteggio": 1,
+  "livello": "spingi",
+  "frase": "Segnali buoni: è un giorno adatto a qualità o volume.",
+  "punteggio": 3,
   "fattori": [
    {
     "nome": "HRV",
-    "valore": "84 ms",
-    "rif": "media 7 notti 79",
-    "punti": 1
+    "valore": "82 ms",
+    "rif": "media 7 notti 80",
+    "punti": 0
    },
    {
     "nome": "Sonno",
-    "valore": "9,5 h",
-    "rif": "media 28 notti 7,2",
+    "valore": "9,1 h",
+    "rif": "media 28 notti 7,3",
     "punti": 1
    },
    {
     "nome": "Battito a riposo",
-    "valore": "46 bpm",
+    "valore": "40 bpm",
     "rif": "media 7 giorni 42",
-    "punti": -1
+    "punti": 0
    },
    {
     "nome": "Body Battery",
-    "valore": "42",
+    "valore": "97",
     "rif": "media 7 giorni 85",
-    "punti": -1
+    "punti": 1
    },
    {
     "nome": "Carico",
